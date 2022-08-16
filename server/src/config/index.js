@@ -1,9 +1,10 @@
-require('dotenv').config();
+import { config } from 'dotenv';
+config();
 
 const { DB_USERNAME, DB_PASSWORD, DB_HOSTNAME, DB_NAME, DB_DIALECT } =
   process.env;
 
-module.exports = {
+export default {
   development: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
