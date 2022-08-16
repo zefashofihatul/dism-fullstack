@@ -1,7 +1,7 @@
-import productController from '../controllers/products/productController.js';
-import productsDbRepositoryPostgres from '../database/postgres/repositories/productsDbRepositoryPostgres.js';
+const productController = require('../controllers/products/productController.js');
+const productsDbRepositoryPostgres = require('../database/postgres/repositories/productsDbRepositoryPostgres.js');
 
-export default function productsRouter(express) {
+const productsRouter = (express) => {
   const router = express.Router();
 
   // load controller with dependencies
@@ -17,4 +17,6 @@ export default function productsRouter(express) {
   // DELETE endpoints
 
   return router;
-}
+};
+
+module.exports = productsRouter;

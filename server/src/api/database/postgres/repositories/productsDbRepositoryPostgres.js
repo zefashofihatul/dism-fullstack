@@ -1,17 +1,13 @@
-import { Op } from 'sequelize';
-import model from '../models/index.js';
-const Products = model;
+// Import Products Model
+const { Products } = require('../models');
 
-console.log(Products);
-const coba = async () => {
-  console.log(await Products);
-};
-
-export default function productsDbRepositoryPostgres() {
+const productsDbRepositoryPostgres = () => {
   const findAllProducts = async () => {
     const productItems = await Products.findAll();
   };
   return {
     findAllProducts,
   };
-}
+};
+
+module.exports = productsDbRepositoryPostgres;

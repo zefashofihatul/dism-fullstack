@@ -1,8 +1,8 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import logger from 'morgan';
-import routes from './api/routes/index.js';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const logger = require('morgan');
+const routes = require('./api/routes');
 
 const app = express();
 
@@ -29,4 +29,4 @@ app.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
 });
 
-export default app;
+module.exports = app;

@@ -1,6 +1,6 @@
 // import findAll from '../../application/use_cases/products/';
 
-export default function productController(productsDbRepositoryPostgres) {
+const productController = (productsDbRepositoryPostgres) => {
   const dbRepository = productsDbRepositoryPostgres();
   const fetchAllProducts = (req, res, next) => {
     dbRepository.findAllProducts();
@@ -9,4 +9,6 @@ export default function productController(productsDbRepositoryPostgres) {
   };
 
   return { fetchAllProducts };
-}
+};
+
+module.exports = productController;

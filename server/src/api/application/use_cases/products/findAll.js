@@ -1,3 +1,4 @@
-export default function findAll(params, postRepository) {
+const findAll = (params, postRepository) => {
   return postRepository.findAll(params);
-}
+};
+module.exports = findAll;
