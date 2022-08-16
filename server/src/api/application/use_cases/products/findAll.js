@@ -1,4 +1,4 @@
-const findAll = (params, postRepository) => {
-  return postRepository.findAll(params);
+const findAll = (dbRepository) => {
+  return dbRepository.findAllProducts();
 };
 module.exports = findAll;

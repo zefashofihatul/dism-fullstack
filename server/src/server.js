@@ -4,6 +4,9 @@ const cors = require('cors');
 const logger = require('morgan');
 const routes = require('./api/routes');
 
+// Middlewares
+const errorHandlerMiddleware = require('./api/middlewares/errorHandlerMiddleware');
+
 const app = express();
 
 const corsOptions = {
@@ -23,6 +26,9 @@ routes(app, express);
 
 // checkout Routes
 // app.use('api/checkout', checkoutRoutes);
+
+// error handling middleware
+app.use(errorHandlerMiddleware);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

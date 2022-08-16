@@ -2,8 +2,8 @@
 const { Products } = require('../models');
 
 const productsDbRepositoryPostgres = () => {
-  const findAllProducts = async () => {
-    const productItems = await Products.findAll();
+  const findAllProducts = () => {
+    return Products.findAll();
   };
   return {
     findAllProducts,
