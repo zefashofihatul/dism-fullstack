@@ -11,6 +11,7 @@ const productsRouter = (express) => {
   router.route('/').get(controller.fetchAllProducts);
 
   // POST endpoints
+  router.route('/').post(controller.addNewProduct);
 
   // PUT endpoints
 

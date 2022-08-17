@@ -31,6 +31,9 @@ module.exports = {
       thumb: {
         type: Sequelize.STRING,
       },
+      category: {
+        type: Sequelize.STRING,
+      },
       images: {
         type: Sequelize.STRING,
       },

@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       details: DataTypes.STRING(1234),
       materials: DataTypes.STRING,
       thumb: DataTypes.STRING,
+      category: DataTypes.STRING,
       images: DataTypes.STRING,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
