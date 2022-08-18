@@ -9,9 +9,11 @@ const addProduct = ({
   materials,
   thumb,
   images,
-  dbRepository,
+  createdAt,
+  updatedAt,
+  productRepository,
 }) => {
-  return dbRepository.addNewProduct({
+  return productRepository.add({
     id,
     name,
     shortDescription,

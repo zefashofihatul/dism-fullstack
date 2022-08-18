@@ -1,10 +1,14 @@
 // Use-Case
 const findAll = require('../../application/use_cases/products/findAll');
 const addProduct = require('../../application/use_cases/products/addProduct');
+const deleteById = require('../../application/use_cases/products/deleteById');
 
 // Error Class
 const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
+
+// Dependency
+const { v4: uuidv4 } = require('uuid');
 
 const productController = (productsDbRepositoryPostgres) => {
   const dbRepository = productsDbRepositoryPostgres();
@@ -38,14 +42,22 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Adding New Product on Database
   const addNewProduct = (req, res, nex) => {
-    const id = req.body.name.split(' ').join('-');
+    const id = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
     const data = req.body;
-    // TODO : Next Start Disini Kocak
-    // addNewProduct({
-    //   id: ,
-    //   ...data
+    addProduct({
+      id: id,
+      ...data,
+      createdAt: new Date().getTime(),
+      updatedAt: new Date().getTime(),
+      productRepository: dbRepository,
+    }).then((data) => {
+      const dataReturn = data.dataValues;
+      console.log(dataReturn);
+      // {id: id, name: productName, createdAt, updatedAt}
+    });
+    // deleteById(dbRepository, dataReturn.id).then((data) => {
+    //   console.log(data);
     // });
-    console.log(req.body);
   };
 
   return { fetchAllProducts, addNewProduct };

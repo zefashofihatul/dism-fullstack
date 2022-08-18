@@ -1,3 +1,2 @@
-const generateId = (name) => name.split(' ').join('_');
-
-console.log(generateId('Goodies Bag yang bagus'));
+const date = new Date().getTime();
+console.log(new Date(date).getSeconds());
