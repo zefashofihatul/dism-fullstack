@@ -6,6 +6,12 @@ const productsDbRepositoryPostgres = () => {
     return Products.findAll();
   };
 
+  const findProductById = (id) => {
+    return Products.findAll({
+      where: { id: id },
+    });
+  };
+
   const add = (productData) => {
     // Add Proper validation from library
     return Products.create(productData);
@@ -17,10 +23,19 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
+  const updateProduct = ({ id, dataUpdate }) => {
+    return Products.update(dataUpdate, {
+      where: { id: id },
+      returning: true,
+    });
+  };
+
   return {
     add,
+    findProductById,
     findAllProducts,
     deleteProduct,
+    updateProduct,
   };
 };
 

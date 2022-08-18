@@ -9,6 +9,7 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        unique: true,
       },
       shortDescription: {
         type: Sequelize.STRING(1234),

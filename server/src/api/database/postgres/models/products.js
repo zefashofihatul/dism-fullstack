@@ -1,4 +1,5 @@
 const { Model } = require('sequelize');
+const InvariantError = require('../../../middlewares/exceptions/InvariantError');
 
 module.exports = (sequelize, DataTypes) => {
   class Products extends Model {
@@ -13,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Products.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       shortDescription: DataTypes.STRING(1234),
       price: DataTypes.INTEGER,
       color: DataTypes.STRING,

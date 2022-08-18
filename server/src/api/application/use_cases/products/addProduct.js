@@ -9,6 +9,7 @@ const addProduct = ({
   materials,
   thumb,
   images,
+  category,
   createdAt,
   updatedAt,
   productRepository,
@@ -22,8 +23,11 @@ const addProduct = ({
     dimensions,
     details,
     materials,
+    category,
     thumb,
     images,
+    createdAt,
+    updatedAt,
   });
 };
 

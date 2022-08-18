@@ -7,15 +7,16 @@ const productsRouter = (express) => {
   // load controller with dependencies
   const controller = productController(productsDbRepositoryPostgres);
 
-  // GET endpoints
-  router.route('/').get(controller.fetchAllProducts);
+  router
+    .route('/')
+    .get(controller.fetchAllProducts)
+    .post(controller.addNewProduct);
 
-  // POST endpoints
-  router.route('/').post(controller.addNewProduct);
-
-  // PUT endpoints
-
-  // DELETE endpoints
+  router
+    .route('/:productId')
+    .get(controller.fetchProductById)
+    .delete(controller.deleteProductById)
+    .put(controller.updateProductById);
 
   return router;
 };
