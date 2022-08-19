@@ -7,9 +7,13 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 const server = require('../../../../server');
 
-chai.use(chaiHttp);
+// Importing fixture
+const {
+  detailProductFixture,
+  allProductsFixture,
+} = require('./fixtures/products');
 
-const generateId = (name) => name.split(' ').join('_');
+chai.use(chaiHttp);
 
 describe('API Products Entity', () => {
   let productId;
@@ -35,52 +39,19 @@ describe('API Products Entity', () => {
         .post('/api/products')
         .send(product)
         .end((err, res) => {
+          // Testing Payload for Status Code
           res.should.have.status(200);
 
+          // Testing Payload for body response
           res.body.should.be.a('object');
           res.body.data.should.be.a('object');
           res.body.status.should.be.a('string');
 
-          res.body.data.should.have.property('id');
-          res.body.data.id.should.be.a('string');
-
+          // Save product Id
           productId = res.body.data.id;
 
-          res.body.data.should.have.property('name');
-          res.body.data.name.should.be.a('string');
-
-          res.body.data.should.have.property('shortDescription');
-          res.body.data.shortDescription.should.be.a('string');
-
-          res.body.data.should.have.property('details');
-          res.body.data.details.should.be.a('string');
-
-          res.body.data.should.have.property('color');
-          res.body.data.color.should.be.a('string');
-
-          res.body.data.should.have.property('dimensions');
-          res.body.data.dimensions.should.be.a('string');
-
-          res.body.data.should.have.property('materials');
-          res.body.data.materials.should.be.a('string');
-
-          res.body.data.should.have.property('category');
-          res.body.data.category.should.be.a('string');
-
-          res.body.data.should.have.property('price');
-          res.body.data.price.should.be.a('number');
-
-          res.body.data.should.have.property('thumb');
-          res.body.data.thumb.should.be.a('string');
-
-          res.body.data.should.have.property('images');
-          res.body.data.images.should.be.a('string');
-
-          res.body.data.should.have.property('createdAt');
-          res.body.data.createdAt.should.be.a('string');
-
-          res.body.data.should.have.property('updatedAt');
-          res.body.data.updatedAt.should.be.a('string');
+          // Testing Payload for data response
+          detailProductFixture(err, res);
 
           done();
         });
@@ -95,6 +66,30 @@ describe('API Products Entity', () => {
           // TODO : Validator products for INPUT
           console.log(res.body);
           res.should.have.status(404);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+
+  describe('GET from Endpoint /api/products/${productId}', () => {
+    it('Should Get detail Product', (done) => {
+      chai
+        .request(server)
+        .get(`/api/products/${productId}`)
+        .end((err, res) => {
+          // console.log(res.body);
+          // Testing response Status, Code, & Message
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.status.should.be.a('string');
+
+          // Testing response data type
+          res.body.data.should.be.a('object');
+
+          // Testing all data response
+          detailProductFixture(err, res);
+
           done();
         });
     });
@@ -106,38 +101,16 @@ describe('API Products Entity', () => {
         .request(server)
         .get('/api/products')
         .end((err, res) => {
+          // Testing response Status, Code & Message
           res.should.have.status(200);
-
           res.body.should.be.a('object');
-          res.body.data.should.be.a('array');
           res.body.status.should.be.a('string');
 
-          res.body.data[0].should.have.property('id');
-          res.body.data[0].id.should.be.a('string');
+          // Testing response data type
+          res.body.data.should.be.a('array');
 
-          res.body.data[0].should.have.property('name');
-          res.body.data[0].name.should.be.a('string');
-
-          res.body.data[0].should.have.property('price');
-          res.body.data[0].price.should.be.a('number');
-
-          res.body.data[0].should.have.property('color');
-          res.body.data[0].color.should.be.a('string');
-
-          res.body.data[0].should.have.property('category');
-          res.body.data[0].category.should.be.a('string');
-
-          res.body.data[0].should.have.property('thumb');
-          res.body.data[0].thumb.should.be.a('string');
-
-          res.body.data[0].should.have.property('images');
-          res.body.data[0].images.should.be.a('string');
-
-          res.body.data[0].should.have.property('createdAt');
-          res.body.data[0].createdAt.should.be.a('string');
-
-          res.body.data[0].should.have.property('updatedAt');
-          res.body.data[0].updatedAt.should.be.a('string');
+          // Testing all data response
+          allProductsFixture(err, res);
 
           done();
         });
@@ -164,29 +137,17 @@ describe('API Products Entity', () => {
         .put(`/api/products/${productId}`)
         .send(product)
         .end((err, res) => {
+          // Testing response Status, Code & Message
           res.should.have.status(200);
           res.body.should.be.a('object');
-
-          res.body.should.have.property('status');
           res.body.status.should.be.a('string');
 
-          res.body.should.have.property('data');
+          // Testing response data type
           res.body.data.should.be.a('object');
 
-          res.body.should.have.property('message');
-          res.body.message.should.be.a('string');
+          // Testing all data response
+          detailProductFixture(err, res);
 
-          res.body.data.id.should.be.a('string');
-          res.body.data.name.should.be.a('string');
-          res.body.data.shortDescription.should.be.a('string');
-          res.body.data.price.should.be.a('number');
-          res.body.data.color.should.be.a('string');
-          res.body.data.dimensions.should.be.a('string');
-          res.body.data.details.should.be.a('string');
-          res.body.data.thumb.should.be.a('string');
-          res.body.data.images.should.be.a('string');
-          res.body.data.createdAt.should.be.a('string');
-          res.body.data.updatedAt.should.be.a('string');
           done();
         });
     });

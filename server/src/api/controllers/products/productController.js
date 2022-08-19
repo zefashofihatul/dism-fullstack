@@ -71,7 +71,6 @@ const productController = (productsDbRepositoryPostgres) => {
   const deleteProductById = (req, res, next) => {
     deleteById(dbRepository, req.params.productId)
       .then((result) => {
-        console.log(result);
         if (!result) {
           throw new InvariantError(
             `No product found with id: ${req.params.productId}`
@@ -89,14 +88,14 @@ const productController = (productsDbRepositoryPostgres) => {
   const fetchProductById = (req, res, next) => {
     findById({ dbRepository, id: req.params.productId })
       .then((product) => {
-        if (!product.length) {
+        if (!product) {
           throw new InvariantError(
             `No product found with id: ${req.params.productId}`
           );
         }
         return res.status(200).send({
           status: 'Success',
-          data: product,
+          data: product.dataValues,
         });
       })
       .catch((error) => {
