@@ -13,6 +13,9 @@ const productsRouter = (express) => {
     .get(controller.fetchAllProducts)
     .post(controller.addNewProduct);
 
+  // Routes Endpoint "/"
+  router.route('/image').post(controller.addNewProductWithImages);
+
   // Routes Endpoint "/:productId"
   router
     .route('/:productId')

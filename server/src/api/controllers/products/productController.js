@@ -1,6 +1,7 @@
 // Use-Case
 const findAll = require('../../application/use_cases/products/findAll');
 const addProduct = require('../../application/use_cases/products/addProduct');
+const addProductWithImage = require('../../application/use_cases/products/addProductWithImage');
 const deleteById = require('../../application/use_cases/products/deleteById');
 const findById = require('../../application/use_cases/products/findById');
 const updateById = require('../../application/use_cases/products/updateById');
@@ -42,14 +43,70 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Adding New Product on Database
   const addNewProduct = (req, res, next) => {
-    const id = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
+    const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
     const data = req.body;
+    console.log(data);
     addProduct({
-      id: id,
-      ...data,
-      createdAt: new Date().getTime(),
-      updatedAt: new Date().getTime(),
-      productRepository: dbRepository,
+      id: idProduct,
+      name: data.name,
+      shortDescription: data.shortDescription,
+      price: data.price,
+      materials: data.materials,
+      dimensions: data.dimensions,
+      details: data.details,
+      category: data.category,
+      color: data.color,
+      dbRepository,
+    })
+      .then((data) => {
+        const dataReturn = data.dataValues;
+
+        return res.status(200).send({
+          status: 'Success',
+          message: `${dataReturn.name} has been created`,
+          data: dataReturn,
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  };
+
+  // Adding New Product Images on Database
+  const addNewProductWithImages = (req, res, next) => {
+    const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
+    const idImages = `${uuidv4()}-${req.body.images.split(' ').join('-')}`;
+    const data = req.body;
+    console.log(data.images);
+
+    addProductWithImage({
+      id: idProduct,
+      name: data.name,
+      shortDescription: data.shortDescription,
+      price: data.price,
+      materials: data.materials,
+      dimensions: data.dimensions,
+      details: data.details,
+      category: data.category,
+      color: data.color,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      // Catatan nama harus sama dengan alias apabila input with associate
+      productImage: [
+        {
+          id: idImages,
+          idProduct,
+          name: data.images,
+          src: `images/${data.images}`,
+        },
+        {
+          id: `${idImages}-1`,
+          idProduct,
+          name: `${data.images}`,
+          src: `images/${data.images}-1`,
+        },
+      ],
+      dbRepository,
     })
       .then((data) => {
         const dataReturn = data.dataValues;
@@ -130,6 +187,7 @@ const productController = (productsDbRepositoryPostgres) => {
 
   return {
     fetchAllProducts,
+    addNewProductWithImages,
     addNewProduct,
     deleteProductById,
     fetchProductById,
