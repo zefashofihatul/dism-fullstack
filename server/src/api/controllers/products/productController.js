@@ -5,7 +5,7 @@ const deleteById = require('../../application/use_cases/products/deleteById');
 const findById = require('../../application/use_cases/products/findById');
 const updateById = require('../../application/use_cases/products/updateById');
 
-// Error Class
+// Importing Error Class
 const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
 
@@ -28,9 +28,7 @@ const productController = (productsDbRepositoryPostgres) => {
               name: product.name,
               price: product.price,
               color: product.color,
-              thumb: product.thumb,
               category: product.category,
-              images: product.images,
               createdAt: product.createdAt,
               updatedAt: product.updatedAt,
             };
