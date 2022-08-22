@@ -75,22 +75,20 @@ const productController = (productsDbRepositoryPostgres) => {
   // Adding New Product Images on Database
   const addNewProductWithImages = (req, res, next) => {
     const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
-    const data = req;
-    const body = req.body;
 
     addProductWithImage({
       id: idProduct,
-      name: body.name,
-      shortDescription: body.shortDescription,
-      price: body.price,
-      materials: body.materials,
-      dimensions: body.dimensions,
-      details: body.details,
-      category: body.category,
-      color: body.color,
+      name: req.body.name,
+      shortDescription: req.body.shortDescription,
+      price: req.body.price,
+      materials: req.body.materials,
+      dimensions: req.body.dimensions,
+      details: req.body.details,
+      category: req.body.category,
+      color: req.body.color,
       createdAt: new Date(),
       updatedAt: new Date(),
-      productImage: data.files.map((value) => {
+      productImage: req.files.map((value) => {
         return {
           id: `${uuidv4()}-${value.fieldname}`,
           idProduct,
