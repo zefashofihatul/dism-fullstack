@@ -18,15 +18,34 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idUser',
         as: 'cart',
       });
+
+      User.hasMany(models.User_Product, {
+        foreignKey: 'idUser',
+        as: 'userProduct',
+      });
+
+      User.belongsTo(models.Role, {
+        foreignKey: 'idRole',
+        as: 'role',
+      });
     }
   }
   User.init(
     {
-      fullName: DataTypes.STRING,
-      gender: DataTypes.STRING,
-      email: DataTypes.STRING,
-      dateOfBirth: DataTypes.DATE,
-      newslater: DataTypes.STRING,
+      idRole: {
+        type: DataTypes.STRING,
+      },
+      username: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

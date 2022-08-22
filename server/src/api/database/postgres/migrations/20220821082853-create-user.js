@@ -8,28 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      fullName: {
+      idRole: {
+        allowNull: false,
+        autoIncrement: false,
         type: Sequelize.STRING,
       },
-      gender: {
+      username: {
         type: Sequelize.STRING,
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
-      dateOfBirth: {
-        type: Sequelize.DATE,
-      },
-      newslater: {
+      password: {
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },
