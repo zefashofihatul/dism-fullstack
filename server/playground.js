@@ -1,2 +1,1 @@
-const date = new Date().getTime();
-console.log(new Date(date).getSeconds());
+require('crypto').randomBytes(64).toString('hex');
