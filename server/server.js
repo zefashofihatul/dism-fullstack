@@ -1,11 +1,14 @@
+// Setting Base Directory Base
+global.__basedir = __dirname;
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('morgan');
-const routes = require('./api/routes');
+const routes = require('./src/api/routes');
 
 // Middlewares
-const errorHandlerMiddleware = require('./api/middlewares/errorHandlerMiddleware');
+const errorHandlerMiddleware = require('./src/api/middlewares/errorHandlerMiddleware');
 
 const app = express();
 

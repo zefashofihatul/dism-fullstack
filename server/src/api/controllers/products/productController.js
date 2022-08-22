@@ -45,7 +45,7 @@ const productController = (productsDbRepositoryPostgres) => {
   const addNewProduct = (req, res, next) => {
     const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
     const data = req.body;
-    console.log(data);
+
     addProduct({
       id: idProduct,
       name: data.name,
@@ -75,37 +75,29 @@ const productController = (productsDbRepositoryPostgres) => {
   // Adding New Product Images on Database
   const addNewProductWithImages = (req, res, next) => {
     const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
-    const idImages = `${uuidv4()}-${req.body.images.split(' ').join('-')}`;
-    const data = req.body;
-    console.log(data.images);
+    const data = req;
+    const body = req.body;
 
     addProductWithImage({
       id: idProduct,
-      name: data.name,
-      shortDescription: data.shortDescription,
-      price: data.price,
-      materials: data.materials,
-      dimensions: data.dimensions,
-      details: data.details,
-      category: data.category,
-      color: data.color,
+      name: body.name,
+      shortDescription: body.shortDescription,
+      price: body.price,
+      materials: body.materials,
+      dimensions: body.dimensions,
+      details: body.details,
+      category: body.category,
+      color: body.color,
       createdAt: new Date(),
       updatedAt: new Date(),
-      // Catatan nama harus sama dengan alias apabila input with associate
-      productImage: [
-        {
-          id: idImages,
+      productImage: data.files.map((value) => {
+        return {
+          id: `${uuidv4()}-${value.fieldname}`,
           idProduct,
-          name: data.images,
-          src: `images/${data.images}`,
-        },
-        {
-          id: `${idImages}-1`,
-          idProduct,
-          name: `${data.images}`,
-          src: `images/${data.images}-1`,
-        },
-      ],
+          name: value.fieldname,
+          src: `${value.destination}${value.filename}`,
+        };
+      }),
       dbRepository,
     })
       .then((data) => {

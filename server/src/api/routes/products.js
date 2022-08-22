@@ -1,6 +1,9 @@
 const productController = require('../controllers/products/productController');
 const productsDbRepositoryPostgres = require('../database/postgres/repositories/productsDbRepositoryPostgres');
 
+// Load Middleware
+const uploadFiles = require('../middlewares/uploadFiles');
+
 const productsRouter = (express) => {
   const router = express.Router();
 
@@ -11,10 +14,10 @@ const productsRouter = (express) => {
   router
     .route('/')
     .get(controller.fetchAllProducts)
-    .post(controller.addNewProduct);
+    .post(controller.addNewProductWithImages);
 
-  // Routes Endpoint "/"
-  router.route('/image').post(controller.addNewProductWithImages);
+  // Routes Endpoint "/image"
+  router.route('/image').post(uploadFiles, controller.addNewProductWithImages);
 
   // Routes Endpoint "/:productId"
   router
