@@ -8,10 +8,11 @@ const authService = () => {
     return bcrypt.hashSync(password, salt);
   };
 
-  const compare = (password, hashedPassword) =>
-    bcrypt.compareSync(password, hashedPassword);
+  const compare = (password, hashedPassword) => {
+    return bcrypt.compareSync(password, hashedPassword);
+  };
 
-  const verify = (token) => jwt.verify(token, config.jwtSecret);
+  const verify = (token) => jwt.verify(token, process.env.JWT_SECRET);
 
   const generateToken = (payload) =>
     jwt.sign(payload, process.env.JWT_SECRET, {
