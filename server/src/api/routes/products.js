@@ -15,7 +15,7 @@ const productsRouter = (express) => {
   router
     .route('/')
     .get(authMiddleware, controller.fetchAllProducts)
-    .post(controller.addNewProductWithImages);
+    .post([authMiddleware, uploadFiles], controller.addNewProductWithImages);
 
   // Routes Endpoint "/image"
   router.route('/image').post(uploadFiles, controller.addNewProductWithImages);

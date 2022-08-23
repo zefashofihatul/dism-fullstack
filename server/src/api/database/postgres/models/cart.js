@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       idProduct: {
         type: DataTypes.STRING,
+        unique: true,
         references: {
           model: 'Product',
           key: 'id',

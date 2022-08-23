@@ -10,7 +10,11 @@ const usersDbRepositoryPostgres = () => {
       where: property,
     });
   };
-  const findById = () => {};
+  const findById = (id) => {
+    return User.findByPk(id, {
+      include: 'role',
+    });
+  };
 
   return {
     add,

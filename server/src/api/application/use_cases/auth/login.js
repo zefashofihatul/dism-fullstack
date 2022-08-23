@@ -23,6 +23,9 @@ const login = (email, password, dbRepository, authService) => {
     const payload = {
       user: {
         id: user[0].dataValues.id,
+        idRole: user[0].dataValues.idRole,
+        username: user[0].dataValues.username,
+        email: user[0].dataValues.email,
       },
     };
     return authService.generateToken(payload);

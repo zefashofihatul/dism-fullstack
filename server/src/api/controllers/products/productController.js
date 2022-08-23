@@ -44,18 +44,27 @@ const productController = (productsDbRepositoryPostgres) => {
   // Adding New Product on Database
   const addNewProduct = (req, res, next) => {
     const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
-    const data = req.body;
+    const {
+      name,
+      shortDescription,
+      price,
+      materials,
+      dimensions,
+      details,
+      category,
+      color,
+    } = req.body;
 
     addProduct({
       id: idProduct,
-      name: data.name,
-      shortDescription: data.shortDescription,
-      price: data.price,
-      materials: data.materials,
-      dimensions: data.dimensions,
-      details: data.details,
-      category: data.category,
-      color: data.color,
+      name: name,
+      shortDescription: shortDescription,
+      price: price,
+      materials: materials,
+      dimensions: dimensions,
+      details: details,
+      category: category,
+      color: color,
       dbRepository,
     })
       .then((data) => {
@@ -74,18 +83,29 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Adding New Product Images on Database
   const addNewProductWithImages = (req, res, next) => {
-    const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
+    const {
+      name,
+      shortDescription,
+      price,
+      materials,
+      dimensions,
+      details,
+      category,
+      color,
+    } = req.body;
+
+    const idProduct = `${uuidv4()}-${name.split(' ').join('-')}`;
 
     addProductWithImage({
       id: idProduct,
-      name: req.body.name,
-      shortDescription: req.body.shortDescription,
-      price: req.body.price,
-      materials: req.body.materials,
-      dimensions: req.body.dimensions,
-      details: req.body.details,
-      category: req.body.category,
-      color: req.body.color,
+      name: name,
+      shortDescription: shortDescription,
+      price: price,
+      materials: materials,
+      dimensions: dimensions,
+      details: details,
+      category: category,
+      color: color,
       createdAt: new Date(),
       updatedAt: new Date(),
       productImage: req.files.map((value) => {

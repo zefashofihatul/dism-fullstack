@@ -1,6 +1,9 @@
 const addUser = require('../../application/use_cases/users/addUser');
+const findUserById = require('../../application/use_cases/users/findUserById');
 
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
+
+const { v4: uuidv4 } = require('uuid');
 
 const usersController = (
   usersDbRepositoryPostgres,
@@ -9,15 +12,35 @@ const usersController = (
 ) => {
   const dbRepository = usersDbRepositoryPostgres();
   const authService = authServiceInterface(authServiceImpl());
+
   const fetchUserByProperty = () => {};
-  const fetchUserById = () => {};
+
+  const fetchUserById = (req, res, next) => {
+    findUserById(dbRepository, req.params.id).then((result) => {
+      if (!result.dataValues) {
+        throw new InvariantError(`User with id : ${req.params.id}, Not Found`);
+      }
+      const { id, username, email, password, role } = result.dataValues;
+      return res.status(200).send({
+        status: 'Success',
+        data: {
+          id,
+          username,
+          email,
+          role: role.name,
+        },
+      });
+    });
+  };
+
   const addNewUser = (req, res, next) => {
+    const { username, email, password } = req.body;
     addUser(dbRepository, authService, {
-      id: 'iniIdKocak123',
+      id: uuidv4(),
       idRole: 1,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
+      username: username,
+      email: email,
+      password: password,
       createdAt: new Date().now,
       updatedAt: new Date().now,
     })
