@@ -1,7 +1,11 @@
 const orderProductController = (orderProductDbRepositoryPostgres) => {
   const dbRepository = orderProductDbRepositoryPostgres();
 
-  const addOrderProduct = (req, res, next) => {};
+  const addNewOrderProduct = (req, res, next) => {};
+
+  return {
+    addNewOrderProduct,
+  };
 };
 
-module.export = orderProductController;
+module.exports = orderProductController;
