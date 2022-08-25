@@ -1,23 +1,16 @@
+const AuthenticationError = require('../../../middlewares/exceptions/AuthenticationError');
+
 const login = (email, password, dbRepository, authService) => {
   if (!email || !password) {
-    const error = new Error('Email and password cannot be empty');
-    error.statusCode = 401;
-    throw error;
+    throw new AuthenticationError('Email and password cannot be empty');
   }
-
   return dbRepository.findByProperty({ email }).then((user) => {
     if (!user.length) {
-      const error = new Error('Invalid email or password');
-      error.statusCode = 401;
-      throw error;
+      throw new AuthenticationError('Invalid email or password');
     }
-
     const isMatch = authService.compare(password, user[0].dataValues.password);
-    console.log(isMatch);
     if (!isMatch) {
-      const error = new Error('Invalid email or password');
-      error.statusCode = 401;
-      throw error;
+      throw new AuthenticationError('Invalid email or password');
     }
 
     const payload = {

@@ -12,6 +12,12 @@ const productsDbRepositoryPostgres = () => {
     return Product.findByPk(id);
   };
 
+  const findProductByProperty = (property) => {
+    return Product.findAll({
+      where: property,
+    });
+  };
+
   const add = (productData) => {
     // Add Proper validation or Add sequelize Validator
     return Product.create(productData);
@@ -45,6 +51,7 @@ const productsDbRepositoryPostgres = () => {
   return {
     add,
     addWithImage,
+    findProductByProperty,
     findProductById,
     findAllProducts,
     deleteProduct,

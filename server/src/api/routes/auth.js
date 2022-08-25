@@ -15,7 +15,7 @@ const authRouter = (express) => {
   );
 
   // POST Endpoint
-  router.route('/').post(controller.loginUser);
+  router.route('/').post(controller.loginUser).put(controller.updateUserToken);
 
   return router;
 };

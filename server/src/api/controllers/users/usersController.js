@@ -4,6 +4,7 @@ const findUserById = require('../../application/use_cases/users/findUserById');
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
 
 const { v4: uuidv4 } = require('uuid');
+const Sequelize = require('sequelize');
 
 const usersController = (
   usersDbRepositoryPostgres,
@@ -34,10 +35,11 @@ const usersController = (
   };
 
   const addNewUser = (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, idRole } = req.body;
+
     addUser(dbRepository, authService, {
       id: uuidv4(),
-      idRole: 1,
+      idRole: idRole,
       username: username,
       email: email,
       password: password,
@@ -45,16 +47,19 @@ const usersController = (
       updatedAt: new Date().now,
     })
       .then((result) => {
+        console.log(result.dataValues);
         if (!result.dataValues) {
           throw new InvariantError('Fail for Adding User');
         }
-        return res.status(200).send({
+        return res.status(201).send({
           status: 'Success',
           message: 'Success for Adding new Account',
           data: result.dataValues,
         });
       })
-      .catch((err) => next(err));
+      .catch((err) => {
+        next(err);
+      });
   };
 
   return {

@@ -43,7 +43,6 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Adding New Product on Database
   const addNewProduct = (req, res, next) => {
-    const idProduct = `${uuidv4()}-${req.body.name.split(' ').join('-')}`;
     const {
       name,
       shortDescription,
@@ -56,7 +55,7 @@ const productController = (productsDbRepositoryPostgres) => {
     } = req.body;
 
     addProduct({
-      id: idProduct,
+      id: `product-${uuidv4()}`,
       name: name,
       shortDescription: shortDescription,
       price: price,
@@ -93,9 +92,7 @@ const productController = (productsDbRepositoryPostgres) => {
       category,
       color,
     } = req.body;
-
-    const idProduct = `${uuidv4()}-${name.split(' ').join('-')}`;
-
+    const idProduct = `product-${uuidv4()}`;
     addProductWithImage({
       id: idProduct,
       name: name,
@@ -110,7 +107,7 @@ const productController = (productsDbRepositoryPostgres) => {
       updatedAt: new Date(),
       productImage: req.files.map((value) => {
         return {
-          id: `${uuidv4()}-${value.fieldname}`,
+          id: `image-${uuidv4()}`,
           idProduct,
           name: value.fieldname,
           src: `${value.destination}${value.filename}`,
@@ -121,7 +118,7 @@ const productController = (productsDbRepositoryPostgres) => {
       .then((data) => {
         const dataReturn = data.dataValues;
 
-        return res.status(200).send({
+        return res.status(201).send({
           status: 'Success',
           message: `${dataReturn.name} has been created`,
           data: dataReturn,
@@ -134,16 +131,15 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Delete Product from Database
   const deleteProductById = (req, res, next) => {
-    deleteById(dbRepository, req.params.productId)
+    const { productId } = req.params;
+    deleteById(dbRepository, productId)
       .then((result) => {
         if (!result) {
-          throw new InvariantError(
-            `No product found with id: ${req.params.productId}`
-          );
+          throw new InvariantError(`No product found with id: ${productId}`);
         }
         return res.status(200).send({
           status: 'Success',
-          message: `Product with id : ${req.params.productId} has been deleted`,
+          message: `Product with id : ${productId} has been deleted`,
         });
       })
       .catch((error) => next(error));
@@ -151,12 +147,11 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Fetch Product by Id from Database
   const fetchProductById = (req, res, next) => {
-    findById({ dbRepository, id: req.params.productId })
+    const { productId } = req.params;
+    findById({ dbRepository, id: productId })
       .then((product) => {
         if (!product) {
-          throw new InvariantError(
-            `No product found with id: ${req.params.productId}`
-          );
+          throw new InvariantError(`No product found with id: ${productId}`);
         }
         return res.status(200).send({
           status: 'Success',
@@ -170,9 +165,10 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Update Product by Id from Database
   const updateProductById = (req, res, next) => {
+    const { productId } = req.params;
     updateById({
       dbRepository,
-      id: req.params.productId,
+      id: productId,
       dataUpdate: {
         ...req.body,
         updatedAt: new Date().getTime(),
@@ -180,9 +176,7 @@ const productController = (productsDbRepositoryPostgres) => {
     })
       .then((result) => {
         if (!result[0]) {
-          throw new InvariantError(
-            `No product found with id: ${req.params.productId}`
-          );
+          throw new InvariantError(`No product found with id: ${productId}`);
         }
         return res.status(200).send({
           status: 'Success',
