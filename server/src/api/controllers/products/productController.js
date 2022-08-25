@@ -5,10 +5,14 @@ const addProductWithImage = require('../../application/use_cases/products/addPro
 const deleteById = require('../../application/use_cases/products/deleteById');
 const findById = require('../../application/use_cases/products/findById');
 const updateById = require('../../application/use_cases/products/updateById');
+const findAllProductPerPage = require('../../application/use_cases/products/findAllProductPerPage');
 
 // Importing Error Class
 const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
+
+// Importing Util
+const tryParseInt = require('../../helpers/utils/parser');
 
 // Dependency
 const { v4: uuidv4 } = require('uuid');
@@ -34,6 +38,27 @@ const productController = (productsDbRepositoryPostgres) => {
               updatedAt: product.updatedAt,
             };
           }),
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  };
+
+  const fetchAllProductsPerPage = (req, res, next) => {
+    const page = tryParseInt(req.query.page, 0);
+    const limit = tryParseInt(req.query.size, 10);
+    findAllProductPerPage(dbRepository, { limit, page })
+      .then((products) => {
+        const { count, rows } = products;
+        return res.status(200).send({
+          status: 'Success',
+          data: {
+            size: limit,
+            page: page,
+            total: count,
+            products: rows,
+          },
         });
       })
       .catch((error) => {
@@ -92,6 +117,7 @@ const productController = (productsDbRepositoryPostgres) => {
       category,
       color,
     } = req.body;
+
     const idProduct = `product-${uuidv4()}`;
     addProductWithImage({
       id: idProduct,
@@ -135,7 +161,7 @@ const productController = (productsDbRepositoryPostgres) => {
     deleteById(dbRepository, productId)
       .then((result) => {
         if (!result) {
-          throw new InvariantError(`No product found with id: ${productId}`);
+          throw new NotFoundError(`No product found with id: ${productId}`);
         }
         return res.status(200).send({
           status: 'Success',
@@ -166,13 +192,27 @@ const productController = (productsDbRepositoryPostgres) => {
   // Update Product by Id from Database
   const updateProductById = (req, res, next) => {
     const { productId } = req.params;
-    updateById({
-      dbRepository,
-      id: productId,
-      dataUpdate: {
-        ...req.body,
-        updatedAt: new Date().getTime(),
-      },
+
+    const {
+      name,
+      price,
+      materials,
+      details,
+      shortDescription,
+      dimensions,
+      category,
+      color,
+    } = req.body;
+    updateById(dbRepository, productId, {
+      name,
+      price,
+      materials,
+      details,
+      shortDescription,
+      dimensions,
+      category,
+      color,
+      updatedAt: new Date(),
     })
       .then((result) => {
         if (!result[0]) {
@@ -195,6 +235,7 @@ const productController = (productsDbRepositoryPostgres) => {
     addNewProduct,
     deleteProductById,
     fetchProductById,
+    fetchAllProductsPerPage,
     updateProductById,
   };
 };

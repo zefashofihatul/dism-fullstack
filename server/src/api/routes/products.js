@@ -14,7 +14,7 @@ const productsRouter = (express) => {
   // Routes Endpoint "/"
   router
     .route('/')
-    .get(authMiddleware, controller.fetchAllProducts)
+    .get(authMiddleware, controller.fetchAllProductsPerPage)
     .post([authMiddleware, uploadFiles], controller.addNewProductWithImages);
 
   // Routes Endpoint "/image"
@@ -25,7 +25,7 @@ const productsRouter = (express) => {
     .route('/:productId')
     .get(controller.fetchProductById)
     .delete(controller.deleteProductById)
-    .put(controller.updateProductById);
+    .put([authMiddleware, uploadFiles], controller.updateProductById);
 
   return router;
 };

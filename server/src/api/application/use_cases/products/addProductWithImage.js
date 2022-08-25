@@ -15,6 +15,12 @@ const addProductWithImage = ({
   updatedAt,
   dbRepository,
 }) => {
+  if (!name || !shortDescription || !price || !details) {
+    throw new InvariantError(
+      'Name, shortDescription, price & details cant be empty'
+    );
+  }
+
   return dbRepository
     .findProductByProperty({
       name,

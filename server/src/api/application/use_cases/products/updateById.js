@@ -1,5 +1,5 @@
-const updateById = ({ dbRepository, id, dataUpdate }) => {
-  return dbRepository.updateProduct({ id, dataUpdate });
+const updateById = (dbRepository, id, dataUpdate) => {
+  return dbRepository.updateProduct(id, dataUpdate);
 };
 
 module.exports = updateById;

@@ -18,6 +18,13 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
+  const findAllPerPage = (limit, page) => {
+    return Product.findAndCountAll({
+      offset: limit * page,
+      limit: limit,
+    });
+  };
+
   const add = (productData) => {
     // Add Proper validation or Add sequelize Validator
     return Product.create(productData);
@@ -40,7 +47,7 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
-  const updateProduct = ({ id, dataUpdate }) => {
+  const updateProduct = (id, dataUpdate) => {
     // Add Proper validation or Add sequelize Validator
     return Product.update(dataUpdate, {
       where: { id: id },
@@ -54,6 +61,7 @@ const productsDbRepositoryPostgres = () => {
     findProductByProperty,
     findProductById,
     findAllProducts,
+    findAllPerPage,
     deleteProduct,
     updateProduct,
   };

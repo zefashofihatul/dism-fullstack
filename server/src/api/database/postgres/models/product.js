@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const isOnlyNumber = require('../validation/isOnlyNumber');
+
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     /**
@@ -33,12 +35,16 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "Product Name Validation: Field can't be empty",
           },
-          isAlpha: {
-            msg: 'Product Name Validation: Field must containing String',
-          },
           len: {
             args: [5, 255],
-            msg: 'Product Name Validation: Character length must be on 5 to 100',
+            msg: 'Product Name Validation: Character length must be on 5 to 255',
+          },
+          isOnlyNumber(value) {
+            if (/^[0-9 ]+$/.test(value)) {
+              throw new Error(
+                'Product Name Validation: Character length must contain string'
+              );
+            }
           },
         },
       },
@@ -47,12 +53,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-          isAlpha: {
-            msg: 'Short Description Validation: Field must containing String',
-          },
           len: {
-            args: [3, 1234],
+            args: [5, 1234],
             msg: 'Short Description Validation: Character length must be on 5 to 1234',
+          },
+          isOnlyNumber(value) {
+            if (/^[0-9 ]+$/.test(value)) {
+              throw new Error(
+                'Short Description Validation: Character length must contain string'
+              );
+            }
           },
         },
       },
@@ -65,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: "Price Validation: Field can't be empty",
           },
           isInt: {
-            msg: 'Price Validation: Field must be ',
+            msg: 'Price Validation: Field must be integer',
           },
         },
       },
