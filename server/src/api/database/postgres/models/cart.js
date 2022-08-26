@@ -23,21 +23,60 @@ module.exports = (sequelize, DataTypes) => {
     {
       idUser: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
         references: {
           model: 'User',
           key: 'id',
         },
+        validate: {
+          notEmpty: {
+            msg: "Product Name Validation: Field can't be empty",
+          },
+          len: {
+            args: [5, 100],
+            msg: 'Product Name Validation: Character length must be on 5 to 255',
+          },
+        },
       },
       idProduct: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
         references: {
           model: 'Product',
           key: 'id',
         },
+        validate: {
+          notEmpty: {
+            msg: "Product Name Validation: Field can't be empty",
+          },
+          len: {
+            args: [5, 100],
+            msg: 'Product Name Validation: Character length must be on 5 to 255',
+          },
+        },
       },
-      color: DataTypes.STRING,
-      quantity: DataTypes.NUMBER,
+      color: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: 'Cart Color Validation: Field must just String',
+          },
+        },
+      },
+      quantity: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+        validate: {
+          isInt: {
+            args: true,
+            msg: 'Cart Quantity Validation: Field must just Number',
+          },
+        },
+      },
     },
     {
       sequelize,
