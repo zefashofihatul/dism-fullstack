@@ -17,7 +17,8 @@ const paymentRouter = (express) => {
   // Payment Endpoint "/:idPayment"
   router
     .route('/:idPaymentMethod')
-    .put(authMiddleware, controller.updatePaymentMethodById);
+    .put(authMiddleware, controller.updatePaymentMethodById)
+    .delete(authMiddleware, controller.deletePaymentMethodById);
 
   return router;
 };

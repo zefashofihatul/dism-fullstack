@@ -1,4 +1,5 @@
 const { Payment } = require('../models');
+const { Op } = require('sequelize');
 
 const paymentDbRepositoryPostgres = () => {
   const addMethod = (dataMethod) => {
@@ -12,6 +13,13 @@ const paymentDbRepositoryPostgres = () => {
       where: property,
     });
   };
+  const findMethodByOperatorOr = (property) => {
+    return Payment.findAll({
+      where: {
+        [Op.or]: property,
+      },
+    });
+  };
   const updateMethod = (idPaymentMethod, property) => {
     return Payment.update(property, {
       where: {
@@ -23,12 +31,19 @@ const paymentDbRepositoryPostgres = () => {
   const findMethodById = (idPaymentMethod) => {
     return Payment.findByPk(idPaymentMethod);
   };
+  const deleteById = (idPaymentMethod) => {
+    return Payment.destroy({
+      where: { id: idPaymentMethod },
+    });
+  };
   return {
     addMethod,
     updateMethod,
     findAllMethod,
+    findMethodByOperatorOr,
     findMethodByProperty,
     findMethodById,
+    deleteById,
   };
 };
 

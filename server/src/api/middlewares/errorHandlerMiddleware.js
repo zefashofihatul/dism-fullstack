@@ -11,7 +11,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   if (err.name === 'SequelizeDatabaseError') {
     return res.status(400).json({
       status: 'Fail',
-      message: `Error when inputing to database: ${err.parent.hint}`,
+      message: `Error when inputing to database: ${err.message}`,
     });
   }
   if (err.name === 'SequelizeValidationError') {

@@ -17,8 +17,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   Payment.init(
     {
-      paymentVendor: DataTypes.STRING,
-      paymentMethod: DataTypes.STRING,
+      paymentVendor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isAlphanumeric: {
+            msg: 'Payment Vendor Validation: Field must be String',
+          },
+        },
+      },
+      paymentMethod: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isAlphanumeric: {
+            msg: 'Payment Method Validation: Field must be String',
+          },
+        },
+      },
     },
     {
       sequelize,

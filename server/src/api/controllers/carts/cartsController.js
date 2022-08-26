@@ -7,6 +7,7 @@ const findCartById = require('../../application/use_cases/carts/findCartById');
 const findAllByUserId = require('../../application/use_cases/carts/findAllByUserId');
 
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
+const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
 
 // Dependency
 const { v4: uuidv4 } = require('uuid');
@@ -107,7 +108,7 @@ const cartsController = (cartsDbRepositoryPostgres) => {
     deleteCartById(dbRepository, idCart)
       .then((result) => {
         if (!result) {
-          throw new InvariantError('DELETE cart fail');
+          throw new NotFoundError('Delete cart fail');
         }
         res.status(200).send({
           status: 'Success',
