@@ -12,6 +12,13 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
+  const findAllPerPage = (property) => {
+    return Cart.findAndCountAll({
+      offset: limit * page,
+      limit: limit,
+    });
+  };
+
   const findById = (id) => {
     return Cart.findByPk(id);
   };
@@ -41,6 +48,7 @@ const productsDbRepositoryPostgres = () => {
   return {
     add,
     addBulk,
+    findAllPerPage,
     findById,
     findByProperty,
     findAllCarts,

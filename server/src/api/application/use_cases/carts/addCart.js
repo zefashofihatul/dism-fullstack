@@ -6,7 +6,12 @@ const addCart = (dbRepository, dataCart) => {
     throw new InvariantError('idProduct, color, & quantity cannot be null');
   }
   return dbRepository
-    .findByProperty({ idProduct: dataCart.idProduct })
+    .findByProperty({ idUser: dataCart.idUser })
+    .then((result) => {
+      return result.filter((cartObj) => {
+        return cartObj.dataValues.idProduct === dataCart.idProduct;
+      });
+    })
     .then((result) => {
       if (result.length) {
         throw new InvariantError('Product Has been on Cart');

@@ -10,7 +10,7 @@ const cartsRouter = (express) => {
   // Routes Endpoint "/"
   router
     .route('/')
-    .get(authMiddleware, controller.fetchAllCarts)
+    .get(authMiddleware, controller.fetchAllCartsByUserId)
     .post(authMiddleware, controller.addNewCarts);
 
   // Router Endpoint "/:idCart"

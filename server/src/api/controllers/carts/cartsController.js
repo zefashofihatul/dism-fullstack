@@ -4,6 +4,7 @@ const addCart = require('../../application/use_cases/carts/addCart');
 const updateCart = require('../../application/use_cases/carts/updateCart');
 const deleteCartById = require('../../application/use_cases/carts/deleteCartById');
 const findCartById = require('../../application/use_cases/carts/findCartById');
+const findAllByUserId = require('../../application/use_cases/carts/findAllByUserId');
 
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
 
@@ -17,7 +18,23 @@ const cartsController = (cartsDbRepositoryPostgres) => {
   const fetchAllCarts = (req, res, next) => {
     findAll(dbRepository)
       .then((data) => {
-        return res.status(200).send(data);
+        return res.status(200).send({
+          status: 'Success',
+          data: data,
+        });
+      })
+      .catch((err) => next(err));
+  };
+
+  // Getting all carts without including user
+  const fetchAllCartsByUserId = (req, res, next) => {
+    const { id, username, email } = req.user;
+    findAllByUserId(dbRepository, { idUser: id })
+      .then((data) => {
+        return res.status(200).send({
+          status: 'Success',
+          data: data,
+        });
       })
       .catch((err) => next(err));
   };
@@ -31,7 +48,15 @@ const cartsController = (cartsDbRepositoryPostgres) => {
         }
         return res.status(200).send({
           status: 'Success',
-          data: result.dataValues,
+          data: {
+            id: result.dataValues.id,
+            idUser: result.dataValues.idUser,
+            idProduct: result.dataValues.idProduct,
+            color: result.dataValues.color,
+            quantity: result.dataValues.quantity,
+            createdAt: result.dataValues.createdAt,
+            updatedAt: result.dataValues.updatedAt,
+          },
         });
       })
       .catch((err) => next(err));
@@ -95,6 +120,7 @@ const cartsController = (cartsDbRepositoryPostgres) => {
   return {
     fetchCartsById,
     fetchAllCarts,
+    fetchAllCartsByUserId,
     addNewCarts,
     updateCartItem,
     deleteCart,
