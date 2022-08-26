@@ -45,6 +45,7 @@ const productController = (productsDbRepositoryPostgres) => {
       });
   };
 
+  // Getting Product per Page
   const fetchAllProductsPerPage = (req, res, next) => {
     // Todo : How if page:1, limit:4. But count 2
     const page = tryParseInt(req.query.page, 0);

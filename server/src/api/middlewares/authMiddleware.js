@@ -1,5 +1,6 @@
 const authServiceImpl = require('../services/authServices');
 const authServiceInterface = require('../application/services/authService');
+const AuthorizationError = require('./exceptions/AuthorizationError');
 
 const authMiddleware = (req, res, next) => {
   // Get token from header
@@ -7,11 +8,11 @@ const authMiddleware = (req, res, next) => {
   const authService = authServiceInterface(authServiceImpl());
 
   if (!token) {
-    throw new Error('No access token found');
+    throw new AuthorizationError('No access token found');
   }
 
   if (token.split(' ')[0] !== 'Bearer') {
-    throw new Error('Invalid access token format');
+    throw new AuthorizationError('Invalid access token format');
   }
 
   try {
@@ -19,7 +20,7 @@ const authMiddleware = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (err) {
-    throw new Error('Token is not valid');
+    throw new AuthorizationError('Token is not valid');
   }
 };
 

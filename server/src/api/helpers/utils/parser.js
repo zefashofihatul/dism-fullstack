@@ -1,5 +1,4 @@
 // PARSER FILE
-// ============================================================
 const tryParseInt = (stringValue, defaultValue) => {
   if (!stringValue) return defaultValue;
 

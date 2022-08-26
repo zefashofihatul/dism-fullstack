@@ -48,7 +48,7 @@ const cartsController = (cartsDbRepositoryPostgres) => {
       quantity,
     })
       .then((result) => {
-        return res.status(200).send({
+        return res.status(201).send({
           status: 'Success',
           message: `${result.dataValues.idProduct} has been created`,
           data: result.dataValues,
