@@ -1,7 +1,7 @@
 // Import Products Model
 const { Cart, Products } = require('../models');
 
-const productsDbRepositoryPostgres = () => {
+const cartsDbRepositoryPostgres = () => {
   const findAllCarts = () => {
     return Cart.findAll();
   };
@@ -34,6 +34,7 @@ const productsDbRepositoryPostgres = () => {
   const updateItem = (dataCart, idCart) => {
     return Cart.update(dataCart, {
       where: { id: idCart },
+      returning: true,
     });
   };
 
@@ -57,4 +58,4 @@ const productsDbRepositoryPostgres = () => {
   };
 };
 
-module.exports = productsDbRepositoryPostgres;
+module.exports = cartsDbRepositoryPostgres;

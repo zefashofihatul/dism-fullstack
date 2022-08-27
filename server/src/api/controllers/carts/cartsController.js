@@ -41,12 +41,10 @@ const cartsController = (cartsDbRepositoryPostgres) => {
   };
 
   const fetchCartsById = (req, res, next) => {
+    const { id: idUser } = req.user;
     const { idCart } = req.params;
-    findCartById(dbRepository, idCart)
+    findCartById(dbRepository, idCart, idUser)
       .then((result) => {
-        if (!result) {
-          throw new InvariantError(`Cart with ${idCart} not found`);
-        }
         return res.status(200).send({
           status: 'Success',
           data: {
@@ -85,16 +83,13 @@ const cartsController = (cartsDbRepositoryPostgres) => {
 
   const updateCartItem = (req, res, next) => {
     const { idCart } = req.params;
+    const { id: idUser } = req.user;
     const { color, quantity } = req.body;
-    updateCart(dbRepository, idCart, {
+    updateCart(dbRepository, idCart, idUser, {
       color,
       quantity,
     })
       .then((result) => {
-        console.log(result);
-        if (!result) {
-          throw new InvariantError('Update cart fail');
-        }
         res.status(200).send({
           status: 'Success',
           message: `Update with id: ${idCart} Success`,
@@ -105,7 +100,8 @@ const cartsController = (cartsDbRepositoryPostgres) => {
 
   const deleteCart = (req, res, next) => {
     const { idCart } = req.params;
-    deleteCartById(dbRepository, idCart)
+    const { id: idUser } = req.user;
+    deleteCartById(dbRepository, idCart, idUser)
       .then((result) => {
         if (!result) {
           throw new NotFoundError('Delete cart fail');

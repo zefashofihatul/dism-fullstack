@@ -1,12 +1,12 @@
 const cartsController = require('../controllers/carts/cartsController');
-const productsDbRepositoryPostgres = require('../database/postgres/repositories/cartsDbRepositoryPostgres');
+const cartsDbRepositoryPostgres = require('../database/postgres/repositories/cartsDbRepositoryPostgres');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const cartsRouter = (express) => {
   const router = express.Router();
 
   // load controller with dependencies
-  const controller = cartsController(productsDbRepositoryPostgres);
+  const controller = cartsController(cartsDbRepositoryPostgres);
   // Routes Endpoint "/"
   router
     .route('/')
