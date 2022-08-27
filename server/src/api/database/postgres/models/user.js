@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: "Username Validation: Field can't be empty",
           },
           isAlpha: {
-            msg: 'Username Validation:Field must containing String',
+            msg: 'Username Validation: Field string only',
           },
           len: {
             args: [5, 25],

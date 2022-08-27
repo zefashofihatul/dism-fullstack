@@ -1,5 +1,6 @@
 const paymentController = require('../controllers/payment/paymentController');
 const paymentDbRepositoryPostgres = require('../database/postgres/repositories/paymentDbRepositoryPostgres');
+const adminAuthMiddleware = require('../middlewares/adminAuthMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const paymentRouter = (express) => {
@@ -11,14 +12,20 @@ const paymentRouter = (express) => {
   // Payment Endpoint "/"
   router
     .route('/')
-    .post(authMiddleware, controller.addNewPaymentMethod)
+    .post([authMiddleware, adminAuthMiddleware], controller.addNewPaymentMethod)
     .get(authMiddleware, controller.fetchAllPaymentMethod);
 
   // Payment Endpoint "/:idPayment"
   router
     .route('/:idPaymentMethod')
-    .put(authMiddleware, controller.updatePaymentMethodById)
-    .delete(authMiddleware, controller.deletePaymentMethodById);
+    .put(
+      [authMiddleware, adminAuthMiddleware],
+      controller.updatePaymentMethodById
+    )
+    .delete(
+      [authMiddleware, adminAuthMiddleware],
+      controller.deletePaymentMethodById
+    );
 
   return router;
 };

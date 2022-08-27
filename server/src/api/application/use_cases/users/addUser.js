@@ -6,7 +6,8 @@ const addUser = (dbRepository, authService, dataUser) => {
     !dataUser.username ||
     !dataUser.password ||
     !dataUser.email ||
-    !dataUser.idRole
+    dataUser.idRole === null ||
+    dataUser.idRole === ''
   ) {
     throw new InvariantError(
       'username, password, idRole and email fields cannot be empty'

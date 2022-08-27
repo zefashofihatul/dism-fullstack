@@ -61,14 +61,10 @@ const userDetailController = (userDetailDbRepositoryPostgres) => {
 
   const fetchUserDetailById = (req, res, next) => {
     const { id } = req.user;
-    const { profileId } = req.params;
-    findUserDetailByProperty(dbRepository, {
+    findUserDetailByProperty(dbRepository, id, {
       idUser: id,
     })
       .then((result) => {
-        if (!result.length) {
-          throw new InvariantError(`No profile found with id: ${profileId}`);
-        }
         return res.status(200).send({
           status: 'Success',
           data: result[0].dataValues,
