@@ -10,6 +10,12 @@ const userDetailDbRepositoryPostgres = () => {
     return User_Detail.findByPk(idUser);
   };
 
+  const findByProperty = (property) => {
+    return User_Detail.findAll({
+      where: property,
+    });
+  };
+
   const updateById = (idUser, dataUpdate) => {
     return User_Detail.update(dataUpdate, {
       where: { idUser },
@@ -20,6 +26,7 @@ const userDetailDbRepositoryPostgres = () => {
   return {
     add,
     findById,
+    findByProperty,
     updateById,
   };
 };

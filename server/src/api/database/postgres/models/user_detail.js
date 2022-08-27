@@ -17,11 +17,41 @@ module.exports = (sequelize, DataTypes) => {
   }
   User_Detail.init(
     {
-      idUser: DataTypes.STRING,
-      fullname: DataTypes.STRING,
-      gender: DataTypes.STRING,
-      dateOfBirth: DataTypes.DATE,
-      newslater: DataTypes.BOOLEAN,
+      idUser: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true,
+      },
+      fullname: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isOnlyNumber(value) {
+            if (/^[0-9 ]+$/.test(value)) {
+              throw new Error(
+                'Short Description Validation: Character length must contain string'
+              );
+            }
+          },
+        },
+      },
+      gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      dateOfBirth: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      newslater: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        validate: {
+          isBoolean: {
+            msg: 'Profile Newslater Validation: Field must Boolean',
+          },
+        },
+      },
     },
     {
       sequelize,

@@ -1,4 +1,4 @@
-const findUserDetailById = (dbRepository) => {
+const findUserDetailById = (dbRepository, idUser) => {
   return dbRepository.findById(idUser);
 };
 

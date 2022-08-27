@@ -21,13 +21,14 @@ const usersRoutes = (express) => {
 
   // Get endpoint
   router
-    .route('/:id')
-    .get(authMiddleware, controllers.fetchUserById)
+    .route('/profile')
     .post(authMiddleware, detailController.addNewUserDetail)
-    .put(authMiddleware, detailController.updateUserDetail);
-
+    .put(authMiddleware, detailController.updateUserDetail)
+    .get(authMiddleware, detailController.fetchUserDetailById);
   // Sign up with endpoint "/users/"
   router.route('/').post(controllers.addNewUser);
+
+  router.route('/:id').get(authMiddleware, controllers.fetchUserById);
 
   return router;
 };
