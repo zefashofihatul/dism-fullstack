@@ -19,6 +19,10 @@ const orderDbRepositoryPostgres = () => {
   const findByProperty = (property) => {
     return Order.findAll({
       where: property,
+      include: {
+        association: 'orderProducts',
+        include: 'product',
+      },
     });
   };
 

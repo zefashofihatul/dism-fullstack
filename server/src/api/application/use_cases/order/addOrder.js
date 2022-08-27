@@ -1,12 +1,34 @@
+const InvariantError = require('../../../middlewares/exceptions/InvariantError');
+const PaymentRequiredError = require('../../../middlewares/exceptions/PaymentRequiredError');
+
 const addOrder = (dbRepository, dataOrder) => {
-  //Add with proper validator
+  if (
+    !dataOrder.firstName ||
+    !dataOrder.lastName ||
+    !dataOrder.idPayment ||
+    !dataOrder.email ||
+    !dataOrder.phone ||
+    !dataOrder.address
+  ) {
+    throw new InvariantError(
+      'First name, Last name, email, phone & address are required'
+    );
+  }
+
   return dbRepository
-    .add(dataOrder)
-    .then((value) => {
-      return dbRepository.findByIdWithNested(value.id);
+    .findByProperty({
+      idUser: dataOrder.idUser,
     })
-    .then((value) => {
-      return value;
+    .then((result) => {
+      if (result.length) {
+        throw new PaymentRequiredError(
+          'Order has been create. Payment required'
+        );
+      }
+      return dbRepository.add(dataOrder);
+    })
+    .then((result) => {
+      return dbRepository.findByIdWithNested(result.id);
     });
 };
 
