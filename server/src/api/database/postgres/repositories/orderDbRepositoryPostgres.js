@@ -48,6 +48,14 @@ const orderDbRepositoryPostgres = () => {
     });
   };
 
+  const deleteOrder = (idOrder) => {
+    return Order.destroy({
+      where: {
+        id: idOrder,
+      },
+    });
+  };
+
   return {
     add,
     findAll,
@@ -55,6 +63,7 @@ const orderDbRepositoryPostgres = () => {
     findByProperty,
     findByIdWithNested,
     updateById,
+    deleteOrder,
   };
 };
 

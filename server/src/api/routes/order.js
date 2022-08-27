@@ -18,7 +18,8 @@ const orderRouter = (express) => {
   router
     .route('/:idOrder')
     .get(authMiddleware, controller.fetchOrderById)
-    .put(authMiddleware, controller.updateOrderByIdUser);
+    .put(authMiddleware, controller.updateOrderByIdUser)
+    .delete(authMiddleware, controller.deleteOrderById);
 
   return router;
 };

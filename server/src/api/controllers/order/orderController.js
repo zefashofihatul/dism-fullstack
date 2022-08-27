@@ -3,6 +3,7 @@ const findOrderById = require('../../application/use_cases/order/findOrderById')
 const findAllOrder = require('../../application/use_cases/order/findAllOrder');
 const findAllOrderByUserId = require('../../application/use_cases/order/findAllOrderByIdUser');
 const updateOrderById = require('../../application/use_cases/order/updateOrderById');
+const deleteById = require('../../application/use_cases/order/deleteById');
 
 // Dependency
 const { v4: uuidv4 } = require('uuid');
@@ -115,12 +116,27 @@ const orderController = (orderDbRepositoryPostgres) => {
       .then((result) => {
         console.log(result);
         if (!result[0]) {
-          throw new NotFoundError(`No product found with id: ${idOrder}`);
+          throw new NotFoundError(`No Order found with id: ${idOrder}`);
         }
         return res.status(200).send({
           status: 'Success',
           message: `${idOrder} has been updated`,
           data: result[1][0].dataValues,
+        });
+      })
+      .catch((err) => next(err));
+  };
+
+  const deleteOrderById = (req, res, next) => {
+    const { idOrder } = req.params;
+    deleteById(dbRepository, idOrder)
+      .then((result) => {
+        if (!result) {
+          throw new NotFoundError(`No order found with Id: ${idOrder}`);
+        }
+        return res.status(200).send({
+          status: 'Success',
+          message: `Order with id: ${idOrder} has been deleted`,
         });
       })
       .catch((err) => next(err));
@@ -132,6 +148,7 @@ const orderController = (orderDbRepositoryPostgres) => {
     fetchAllOrder,
     fetchAllOrderByIdUser,
     updateOrderByIdUser,
+    deleteOrderById,
   };
 };
 
