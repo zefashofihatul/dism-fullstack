@@ -7,6 +7,7 @@ const updateOrderById = require('../../application/use_cases/order/updateOrderBy
 // Dependency
 const { v4: uuidv4 } = require('uuid');
 const InvariantError = require('../../middlewares/exceptions/InvariantError');
+const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
 
 const orderController = (orderDbRepositoryPostgres) => {
   const dbRepository = orderDbRepositoryPostgres();
@@ -114,7 +115,7 @@ const orderController = (orderDbRepositoryPostgres) => {
       .then((result) => {
         console.log(result);
         if (!result[0]) {
-          throw new InvariantError(`No product found with id: ${idOrder}`);
+          throw new NotFoundError(`No product found with id: ${idOrder}`);
         }
         return res.status(200).send({
           status: 'Success',
