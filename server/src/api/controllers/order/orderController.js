@@ -104,8 +104,9 @@ const orderController = (orderDbRepositoryPostgres) => {
 
   const updateOrderByIdUser = (req, res, next) => {
     const { idOrder } = req.params;
+    const { id: idUser } = req.user;
     const { idPayment, firstName, lastName, email, phone, address } = req.body;
-    updateOrderById(dbRepository, idOrder, {
+    updateOrderById(dbRepository, idOrder, idUser, {
       idPayment,
       firstName,
       lastName,
@@ -129,7 +130,8 @@ const orderController = (orderDbRepositoryPostgres) => {
 
   const deleteOrderById = (req, res, next) => {
     const { idOrder } = req.params;
-    deleteById(dbRepository, idOrder)
+    const { id: idUser } = req.user;
+    deleteById(dbRepository, idOrder, idUser)
       .then((result) => {
         if (!result) {
           throw new NotFoundError(`No order found with Id: ${idOrder}`);
