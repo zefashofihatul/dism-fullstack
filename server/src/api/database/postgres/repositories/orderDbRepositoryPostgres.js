@@ -39,12 +39,22 @@ const orderDbRepositoryPostgres = () => {
     });
   };
 
+  const updateById = (idOrder, dataUpdate) => {
+    return Order.update(dataUpdate, {
+      where: {
+        id: idOrder,
+      },
+      returning: true,
+    });
+  };
+
   return {
     add,
     findAll,
     findById,
     findByProperty,
     findByIdWithNested,
+    updateById,
   };
 };
 

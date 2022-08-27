@@ -2,6 +2,7 @@ const addOrder = require('../../application/use_cases/order/addOrder');
 const findOrderById = require('../../application/use_cases/order/findOrderById');
 const findAllOrder = require('../../application/use_cases/order/findAllOrder');
 const findAllOrderByUserId = require('../../application/use_cases/order/findAllOrderByIdUser');
+const updateOrderById = require('../../application/use_cases/order/updateOrderById');
 
 // Dependency
 const { v4: uuidv4 } = require('uuid');
@@ -99,11 +100,37 @@ const orderController = (orderDbRepositoryPostgres) => {
       .catch((err) => next(err));
   };
 
+  const updateOrderByIdUser = (req, res, next) => {
+    const { idOrder } = req.params;
+    const { idPayment, firstName, lastName, email, phone, address } = req.body;
+    updateOrderById(dbRepository, idOrder, {
+      idPayment,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+    })
+      .then((result) => {
+        console.log(result);
+        if (!result[0]) {
+          throw new InvariantError(`No product found with id: ${idOrder}`);
+        }
+        return res.status(200).send({
+          status: 'Success',
+          message: `${idOrder} has been updated`,
+          data: result[1][0].dataValues,
+        });
+      })
+      .catch((err) => next(err));
+  };
+
   return {
     addNewOrder,
     fetchOrderById,
     fetchAllOrder,
     fetchAllOrderByIdUser,
+    updateOrderByIdUser,
   };
 };
 

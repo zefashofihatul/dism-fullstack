@@ -15,7 +15,10 @@ const orderRouter = (express) => {
     .get(authMiddleware, controller.fetchAllOrderByIdUser);
 
   // Order Endpoint "/:idOrder"
-  router.route('/:idOrder').get(authMiddleware, controller.fetchOrderById);
+  router
+    .route('/:idOrder')
+    .get(authMiddleware, controller.fetchOrderById)
+    .put(authMiddleware, controller.updateOrderByIdUser);
 
   return router;
 };
