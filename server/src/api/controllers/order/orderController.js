@@ -66,7 +66,8 @@ const orderController = (orderDbRepositoryPostgres) => {
 
   const fetchOrderById = (req, res, next) => {
     const { idOrder } = req.params;
-    findOrderById(dbRepository, idOrder)
+    const { id: idUser } = req.user;
+    findOrderById(dbRepository, idOrder, idUser)
       .then((result) => {
         if (!result) {
           throw new InvariantError(`Order data with id: ${idOrder} not found`);
