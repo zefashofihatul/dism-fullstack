@@ -15,10 +15,7 @@ const productsRouter = (express) => {
   // Routes Endpoint "/"
   router
     .route('/')
-    .get(
-      [authMiddleware, adminAuthMiddleware],
-      controller.fetchAllProductsPerPage
-    )
+    .get(authMiddleware, controller.fetchAllProductsPerPage)
     .post(
       [authMiddleware, adminAuthMiddleware, uploadFiles],
       controller.addNewProductWithImages
@@ -35,7 +32,7 @@ const productsRouter = (express) => {
   // Routes Endpoint "/:productId"
   router
     .route('/:productId')
-    .get([authMiddleware, adminAuthMiddleware], controller.fetchProductById)
+    .get(authMiddleware, controller.fetchProductById)
     .delete([authMiddleware, adminAuthMiddleware], controller.deleteProductById)
     .put(
       [authMiddleware, adminAuthMiddleware, uploadFiles],
