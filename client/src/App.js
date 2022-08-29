@@ -1,12 +1,11 @@
-import Button from 'components/Button/Button';
-import './App.css';
+import { AppProvider } from 'providers/app';
+import { AppRoutes } from 'routes';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Ini adalah aplikasi saya yang sangat bagus</h1>
-      <Button></Button>
-    </div>
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
   );
 }
 

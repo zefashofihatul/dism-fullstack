@@ -1,5 +1,9 @@
-const Button = () => {
-  <h1>Ini adalah button</h1>;
+import PropTypes from 'prop-types';
+
+Button.propTypes = {
+  title: PropTypes.string
 };
 
-export default Button;
+export const Button = ({ title }) => {
+  return <h1>{title}</h1>;
+};
