@@ -12,12 +12,11 @@ const authController = (
   const loginUser = (req, res, next) => {
     const { email, password } = req.body;
     login(email, password, dbRepository, authService)
-      .then((token) => {
+      .then(({ token, user }) => {
         res.status(201).send({
           status: 'Success',
-          data: {
-            refreshToken: token,
-          },
+          refreshToken: token,
+          user,
         });
       })
       .catch((err) => next(err));

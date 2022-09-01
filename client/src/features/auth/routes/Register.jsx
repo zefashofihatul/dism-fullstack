@@ -3,5 +3,5 @@ import { RegisterForm } from '../components/RegisterForm';
 
 export const Register = () => {
   const navigate = useNavigate();
-  return <RegisterForm />;
+  return <RegisterForm onSuccess={() => navigate('/auth/login')} />;
 };

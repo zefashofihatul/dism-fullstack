@@ -21,7 +21,10 @@ const login = (email, password, dbRepository, authService) => {
         email: user[0].dataValues.email,
       },
     };
-    return authService.generateToken(payload);
+    return {
+      token: authService.generateToken(payload),
+      ...payload,
+    };
   });
 };
 

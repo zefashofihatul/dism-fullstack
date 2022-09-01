@@ -1,10 +1,14 @@
 // import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import { BrowserRouter } from 'react-router-dom';
+import { ProvideAuth } from 'lib/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export const AppProvider = ({ children }) => {
-  return <BrowserRouter>{children}</BrowserRouter>;
+  return (
+    <ProvideAuth>
+      <Router>{children}</Router>
+    </ProvideAuth>
+  );
 };
 
 AppProvider.propTypes = {

@@ -4,5 +4,5 @@ import { LoginForm } from '../components/LoginForm';
 export const Login = () => {
   const navigate = useNavigate();
 
-  return <LoginForm />;
+  return <LoginForm onSuccess={() => navigate('/dashboard/')} />;
 };

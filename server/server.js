@@ -13,7 +13,7 @@ const errorHandlerMiddleware = require('./src/api/middlewares/errorHandlerMiddle
 const app = express();
 
 const corsOptions = {
-  origin: 'https://localhost:8081',
+  origin: '*',
 };
 
 app.use(logger('dev'));

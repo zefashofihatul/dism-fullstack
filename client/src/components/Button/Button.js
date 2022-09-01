@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
 
-Button.propTypes = {
-  title: PropTypes.string
+export const Button = ({ title, className, ...props }) => {
+  return (
+    <button className={className}>
+      <span className="span1">{props.children}</span>
+    </button>
+  );
 };
 
-export const Button = ({ title }) => {
-  return <h1>{title}</h1>;
+Button.propTypes = {
+  title: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.string
 };
