@@ -7,8 +7,7 @@ const App = () => {
 
 export const protectedRoutes = [
   {
-    path: '/',
-    element: <App />,
-    children: [{ path: '/dashboard/*', element: <Dashboard /> }]
+    path: '/dashboard',
+    element: <Dashboard />
   }
 ];
