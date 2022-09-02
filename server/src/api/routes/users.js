@@ -26,7 +26,10 @@ const usersRoutes = (express) => {
     .put(authMiddleware, detailController.updateUserDetail)
     .get(authMiddleware, detailController.fetchUserDetailById);
   // Sign up with endpoint "/users/"
-  router.route('/').post(controllers.addNewUser);
+  router
+    .route('/')
+    .post(controllers.addNewUser)
+    .get(authMiddleware, controllers.getUser);
 
   router.route('/:id').get(authMiddleware, controllers.fetchUserById);
 

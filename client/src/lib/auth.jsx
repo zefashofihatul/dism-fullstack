@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { loginWithEmailAndPassword, registerWithEmailAndPassword } from 'features/auth';
+import { initReactQueryAuth } from 'react-query-auth';
+import { getUser, loginWithEmailAndPassword, registerWithEmailAndPassword } from 'features/auth';
 import storage from 'utils/storage';
 import PropTypes from 'prop-types';
 const authContext = createContext();
@@ -25,10 +26,24 @@ export const useAuth = () => {
 
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadUser = async (data) => {
+    if (storage.getToken()) {
+      const response = await getUser();
+      const userReponse = await handleUserResponse(response);
+      return userReponse;
+    }
+    return null;
+  };
+
+  const checkToken = () => {
+    return storage.getToken();
+  };
 
   const loginFn = async (data) => {
     const response = await loginWithEmailAndPassword(data);
-    const userResponse = await handleUserResponse(response.data);
+    const userResponse = await handleUserResponse(response);
     setUser(userResponse);
     return userResponse;
   };
@@ -46,6 +61,8 @@ export const useProvideAuth = () => {
 
   return {
     user,
+    checkToken,
+    loadUser,
     loginFn,
     registerFn,
     logoutFn

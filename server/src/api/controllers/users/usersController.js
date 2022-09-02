@@ -14,7 +14,18 @@ const usersController = (
   const dbRepository = usersDbRepositoryPostgres();
   const authService = authServiceInterface(authServiceImpl());
 
-  const fetchUserByProperty = () => {};
+  const getUser = (req, res, next) => {
+    const { id, username, email, idRole } = req.user;
+    return res.status(200).send({
+      status: 'Success',
+      user: {
+        id,
+        username,
+        email,
+        role: idRole,
+      },
+    });
+  };
 
   const fetchUserById = (req, res, next) => {
     findUserById(dbRepository, req.params.id).then((result) => {
@@ -63,8 +74,8 @@ const usersController = (
   };
 
   return {
+    getUser,
     fetchUserById,
-    fetchUserByProperty,
     addNewUser,
   };
 };
