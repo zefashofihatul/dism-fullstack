@@ -26,7 +26,6 @@ export const useAuth = () => {
 
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const loadUser = async (data) => {
     if (storage.getToken()) {
@@ -38,6 +37,7 @@ export const useProvideAuth = () => {
   };
 
   const checkToken = () => {
+    // TODO : Checktoken with validate to Backend
     return storage.getToken();
   };
 
@@ -53,10 +53,9 @@ export const useProvideAuth = () => {
     return response.data;
   };
 
-  const logoutFn = async () => {
+  const logoutFn = () => {
     storage.clearToken();
     setUser(false);
-    window.location.assign(window.location.origin);
   };
 
   return {

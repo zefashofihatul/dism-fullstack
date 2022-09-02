@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const Button = ({ title, className, ...props }) => {
   return (
-    <button className={className}>
+    <button className={className} onClick={props.onClick}>
       <span className="span1">{props.children}</span>
     </button>
   );
@@ -11,5 +11,6 @@ export const Button = ({ title, className, ...props }) => {
 Button.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.string
+  children: PropTypes.string,
+  onClick: PropTypes.func
 };
