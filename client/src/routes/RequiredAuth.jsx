@@ -8,7 +8,7 @@ import { useState } from 'react';
 export const RequiredAuth = ({ children }) => {
   const { checkToken } = useAuth();
   let user = checkToken();
-
+  console.log(user);
   return user ? children : <Navigate to="/auth/login" />;
 };
 
