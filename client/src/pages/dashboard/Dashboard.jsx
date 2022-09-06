@@ -4,6 +4,7 @@ import { Authorization, ROLES } from 'lib/authorization';
 import { useEffect } from 'react';
 import { Button } from 'components/Button';
 import { useNavigate } from 'react-router';
+import { Nav } from 'components/Nav';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const Dashboard = () => {
   };
   return (
     <>
+      <Nav></Nav>
       <div className="dashboard">
         <h1>Ini adalah Dashboard Page</h1>
         <Button className="loginbutton" onClick={handleLogout}>
