@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, InputField } from 'components/Form';
+import { TextField, Form, CheckBoxField, LabelLink } from 'components/Form';
 import { Button } from 'components/Button';
 import PropTypes from 'prop-types';
 import { useAuth } from 'lib/auth';
@@ -19,25 +19,25 @@ export const RegisterForm = ({ onSuccess }) => {
       }}>
       {({ register, formState }) => (
         <>
-          <InputField
+          <TextField
             type="text"
             label="idRole"
             error={formState.errors['idRole']}
             registration={register('idRole')}
           />
-          <InputField
+          <TextField
             type="text"
             label="username"
             error={formState.errors['username']}
             registration={register('username')}
           />
-          <InputField
+          <TextField
             type="text"
             label="email"
             error={formState.errors['email']}
             registration={register('email')}
           />
-          <InputField
+          <TextField
             type="text"
             label="password"
             error={formState.errors['password']}

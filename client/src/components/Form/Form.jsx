@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, UseFormReturn, SubmitHandler, UseFormProps } from 'react-hook-form';
+import { FormField, FormWrapper } from './style/FormStyle';
 
 export const Form = ({ onSubmit, children, className, id, options, schema }) => {
   const methods = useForm({ ...options, resolver: zodResolver(schema) });
   return (
-    <div>
-      <form className={className} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
+    <FormWrapper>
+      <FormField className={className} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
         {children(methods)}
-      </form>
-    </div>
+      </FormField>
+    </FormWrapper>
   );
 };
 

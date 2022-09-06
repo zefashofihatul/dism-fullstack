@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as z from 'zod';
-import { InputField, Form } from 'components/Form';
+import { TextField, Form, CheckBoxField, LabelLink } from 'components/Form';
 import { Button } from 'components/Button';
 import { useAuth } from 'lib/auth';
 import PropTypes from 'prop-types';
@@ -22,19 +22,22 @@ export const LoginForm = ({ onSuccess }) => {
       schema={schema}>
       {({ register, formState }) => (
         <>
-          <InputField
+          <TextField
             label="Email Address"
+            placeholder="Email"
             error={formState.errors['email']}
             registration={register('email')}
           />
-          <InputField
+          <TextField
             type="password"
+            placeholder="Password"
             label="Password"
             error={formState.errors['password']}
             registration={register('password')}
           />
+          <LabelLink label="Create new account" link="Register" />
           <Button type="submit" className="loginbutton">
-            Log In
+            LOGIN TO DASHBOARD
           </Button>
         </>
       )}
