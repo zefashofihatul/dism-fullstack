@@ -16,6 +16,7 @@ export const LoginForm = ({ onSuccess }) => {
     <Form
       onSubmit={async (values) => {
         await loginFn(values);
+        console.log(values);
         onSuccess();
       }}
       options={{ shouldUnregister: false }}

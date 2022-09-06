@@ -33,7 +33,7 @@ export const CheckBoxField = (props) => {
   return (
     <FieldWrapper>
       <>
-        <CheckBox type={type} className={className}></CheckBox>
+        <CheckBox type={type} className={className} {...registration} />
         <Label>{label}</Label>
       </>
     </FieldWrapper>
@@ -50,19 +50,20 @@ CheckBoxField.propTypes = {
 };
 
 export const SelectField = (props) => {
-  const { label, className, name, children } = props;
+  const { label, className, name, children, registration } = props;
   return (
     <FieldWrapper>
-      <Select>{children}</Select>
+      <Select {...registration}>{children}</Select>
     </FieldWrapper>
   );
 };
 
 SelectField.propTypes = {
   label: PropTypes.string,
+  registration: PropTypes.object,
   className: PropTypes.string,
   name: PropTypes.string,
-  children: PropTypes.element
+  children: PropTypes.array
 };
 
 export const LabelLink = (props) => {

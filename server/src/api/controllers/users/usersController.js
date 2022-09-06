@@ -46,8 +46,16 @@ const usersController = (
   };
 
   const addNewUser = (req, res, next) => {
-    const { username, email, password, idRole } = req.body;
-
+    const { username, email, password, role } = req.body;
+    let idRole = '';
+    if (role === 'USER') {
+      idRole = 0;
+    } else if (role === 'ADMIN') {
+      idRole = 1;
+    } else {
+      idRole = 2;
+    }
+    console.log(idRole, role);
     addUser(dbRepository, authService, {
       id: uuidv4(),
       idRole: idRole,

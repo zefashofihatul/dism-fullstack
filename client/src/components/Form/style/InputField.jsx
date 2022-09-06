@@ -65,7 +65,6 @@ export const Select = styled.select`
   box-sizing: border-box;
   padding: 12px 16px;
   border-radius: 4px;
-  background-color: rgb(243, 243, 244);
   transition: background-color 400ms ease, outline 400ms ease, color 400ms ease,
     box-shadow 400ms ease, -webkit-box-shadow 200ms ease;
   &:hover {

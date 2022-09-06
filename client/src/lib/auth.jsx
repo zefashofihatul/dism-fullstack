@@ -49,8 +49,12 @@ export const useProvideAuth = () => {
   };
 
   const registerFn = async (data) => {
-    const response = await registerWithEmailAndPassword(data);
-    return response.data;
+    try {
+      const response = await registerWithEmailAndPassword(data);
+      return response.data;
+    } catch (err) {
+      return err;
+    }
   };
 
   const logoutFn = () => {

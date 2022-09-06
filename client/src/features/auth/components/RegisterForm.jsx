@@ -8,32 +8,38 @@ import PropTypes from 'prop-types';
 import { useAuth } from 'lib/auth';
 
 const schema = z.object({
-  idRole: z.string().min(1, 'Required'),
-  username: z.string().min(1, 'Required'),
+  role: z.string().min(1, 'Required'),
+  username: z.string().min(5, 'Field must length > 5 Character'),
   email: z.string().email('Not a valid email'),
-  password: z.string().min(1, 'Required')
+  password: z.string().min(5, 'Field must length > 5 Character'),
+  newslater: z.boolean()
 });
 
-export const RegisterForm = ({ onSuccess }) => {
+export const RegisterForm = ({ onSuccess, onFail }) => {
   const { registerFn } = useAuth();
   return (
     <Form
       onSubmit={async (values) => {
         const result = await registerFn(values);
-        console.log(result);
-        onSuccess();
+        if (result.status === 'Fail') {
+          console.log(result);
+          onFail(result.message);
+        } else {
+          onSuccess();
+        }
       }}
-      options={{
-        shouldUnregister: true
-      }}
+      options={{ shouldUnregister: false }}
       schema={schema}>
       {({ register, formState }) => (
         <>
-          <SelectField>
-            <>
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
-            </>
+          <SelectField
+            label="Role"
+            type="checkbox"
+            className="role"
+            registration={register('role')}>
+            <option value="ADMIN">ADMIN</option>
+            <option value="USER">USER</option>
+            <option value="MODERATOR">MODERATOR</option>
           </SelectField>
           <TextField
             type="text"
@@ -50,17 +56,22 @@ export const RegisterForm = ({ onSuccess }) => {
             registration={register('email')}
           />
           <TextField
-            type="text"
+            type="password"
             label="password"
             placeholder="PASSWORD"
             error={formState.errors['password']}
             registration={register('password')}
           />
           <DoubleFlex>
-            <CheckBoxField label="Email me with news and offers" />
+            <CheckBoxField
+              type="checkbox"
+              className="newslater"
+              label="Email me with news and offers"
+              registration={register('newslater')}
+            />
             <LabelLink label="Have account Already" linkLabel="Login" link="/auth/login" />
           </DoubleFlex>
-          <Button type="submit" className="button-full">
+          <Button type="submit" className="registerButton">
             REGISTER
           </Button>
         </>
@@ -70,5 +81,6 @@ export const RegisterForm = ({ onSuccess }) => {
 };
 
 RegisterForm.propTypes = {
-  onSuccess: PropTypes.func
+  onSuccess: PropTypes.func,
+  onFail: PropTypes.func
 };
