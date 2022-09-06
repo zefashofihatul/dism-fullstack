@@ -14,6 +14,7 @@ export const FormTitle = styled.h2`
 export const Main = styled.div`
   margin: 0 auto;
   padding: 0 20px;
+  margin-bottom: 80px;
 `;
 
 export const TitleWrapper = styled.div`
@@ -36,4 +37,11 @@ export const Description = styled.h2`
 export const Line = styled.hr`
   opacity: 0.2;
   margin-bottom: 40px;
+`;
+
+export const DoubleFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-wrap: wrap;
 `;

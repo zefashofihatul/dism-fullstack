@@ -56,3 +56,39 @@ export const Anchor = styled.a`
   font-weight: 600;
   cursor: pointer;
 `;
+
+export const Select = styled.select`
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background-color: rgb(243, 243, 244);
+  transition: background-color 400ms ease, outline 400ms ease, color 400ms ease,
+    box-shadow 400ms ease, -webkit-box-shadow 200ms ease;
+  &:hover {
+    outline: none;
+    background-color: transparent;
+    border: 1px solid rgba(210, 91, 91, 0.1);
+    box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
+    transition: 200ms;
+  }
+  &:focus {
+    outline: none;
+    background-color: transparent;
+    border: 1px solid rgba(98, 87, 201, 0.5);
+    box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
+    transition: 200ms;
+  }
+  ${(props) =>
+    props.error
+      ? css`
+          border: 1px solid transparent;
+          background-color: rgba(210, 91, 91, 0.1);
+        `
+      : css`
+          border: 1px solid transparent;
+        `}
+`;

@@ -1,5 +1,5 @@
 import PropTypes, { checkPropTypes } from 'prop-types';
-import { Input, CheckBox, Label, Anchor } from './style/InputField';
+import { Input, CheckBox, Label, Anchor, Select } from './style/InputField';
 import { FieldWrapper } from './FieldWrapper';
 import { useNavigate } from 'react-router';
 
@@ -49,14 +49,30 @@ CheckBoxField.propTypes = {
   error: PropTypes.object
 };
 
+export const SelectField = (props) => {
+  const { label, className, name, children } = props;
+  return (
+    <FieldWrapper>
+      <Select>{children}</Select>
+    </FieldWrapper>
+  );
+};
+
+SelectField.propTypes = {
+  label: PropTypes.string,
+  className: PropTypes.string,
+  name: PropTypes.string,
+  children: PropTypes.element
+};
+
 export const LabelLink = (props) => {
-  const { label, link } = props;
+  const { label, linkLabel, link } = props;
   const navigate = useNavigate();
   return (
     <FieldWrapper>
       <>
         <Label>{label}</Label>
-        <Anchor onClick={() => navigate('/auth/register')}>{link}</Anchor>
+        <Anchor onClick={() => navigate(link)}>{linkLabel}</Anchor>
       </>
     </FieldWrapper>
   );
@@ -64,5 +80,6 @@ export const LabelLink = (props) => {
 
 LabelLink.propTypes = {
   label: PropTypes.string,
+  linkLabel: PropTypes.string,
   link: PropTypes.string
 };

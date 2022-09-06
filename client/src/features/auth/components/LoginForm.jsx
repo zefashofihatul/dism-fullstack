@@ -6,7 +6,7 @@ import { useAuth } from 'lib/auth';
 import PropTypes from 'prop-types';
 
 const schema = z.object({
-  email: z.number().min(1, 'Required'),
+  email: z.string().email('Not a valid email'),
   password: z.string().min(1, 'Required')
 });
 
@@ -35,7 +35,7 @@ export const LoginForm = ({ onSuccess }) => {
             error={formState.errors['password']}
             registration={register('password')}
           />
-          <LabelLink label="Create new account" link="Register" />
+          <LabelLink label="Create new account" linkLabel="Register" link="/auth/register" />
           <Button type="submit" className="loginbutton">
             LOGIN TO DASHBOARD
           </Button>
