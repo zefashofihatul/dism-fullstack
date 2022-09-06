@@ -10,14 +10,17 @@ const schema = z.object({
   password: z.string().min(1, 'Required')
 });
 
-export const LoginForm = ({ onSuccess }) => {
+export const LoginForm = ({ onSuccess, onFail }) => {
   const { loginFn } = useAuth();
   return (
     <Form
       onSubmit={async (values) => {
-        await loginFn(values);
-        console.log(values);
-        onSuccess();
+        const result = await loginFn(values);
+        if (result.status === 'Fail') {
+          onFail(result.message);
+        } else {
+          onSuccess();
+        }
       }}
       options={{ shouldUnregister: false }}
       schema={schema}>
@@ -47,5 +50,6 @@ export const LoginForm = ({ onSuccess }) => {
 };
 
 LoginForm.propTypes = {
-  onSuccess: PropTypes.func
+  onSuccess: PropTypes.func,
+  onFail: PropTypes.func
 };

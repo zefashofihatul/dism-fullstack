@@ -42,10 +42,13 @@ export const useProvideAuth = () => {
   };
 
   const loginFn = async (data) => {
-    const response = await loginWithEmailAndPassword(data);
-    const userResponse = await handleUserResponse(response);
-    setUser(userResponse);
-    return userResponse;
+    try {
+      const response = await loginWithEmailAndPassword(data);
+      const userResponse = await handleUserResponse(response);
+      return userResponse;
+    } catch (err) {
+      return err;
+    }
   };
 
   const registerFn = async (data) => {

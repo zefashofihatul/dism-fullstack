@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 
 export const TextField = (props) => {
   const { type = 'text', placeholder, label, className, registration, error } = props;
-  console.log(error);
   return (
     <FieldWrapper className={className} label={label} error={error} type={type}>
       <Input
