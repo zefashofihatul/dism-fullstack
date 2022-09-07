@@ -9,7 +9,6 @@ export const MainWrapper = styled.div`
   transition: 0.4s ease-in-out;
   overflow: hidden;
   box-sizing: border-box;
-  margin-top: 40px;
 `;
 
 export const GridContentWrapper = styled.div`
@@ -19,7 +18,7 @@ export const GridContentWrapper = styled.div`
 export const FourContentSection = styled.div`
   box-sizing: border-box;
   display: flex;
-  margin-top: 40px;
+  margin-top: 80px;
   flex-wrap: wrap;
   background: #f4f1e0;
   @media only screen and (min-width: 1024px) {

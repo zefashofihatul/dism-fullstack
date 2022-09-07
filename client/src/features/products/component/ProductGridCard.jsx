@@ -12,7 +12,7 @@ import {
 } from '../style/GridContentStyle';
 import PropTypes from 'prop-types';
 
-export const ProductCard = ({ title, price, image1, image2, description }) => {
+export const ProductGridCard = ({ title, price, image1, image2, description }) => {
   return (
     <ProductItem>
       <ProductTitleWrapper>
@@ -36,7 +36,7 @@ export const ProductCard = ({ title, price, image1, image2, description }) => {
   );
 };
 
-ProductCard.propTypes = {
+ProductGridCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.string,
   image1: PropTypes.string,
