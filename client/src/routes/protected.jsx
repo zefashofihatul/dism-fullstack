@@ -1,8 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Dashboard } from 'pages/dashboard';
-
-import { useAuth } from 'lib/auth';
 import { RequiredAuth } from './RequiredAuth';
 import storage from 'utils/storage';
 import { logout } from 'features/auth/api/logout';
@@ -17,7 +15,7 @@ export const protectedRoutes = [
     element: <App />
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/*',
     element: (
       <RequiredAuth>
         <Dashboard />

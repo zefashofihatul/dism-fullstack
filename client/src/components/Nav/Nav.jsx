@@ -15,7 +15,6 @@ export const Nav = () => {
           </Items>
         </NavWrapper>
       </NavMainWrapper>
-      <h1>Ini adalah Nav Bar</h1>
     </>
   );
 };

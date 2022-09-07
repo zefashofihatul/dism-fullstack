@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const NavMainWrapper = styled.div`
   width: 100%;
   padding: 8px 40px;
-  background-color: #f1efed;
+  background-color: #f4f1e0;
   box-sizing: border-box;
   position: fixed;
   top: 0;
