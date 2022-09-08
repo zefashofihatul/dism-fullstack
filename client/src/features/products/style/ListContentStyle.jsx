@@ -32,13 +32,13 @@ export const TitleProduct = styled.h3`
   margin: 0;
 `;
 export const DescriptionProduct = styled.p`
-  font-size: 0.98rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 400;
   margin: 0;
 `;
 export const PriceProduct = styled.h4`
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 800;
   margin: 0;
 `;
 
