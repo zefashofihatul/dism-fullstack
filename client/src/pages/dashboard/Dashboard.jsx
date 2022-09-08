@@ -23,7 +23,7 @@ export const Dashboard = () => {
   return (
     <>
       <Nav />
-      <DashboardSection>
+      <DashboardSection className="wrapper">
         <HeaderDashboard handleClick={handleClick} />
         {isListContent ? <ListContent /> : <GridContent />}
         <Button className="loginbutton" onClick={handleLogout}>

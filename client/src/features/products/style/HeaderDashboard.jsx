@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderDashboardSection = styled.div`
   display: flex;
+  z-index: 2;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;

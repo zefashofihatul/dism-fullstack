@@ -8,14 +8,16 @@ import {
   DescriptionWrapper,
   ProductImage,
   DescriptionImageWrapper,
-  Cursor
+  CursorEl,
+  CursorMedia
 } from '../style/ListContentStyle';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import Cursor from 'features/cursor/cursor';
 
-export const ProductListCard = ({ title, price, description, image1 }) => {
+export const ProductListCard = ({ idCount, title, price, description, image1 }) => {
   return (
-    <ListProduct className="product">
+    <ListProduct data-image={`image-${idCount}`} className="product">
       <TitleProduct>{title}</TitleProduct>
       <DescriptionImageWrapper>
         <DescriptionWrapper>
@@ -23,11 +25,6 @@ export const ProductListCard = ({ title, price, description, image1 }) => {
           <PriceProduct>{price}</PriceProduct>
         </DescriptionWrapper>
       </DescriptionImageWrapper>
-      <Cursor className="cursor">
-        <div className="cursor-media">
-          <ProductImage src={image1} />
-        </div>
-      </Cursor>
     </ListProduct>
   );
 };
@@ -36,5 +33,6 @@ ProductListCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.string,
   description: PropTypes.string,
-  image1: PropTypes.string
+  image1: PropTypes.string,
+  idCount: PropTypes.number
 };

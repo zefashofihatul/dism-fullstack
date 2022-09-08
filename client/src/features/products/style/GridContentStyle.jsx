@@ -4,7 +4,6 @@ export const MainWrapper = styled.div`
   margin-top: 0;
   display: block;
   position: relative;
-  z-index: 0;
   flex: 1 0 auto;
   transition: 0.4s ease-in-out;
   overflow: hidden;

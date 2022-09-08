@@ -7,7 +7,14 @@ export const dummyContent = [
   {
     title: 'OFFSET STOOL',
     price: 'RP 30K',
-    image1: `${ashtrayBox}`,
+    image1: `${ashtrayBox3}`,
+    image2: `${ashtrayBox2}`,
+    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
+  },
+  {
+    title: 'OFFSET STOOL',
+    price: 'RP 30K',
+    image1: `${ashtrayBox2}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
@@ -21,14 +28,7 @@ export const dummyContent = [
   {
     title: 'OFFSET STOOL',
     price: 'RP 30K',
-    image1: `${ashtrayBox}`,
-    image2: `${ashtrayBox2}`,
-    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
-  },
-  {
-    title: 'OFFSET STOOL',
-    price: 'RP 30K',
-    image1: `${ashtrayBox}`,
+    image1: `${ashtrayBox4}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },

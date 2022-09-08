@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const ListContentWrapper = styled.div`
   width: 100%;
   margin-top: 80px;
+  position: relative;
 `;
 export const ListProduct = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 3rem;
+  height: 4rem;
   align-items: center;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
@@ -26,13 +27,13 @@ export const DescriptionWrapper = styled.div`
 export const TitleProduct = styled.h3`
   min-width: 20%;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   margin: 0;
 `;
 export const DescriptionProduct = styled.p`
-  font-size: 0.85rem;
-  font-weight: 400;
+  font-size: 0.98rem;
+  font-weight: 600;
   margin: 0;
 `;
 export const PriceProduct = styled.h4`
@@ -41,17 +42,12 @@ export const PriceProduct = styled.h4`
   margin: 0;
 `;
 
-export const ProductImage = styled.img`
-  margin-top: 16px;
-  max-width: 50%;
-`;
-
 export const DescriptionImageWrapper = styled.div`
   display: block;
   width: 100%;
 `;
 
-export const Cursor = styled.div`
+export const CursorEl = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -77,13 +73,25 @@ export const Cursor = styled.div`
     transform: scale(0.2);
     background: black;
   }
-  .cursor-media {
-    display: block;
-    height: 350px;
-    width: 350px;
-    overflow: hidden;
-    transform: scale(0);
-    margin: -175px 0 0 -175px;
-    position: relative;
+  .productImage {
+    border-radius: 50%;
   }
+`;
+
+export const CursorMedia = styled.div`
+  display: block;
+  height: 18rem;
+  width: 18rem;
+  overflow: hidden;
+  border-radius: 100%;
+  transform: scale(0);
+  margin: -146px 0 0 -146px;
+  position: relative;
+`;
+
+export const ProductImage = styled.img`
+  height: 18rem;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
 `;
