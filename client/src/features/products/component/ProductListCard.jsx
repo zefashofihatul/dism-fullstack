@@ -5,17 +5,29 @@ import {
   TitleProduct,
   DescriptionProduct,
   PriceProduct,
-  DescriptionWrapper
+  DescriptionWrapper,
+  ProductImage,
+  DescriptionImageWrapper,
+  Cursor
 } from '../style/ListContentStyle';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-export const ProductListCard = ({ title, price, description }) => {
+export const ProductListCard = ({ title, price, description, image1 }) => {
   return (
-    <ListProduct>
+    <ListProduct className="product">
       <TitleProduct>{title}</TitleProduct>
-      <DescriptionWrapper>
-        <DescriptionProduct>{description}</DescriptionProduct>
-        <PriceProduct>{price}</PriceProduct>
-      </DescriptionWrapper>
+      <DescriptionImageWrapper>
+        <DescriptionWrapper>
+          <DescriptionProduct>{description}</DescriptionProduct>
+          <PriceProduct>{price}</PriceProduct>
+        </DescriptionWrapper>
+      </DescriptionImageWrapper>
+      <Cursor className="cursor">
+        <div className="cursor-media">
+          <ProductImage src={image1} />
+        </div>
+      </Cursor>
     </ListProduct>
   );
 };
@@ -23,5 +35,6 @@ export const ProductListCard = ({ title, price, description }) => {
 ProductListCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  image1: PropTypes.string
 };
