@@ -25,6 +25,14 @@ export const FourContentSection = styled.div`
   }
 `;
 
+export const ThreeContentSection = styled.div`
+  display: grid;
+  margin-top: 40px;
+
+  grid-template-columns: repeat(3, 1fr);
+  box-sizing: border-box;
+`;
+
 export const ProductItem = styled.article`
   background-color: #f4f1e0;
   border-right: 0.01rem solid #c4bca4;
@@ -159,4 +167,52 @@ export const ContentDescription = styled.p`
   font-size: 1rem;
   line-height: 1.375rem;
   text-align: right;
+`;
+
+export const BannerWrapper = styled.div`
+  width: 100%;
+  height: 22rem;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
+export const BannerDescriptionWrapper = styled.div`
+  max-width: 75%;
+  height: 100%;
+  display: flex;
+  margin: auto auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BannerTitle = styled.h3`
+  line-height: 1.25;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+`;
+
+export const BannerDescription = styled.p`
+  box-sizing: border-box;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0 0 1rem 0;
+`;
+
+export const ProductItemGrid = styled.div`
+  width: 100%;
+  display: block;
+  background-color: #f4f1e0;
+  border-right: 0.01rem solid #c4bca4;
+  border-left: 0.01rem solid #c4bca4;
+  position: relative;
+  overflow: hidden;
 `;
