@@ -37,13 +37,9 @@ export const ProductFlexCard = ({ title, price, image1, image2, description }) =
   );
 };
 
-export const ProductGridCard = ({ title, price, image1, image2, description }) => {
+export const ProductGridCard = ({ className, title, price, image1, image2, description }) => {
   return (
-    <ProductItemGrid>
-      <ProductTitleWrapper>
-        <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>{price}</ProductPrice>
-      </ProductTitleWrapper>
+    <ProductItemGrid className={className}>
       <ProductImageWrapper>
         <ImageHoverWrapper>
           <ProductImage src={image1} />
@@ -52,6 +48,10 @@ export const ProductGridCard = ({ title, price, image1, image2, description }) =
           <ProductImage src={image2} />
         </ImageWrapper>
       </ProductImageWrapper>
+      <ProductTitleWrapper>
+        <ProductTitle>{title}</ProductTitle>
+        <ProductPrice>{price}</ProductPrice>
+      </ProductTitleWrapper>
       <ProductDescriptionWrapper>
         <ProductDescription>
           A limited edition ashtray designed by Seth to be both gloopy and globby.
@@ -66,7 +66,8 @@ ProductGridCard.propTypes = {
   price: PropTypes.string,
   image1: PropTypes.string,
   image2: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  className: PropTypes.string
 };
 
 ProductFlexCard.propTypes = {

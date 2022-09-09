@@ -58,9 +58,10 @@ export const GridContent = () => {
               )}
               {index > 0 && (
                 <ThreeContentSection key={index}>
-                  {value.map((product, index) => (
+                  {value.map((product, indexItem) => (
                     <ProductGridCard
-                      key={index}
+                      key={indexItem}
+                      className={indexItem == 1 && index == 1 ? 'featured' : 'item'}
                       title={product.title}
                       price={product.price}
                       image1={product.image1}

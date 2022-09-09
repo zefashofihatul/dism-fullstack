@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const MainWrapper = styled.div`
   margin-top: 0;
@@ -17,7 +17,7 @@ export const GridContentWrapper = styled.div`
 export const FourContentSection = styled.div`
   box-sizing: border-box;
   display: flex;
-  margin-top: 40px;
+  margin: 40px 0;
   flex-wrap: wrap;
   background: #f4f1e0;
   @media only screen and (min-width: 1024px) {
@@ -27,8 +27,6 @@ export const FourContentSection = styled.div`
 
 export const ThreeContentSection = styled.div`
   display: grid;
-  margin-top: 40px;
-
   grid-template-columns: repeat(3, 1fr);
   box-sizing: border-box;
 `;
@@ -210,9 +208,16 @@ export const BannerDescription = styled.p`
 export const ProductItemGrid = styled.div`
   width: 100%;
   display: block;
+  box-sizing: border-box;
   background-color: #f4f1e0;
-  border-right: 0.01rem solid #c4bca4;
-  border-left: 0.01rem solid #c4bca4;
+  border: 0.01rem solid #c4bca4;
   position: relative;
   overflow: hidden;
+  ${(props) =>
+    props.className == 'featured'
+      ? css`
+          grid-column-end: span 2;
+          grid-row-end: span 2;
+        `
+      : ''}
 `;
