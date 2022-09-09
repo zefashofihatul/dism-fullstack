@@ -25,12 +25,6 @@ export const FourContentSection = styled.div`
   }
 `;
 
-export const ThreeContentSection = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  box-sizing: border-box;
-`;
-
 export const ProductItem = styled.article`
   background-color: #f4f1e0;
   border-right: 0.01rem solid #c4bca4;
@@ -220,4 +214,15 @@ export const ProductItemGrid = styled.div`
           grid-row-end: span 2;
         `
       : ''}
+`;
+
+export const ThreeContentSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  box-sizing: border-box;
+`;
+
+export const FourGridContentSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 `;

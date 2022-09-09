@@ -13,7 +13,7 @@ import {
 import { ProductFlexCard, ProductGridCard } from './component/ProductGridCard';
 import { dummyContent } from './dummyData';
 import { splitarray } from 'utils/splitArray';
-import { Banner } from './component/Banner';
+import { Banner } from 'components/Banner';
 import { Button } from 'components/Button';
 import imageBanner from 'assets/images/banner1.png';
 
@@ -22,11 +22,18 @@ export const GridContent = () => {
   return (
     <MainWrapper>
       <GridContentWrapper>
+        <Banner image={imageBanner}>
+          <BannerDescriptionWrapper>
+            <BannerTitle>THE HOUSEPLANT RECORD PLAYER BY CREATIVE PROJECT</BannerTitle>
+            <BannerDescription>It looks as good as it sound</BannerDescription>
+            <Button>BUY THIS</Button>
+          </BannerDescriptionWrapper>
+        </Banner>
         {products.map((value, index) => {
           return (
             <>
               {index == 1 && (
-                <Banner image={imageBanner}>
+                <Banner className="md" image={imageBanner}>
                   <BannerDescriptionWrapper>
                     <BannerTitle>THE HOUSEPLANT RECORD PLAYER BY CREATIVE PROJECT</BannerTitle>
                     <BannerDescription>It looks as good as it sound</BannerDescription>
@@ -61,7 +68,6 @@ export const GridContent = () => {
                   {value.map((product, indexItem) => (
                     <ProductGridCard
                       key={indexItem}
-                      className={indexItem == 1 && index == 1 ? 'featured' : 'item'}
                       title={product.title}
                       price={product.price}
                       image1={product.image1}
