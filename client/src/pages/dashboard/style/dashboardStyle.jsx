@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DashboardSection = styled.div`
-  padding: 0 40px;
+  padding: 0 24px;
 `;
 
 export const HeaderDashboardSection = styled.div`

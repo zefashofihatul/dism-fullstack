@@ -2,19 +2,20 @@ import styled from 'styled-components';
 
 export const ListContentWrapper = styled.div`
   width: 100%;
-  margin-top: 80px;
+  margin-top: 40px;
   position: relative;
 `;
 export const ListProduct = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 4rem;
+  height: 3.25rem;
   align-items: center;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
   transition: 200ms;
 `;
+
 export const DescriptionWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -27,15 +28,17 @@ export const DescriptionWrapper = styled.div`
 export const TitleProduct = styled.h3`
   min-width: 20%;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   margin: 0;
 `;
+
 export const DescriptionProduct = styled.p`
   font-size: 1rem;
   font-weight: 400;
   margin: 0;
 `;
+
 export const PriceProduct = styled.h4`
   font-size: 1rem;
   font-weight: 800;

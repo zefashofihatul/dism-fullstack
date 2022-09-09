@@ -17,7 +17,7 @@ export const GridContentWrapper = styled.div`
 export const FourContentSection = styled.div`
   box-sizing: border-box;
   display: flex;
-  margin-top: 80px;
+  margin-top: 40px;
   flex-wrap: wrap;
   background: #f4f1e0;
   @media only screen and (min-width: 1024px) {
@@ -90,25 +90,26 @@ export const ProductDescriptionWrapper = styled.div`
 
 export const ProductDescription = styled.p`
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const ProductTitleWrapper = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
 `;
 
 export const ProductTitle = styled.h2`
   margin: 0;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 800;
 `;
 
 export const ProductPrice = styled.p`
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
   margin: 0;
 `;

@@ -4,11 +4,6 @@ import { ProductListCard } from './component/ProductListCard';
 import { dummyContent } from './dummyData';
 import { useEffect } from 'react';
 import Cursor from 'features/cursor/cursor';
-import { gsap } from 'gsap';
-import ashtrayBox from 'assets/images/9eu0m8q1.png';
-import ashtrayBox2 from 'assets/images/9uw72821.png';
-import ashtrayBox3 from 'assets/images/jtb2ve6i.png';
-import ashtrayBox4 from 'assets/images/jtb2ve6i.png';
 import { CursorEl, CursorMedia, ProductImage } from './style/ListContentStyle';
 
 export const ListContent = () => {
