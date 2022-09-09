@@ -35,8 +35,15 @@ export const ProductItem = styled.article`
   @media only screen and (min-width: 768px) {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
-    flex-grow: 1;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 50%;
+    flex: 0 50%;
     max-width: 50%;
+  }
+  @media only screen and (min-width: 1025px) {
+    -ms-flex: 0 25%;
+    flex: 0 25%;
+    max-width: 25%;
   }
 `;
 
@@ -112,4 +119,44 @@ export const ProductPrice = styled.p`
   font-size: 0.9rem;
   font-weight: 600;
   margin: 0;
+`;
+
+export const ContentScope = styled.div`
+  padding: 1rem;
+  display: flex;
+  background-color: #f4f1e0;
+  border-right: 0.01rem solid #c4bca4;
+  border-left: 0.01rem solid #c4bca4;
+  position: relative;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  -webkit-box-direction: normal;
+  @media only screen and (min-width: 768px) {
+    -webkit-box-flex: 0;
+    flex: 0 50%;
+    max-width: 50%;
+  }
+  @media only screen and (min-width: 1025px) {
+    -ms-flex: 0 25%;
+    flex: 0 25%;
+    max-width: 25%;
+  }
+`;
+
+export const ContentTitle = styled.h3`
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-size: 2.5rem;
+  margin: 0;
+  width: 100%;
+`;
+
+export const ContentDescription = styled.p`
+  bottom: 0;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  text-align: right;
 `;
