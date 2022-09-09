@@ -23,3 +23,24 @@ export const CollectionsProduct = () => {
     </MainWrapper>
   );
 };
+
+export const CollectionsAllProduct = () => {
+  return (
+    <MainWrapper>
+      <GridContentWrapper>
+        <FourGridContentSection>
+          {dummyContent.map((product, index) => (
+            <ProductGridCard
+              key={index}
+              title={product.title}
+              price={product.price}
+              image1={product.image1}
+              image2={product.image2}
+              description={product.description}
+            />
+          ))}
+        </FourGridContentSection>
+      </GridContentWrapper>
+    </MainWrapper>
+  );
+};

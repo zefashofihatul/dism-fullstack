@@ -6,7 +6,7 @@ import {
   BannerDescription
 } from 'components/Banner';
 import imageBannerCollection from 'assets/images/bannerAll.png';
-import { CollectionsProduct } from 'features/products/CollectionsProduct';
+import { AllProductsGrid } from 'features/products/get-products';
 
 export const Collection = () => {
   return (
@@ -21,7 +21,7 @@ export const Collection = () => {
           </BannerDescription>
         </BannerDescriptionWrapper>
       </Banner>
-      <CollectionsProduct fetchItem={10} />
+      <AllProductsGrid gridCol={3} fetchItem={10} />
     </>
   );
 };

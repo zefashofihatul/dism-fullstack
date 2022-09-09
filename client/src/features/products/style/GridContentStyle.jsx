@@ -93,6 +93,7 @@ export const ProductImage = styled.img`
 
 export const ProductDescriptionWrapper = styled.div`
   padding: 0 1rem;
+  margin: 0;
 `;
 
 export const ProductDescription = styled.p`
@@ -106,7 +107,7 @@ export const ProductTitleWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
 `;
 
 export const ProductTitle = styled.h2`
@@ -224,5 +225,5 @@ export const ThreeContentSection = styled.section`
 
 export const FourGridContentSection = styled.section`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(${(props) => (props.gridCol ? props.gridCol : '3')}, 1fr);
 `;

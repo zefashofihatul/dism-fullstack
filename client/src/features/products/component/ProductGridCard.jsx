@@ -67,7 +67,8 @@ ProductGridCard.propTypes = {
   image1: PropTypes.string,
   image2: PropTypes.string,
   description: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  gridCol: PropTypes.number
 };
 
 ProductFlexCard.propTypes = {
