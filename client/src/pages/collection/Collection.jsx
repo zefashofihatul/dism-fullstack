@@ -12,7 +12,6 @@ import { Header } from 'components/Header';
 export const Collection = () => {
   return (
     <>
-      {/* <Nav /> */}
       <Header></Header>
       <Banner image={imageBannerCollection} className="xl">
         <BannerDescriptionWrapper>

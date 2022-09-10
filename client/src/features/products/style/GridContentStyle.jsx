@@ -122,7 +122,6 @@ export const ProductPrice = styled.p`
   line-height: 1.8rem;
   font-weight: 600;
   margin: 0;
-  margin-right: 1rem;
 `;
 
 export const ContentScope = styled.div`

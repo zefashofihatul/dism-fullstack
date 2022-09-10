@@ -5,7 +5,8 @@ import ashtrayBox4 from 'assets/images/jtb2ve6i.png';
 
 export const dummyContent = [
   {
-    title: 'Gloopy Ashtray by Seth in Brown & Yellow',
+    title:
+      'Gloopy Ashtray by Seth in Brown &adsfasdfasdf asdfasdfasdfasd fasdfasdfasdf Yellow sdfasldfha lskjdfhljh',
     price: '$285',
     image1: `${ashtrayBox3}`,
     image2: `${ashtrayBox2}`,

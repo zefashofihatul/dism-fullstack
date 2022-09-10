@@ -47,7 +47,7 @@ export const BannerTitle = styled.h3`
   color: white;
   text-align: center;
   box-sizing: border-box;
-  font-size: 2.3rem;
+  font-size: 2.8rem;
   font-weight: 800;
   margin: 0 0 1rem 0;
 `;
@@ -56,7 +56,7 @@ export const BannerDescription = styled.p`
   box-sizing: border-box;
   color: white;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0 0 1rem 0;

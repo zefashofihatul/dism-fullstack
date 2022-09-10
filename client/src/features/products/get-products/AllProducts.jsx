@@ -1,12 +1,7 @@
 import { MainWrapper, GridContentWrapper, FourGridContentSection } from '../style/GridContentStyle';
 import { dummyContent } from '../dummyData';
 import { ProductGridCard } from '../component/ProductGridCard';
-import {
-  FourContentSection,
-  ContentScope,
-  ContentTitle,
-  ContentDescription
-} from '../style/GridContentStyle';
+import { FourContentSection } from '../style/GridContentStyle';
 import { ProductFlexCard } from '../component/ProductGridCard';
 import PropTypes from 'prop-types';
 import { splitarray } from 'utils/splitArray';

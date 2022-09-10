@@ -9,8 +9,8 @@ export const ListProduct = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 3.25rem;
-  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
   transition: 200ms;
@@ -18,17 +18,17 @@ export const ListProduct = styled.div`
 
 export const DescriptionWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   justify-content: space-between;
-  align-items: center;
 `;
 
 export const TitleProduct = styled.h3`
-  min-width: 20%;
-  align-items: center;
-  font-size: 0.9rem;
+  width: 25rem;
+  font-size: 1rem;
+  line-height: 1.5;
   font-weight: 700;
   margin: 0;
 `;
@@ -37,6 +37,7 @@ export const DescriptionProduct = styled.p`
   font-size: 1rem;
   font-weight: 400;
   margin: 0;
+  height: 100%;
 `;
 
 export const PriceProduct = styled.h4`
