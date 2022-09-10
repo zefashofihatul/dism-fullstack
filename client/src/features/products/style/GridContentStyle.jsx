@@ -105,21 +105,24 @@ export const ProductTitleWrapper = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   margin: 1rem 0;
 `;
 
 export const ProductTitle = styled.h2`
   margin: 0;
-  font-size: 0.9rem;
-  font-weight: 800;
+  max-width: 20rem;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  font-weight: 400;
 `;
 
 export const ProductPrice = styled.p`
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
   font-weight: 600;
   margin: 0;
+  margin-right: 1rem;
 `;
 
 export const ContentScope = styled.div`
@@ -226,4 +229,21 @@ export const ThreeContentSection = styled.section`
 export const FourGridContentSection = styled.section`
   display: grid;
   grid-template-columns: repeat(${(props) => (props.gridCol ? props.gridCol : '3')}, 1fr);
+`;
+
+export const ProductPriceWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  margin-left: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+`;
+
+export const CartButton = styled.span`
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
 `;

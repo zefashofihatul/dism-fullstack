@@ -9,8 +9,12 @@ import {
   ProductTitleWrapper,
   ProductTitle,
   ProductPrice,
-  ProductItemGrid
+  ProductItemGrid,
+  ProductPriceWrapper,
+  CartButton
 } from '../style/GridContentStyle';
+import { Badge } from 'components/Badges';
+import { Button } from 'components/Button';
 import PropTypes from 'prop-types';
 
 export const ProductFlexCard = ({ title, price, image1, image2, description }) => {
@@ -18,7 +22,10 @@ export const ProductFlexCard = ({ title, price, image1, image2, description }) =
     <ProductItem>
       <ProductTitleWrapper>
         <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>{price}</ProductPrice>
+        <ProductPriceWrapper>
+          <ProductPrice>{price}</ProductPrice>
+          <CartButton>ADD TO CART</CartButton>
+        </ProductPriceWrapper>
       </ProductTitleWrapper>
       <ProductImageWrapper>
         <ImageHoverWrapper>
@@ -37,27 +44,45 @@ export const ProductFlexCard = ({ title, price, image1, image2, description }) =
   );
 };
 
-export const ProductGridCard = ({ className, title, price, image1, image2, description }) => {
+export const ProductGridCard = ({
+  className,
+  title,
+  price,
+  image1,
+  image2,
+  description,
+  badge
+}) => {
   return (
-    <ProductItemGrid className={className}>
-      <ProductImageWrapper>
-        <ImageHoverWrapper>
-          <ProductImage src={image1} />
-        </ImageHoverWrapper>
-        <ImageWrapper>
-          <ProductImage src={image2} />
-        </ImageWrapper>
-      </ProductImageWrapper>
-      <ProductTitleWrapper>
-        <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>{price}</ProductPrice>
-      </ProductTitleWrapper>
-      <ProductDescriptionWrapper>
-        <ProductDescription>
-          A limited edition ashtray designed by Seth to be both gloopy and globby.
-        </ProductDescription>
-      </ProductDescriptionWrapper>
-    </ProductItemGrid>
+    <>
+      <ProductItemGrid className={className}>
+        {badge && (
+          <Badge color="#ffef9c" background="#03b8a6">
+            {badge}
+          </Badge>
+        )}
+        <ProductImageWrapper>
+          <ImageHoverWrapper>
+            <ProductImage src={image1} />
+          </ImageHoverWrapper>
+          <ImageWrapper>
+            <ProductImage src={image2} />
+          </ImageWrapper>
+        </ProductImageWrapper>
+        <ProductTitleWrapper>
+          <ProductTitle>{title}</ProductTitle>
+          <ProductPriceWrapper>
+            <ProductPrice>{price}</ProductPrice>
+            <CartButton>ADD TO CART</CartButton>
+          </ProductPriceWrapper>
+        </ProductTitleWrapper>
+        <ProductDescriptionWrapper>
+          <ProductDescription>
+            A limited edition ashtray designed by Seth to be both gloopy and globby.
+          </ProductDescription>
+        </ProductDescriptionWrapper>
+      </ProductItemGrid>
+    </>
   );
 };
 
@@ -68,7 +93,8 @@ ProductGridCard.propTypes = {
   image2: PropTypes.string,
   description: PropTypes.string,
   className: PropTypes.string,
-  gridCol: PropTypes.number
+  gridCol: PropTypes.number,
+  badge: PropTypes.string
 };
 
 ProductFlexCard.propTypes = {

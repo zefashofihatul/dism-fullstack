@@ -5,64 +5,66 @@ import ashtrayBox4 from 'assets/images/jtb2ve6i.png';
 
 export const dummyContent = [
   {
-    title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    title: 'Gloopy Ashtray by Seth in Brown & Yellow',
+    price: '$285',
     image1: `${ashtrayBox3}`,
     image2: `${ashtrayBox2}`,
-    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
+    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
+    badge: 'LIMITED EDITION'
   },
   {
-    title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    title: 'Gloopy Ashtray by Seth in Brown & Yellow',
+    price: '$285',
     image1: `${ashtrayBox2}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
-    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
+    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
+    badge: 'NEW'
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox4}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',
-    price: 'RP 30K',
+    price: '$285',
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
