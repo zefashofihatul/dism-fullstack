@@ -7,11 +7,13 @@ import {
 } from 'components/Banner';
 import imageBannerCollection from 'assets/images/bannerAll.png';
 import { AllProductsGrid } from 'features/products/get-products';
+import { Header } from 'components/Header';
 
 export const Collection = () => {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
+      <Header></Header>
       <Banner image={imageBannerCollection} className="xl">
         <BannerDescriptionWrapper>
           <BannerTitle>ALL OF OUR HOUSEGOODS</BannerTitle>
