@@ -30,6 +30,9 @@ export const ProductItem = styled.article`
   border-right: 0.01rem solid #c4bca4;
   border-left: 0.01rem solid #c4bca4;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
   @media only screen and (min-width: 768px) {
@@ -245,4 +248,8 @@ export const CartButton = styled.span`
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
+`;
+
+export const ProductImageDescriptionWrapper = styled.div`
+  align-self: flex-end;
 `;

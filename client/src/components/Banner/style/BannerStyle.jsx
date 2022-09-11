@@ -30,10 +30,11 @@ export const BannerWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  ${(props) => (props.styleCustom ? props.styleCustom : '')}
 `;
 
 export const BannerDescriptionWrapper = styled.div`
-  max-width: 75%;
+  max-width: 60%;
   height: 100%;
   display: flex;
   margin: auto auto;
@@ -56,8 +57,8 @@ export const BannerDescription = styled.p`
   box-sizing: border-box;
   color: white;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  line-height: 1.375rem;
+  line-height: 1.5rem;
   margin: 0 0 1rem 0;
 `;

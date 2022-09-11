@@ -1,19 +1,14 @@
 import PropTypes from 'prop-types';
 import {
   ListProduct,
-  ListTitleProduct,
   TitleProduct,
   DescriptionProduct,
   PriceProduct,
   DescriptionWrapper,
-  ProductImage,
   DescriptionImageWrapper,
-  CursorEl,
-  CursorMedia
+  ProductPriceWrapper,
+  CartButton
 } from '../style/ListContentStyle';
-import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import Cursor from 'features/cursor/cursor';
 
 export const ProductListCard = ({ idCount, title, price, description, image1 }) => {
   return (
@@ -22,7 +17,10 @@ export const ProductListCard = ({ idCount, title, price, description, image1 }) 
       <DescriptionImageWrapper>
         <DescriptionWrapper>
           <DescriptionProduct>{description}</DescriptionProduct>
-          <PriceProduct>{price}</PriceProduct>
+          <ProductPriceWrapper>
+            <PriceProduct>{price}</PriceProduct>
+            <CartButton>ADD TO CART</CartButton>
+          </ProductPriceWrapper>
         </DescriptionWrapper>
       </DescriptionImageWrapper>
     </ListProduct>

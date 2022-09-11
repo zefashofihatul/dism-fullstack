@@ -9,7 +9,7 @@ export const ListProduct = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 3rem;
   padding: 1rem 0;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
@@ -23,18 +23,20 @@ export const DescriptionWrapper = styled.div`
   flex-direction: row;
   flex-wrap: no-wrap;
   justify-content: space-between;
+  text-transform: uppercase;
 `;
 
 export const TitleProduct = styled.h3`
-  width: 25rem;
-  font-size: 1rem;
+  width: 24rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   font-weight: 700;
   margin: 0;
+  text-transform: uppercase;
 `;
 
 export const DescriptionProduct = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   margin: 0;
   height: 100%;
@@ -98,4 +100,22 @@ export const ProductImage = styled.img`
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
+`;
+
+export const ProductPriceWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  margin-left: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+`;
+
+export const CartButton = styled.span`
+  margin: 0;
+  padding: 0;
+  width: 6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
 `;

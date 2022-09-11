@@ -5,8 +5,7 @@ import ashtrayBox4 from 'assets/images/jtb2ve6i.png';
 
 export const dummyContent = [
   {
-    title:
-      'Gloopy Ashtray by Seth in Brown &adsfasdfasdf asdfasdfasdfasd fasdfasdfasdf Yellow sdfasldfha lskjdfhljh',
+    title: 'Gloopy Ashtray by Seth in Brown & Yellow',
     price: '$285',
     image1: `${ashtrayBox3}`,
     image2: `${ashtrayBox2}`,
@@ -18,7 +17,8 @@ export const dummyContent = [
     price: '$285',
     image1: `${ashtrayBox2}`,
     image2: `${ashtrayBox2}`,
-    description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. '
+    description:
+      'A limited editionjhkjhkjh kjh kjh kjh kh kjh kjh khkhkljjhlkh jhkjhk jhk ashtray designed by Seth to be both gloopy and globby. '
   },
   {
     title: 'OFFSET STOOL',

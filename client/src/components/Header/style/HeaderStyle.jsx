@@ -37,7 +37,7 @@ export const HeaderContainer = styled.div`
 export const Menu = styled.span`
   color: #321e1e;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   background: 0 0;
   border: none;

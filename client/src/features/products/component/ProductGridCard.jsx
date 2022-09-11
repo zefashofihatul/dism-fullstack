@@ -11,7 +11,8 @@ import {
   ProductPrice,
   ProductItemGrid,
   ProductPriceWrapper,
-  CartButton
+  CartButton,
+  ProductImageDescriptionWrapper
 } from '../style/GridContentStyle';
 import { Badge } from 'components/Badges';
 import { Button } from 'components/Button';
@@ -27,19 +28,21 @@ export const ProductFlexCard = ({ title, price, image1, image2, description }) =
           <CartButton>ADD TO CART</CartButton>
         </ProductPriceWrapper>
       </ProductTitleWrapper>
-      <ProductImageWrapper>
-        <ImageHoverWrapper>
-          <ProductImage src={image1} />
-        </ImageHoverWrapper>
-        <ImageWrapper>
-          <ProductImage src={image2} />
-        </ImageWrapper>
-      </ProductImageWrapper>
-      <ProductDescriptionWrapper>
-        <ProductDescription>
-          A limited edition ashtray designed by Seth to be both gloopy and globby.
-        </ProductDescription>
-      </ProductDescriptionWrapper>
+      <ProductImageDescriptionWrapper>
+        <ProductImageWrapper>
+          <ImageHoverWrapper>
+            <ProductImage src={image1} />
+          </ImageHoverWrapper>
+          <ImageWrapper>
+            <ProductImage src={image2} />
+          </ImageWrapper>
+        </ProductImageWrapper>
+        <ProductDescriptionWrapper>
+          <ProductDescription>
+            A limited edition ashtray designed by Seth to be both gloopy and globby.
+          </ProductDescription>
+        </ProductDescriptionWrapper>
+      </ProductImageDescriptionWrapper>
     </ProductItem>
   );
 };

@@ -1,9 +1,9 @@
 import { BannerWrapper } from './style/BannerStyle';
 import PropTypes from 'prop-types';
 
-export const Banner = ({ children, image, className }) => {
+export const Banner = ({ children, image, className, style }) => {
   return (
-    <BannerWrapper className={className} image={image}>
+    <BannerWrapper className={className} styleCustom={style} image={image}>
       {children}
     </BannerWrapper>
   );
@@ -12,5 +12,6 @@ export const Banner = ({ children, image, className }) => {
 Banner.propTypes = {
   children: PropTypes.element,
   image: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.string
 };
