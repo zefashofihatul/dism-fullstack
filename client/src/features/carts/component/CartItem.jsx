@@ -20,40 +20,66 @@ import plusIcon from 'assets/images/plus_icon.svg';
 import minIcon from 'assets/images/min_icon.svg';
 import { useCart } from '../provider/CartProviders';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-export const CartItem = ({ id, title, description, badge, price, image1, onRemove }) => {
+export const CartItem = ({
+  id,
+  title,
+  description,
+  badge,
+  price,
+  image1,
+  onRemove,
+  setTotal,
+  total
+}) => {
   const { removeItemCart, removeAllCart } = useCart();
   const [itemQuantity, setItemQuantity] = useState(1);
+  useEffect(() => {
+    setTotal(total + itemQuantity * price);
+  }, []);
   return (
     <CartsItem>
       <ItemImage src={image1} alt="thumbCart" />
       <ItemContentWrapper>
         <ItemContentTitleWrapper>
           <ItemContentTitle>{title}</ItemContentTitle>
-          <ItemContentRemoveBtn onClick={() => removeItemCart(id)}>REMOVE</ItemContentRemoveBtn>
+          <ItemContentRemoveBtn
+            onClick={() => {
+              setTotal(total - price * itemQuantity);
+              removeItemCart(id);
+            }}>
+            REMOVE
+          </ItemContentRemoveBtn>
         </ItemContentTitleWrapper>
         <ItemContentDescriptionWrapper>
           <ItemContentDescription>
-            <ItemContentDescriptionLeft>SIZE</ItemContentDescriptionLeft>
-            <ItemContentDescriptionRight>130cm x 130cm</ItemContentDescriptionRight>
+            <ItemContentDescriptionLeft>PRICE PER PRODUCT</ItemContentDescriptionLeft>
+            <ItemContentDescriptionRight>${price}</ItemContentDescriptionRight>
           </ItemContentDescription>
           <ItemContentDescription>
             <ItemContentDescriptionLeft>COLOR</ItemContentDescriptionLeft>
             <ItemContentDescriptionRight>WHITE</ItemContentDescriptionRight>
           </ItemContentDescription>
           <ItemContentPriceWrapper>
-            <ItemContentPrice>{price}</ItemContentPrice>
+            <ItemContentPrice>${price * itemQuantity}</ItemContentPrice>
             <ItemContentQuantity>
               {itemQuantity > 1 && (
                 <ItemContentQuantityBtn
                   src={minIcon}
-                  onClick={() => setItemQuantity(itemQuantity - 1)}
+                  onClick={() => {
+                    setItemQuantity(itemQuantity - 1);
+                    setTotal(total - price);
+                  }}
                 />
               )}
               <ItemContentQuantityNum>{itemQuantity}</ItemContentQuantityNum>
               <ItemContentQuantityBtn
                 src={plusIcon}
-                onClick={() => setItemQuantity(itemQuantity + 1)}
+                onClick={() => {
+                  setItemQuantity(itemQuantity + 1);
+                  setTotal(total + price);
+                }}
               />
             </ItemContentQuantity>
           </ItemContentPriceWrapper>
@@ -65,10 +91,12 @@ export const CartItem = ({ id, title, description, badge, price, image1, onRemov
 
 CartItem.propTypes = {
   id: PropTypes.number,
-  price: PropTypes.string,
+  price: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   badge: PropTypes.string,
   image1: PropTypes.string,
-  onRemove: PropTypes.func
+  setTotal: PropTypes.func,
+  onRemove: PropTypes.func,
+  total: PropTypes.number
 };

@@ -6,7 +6,7 @@ import ashtrayBox4 from 'assets/images/jtb2ve6i.png';
 export const dummyContent = [
   {
     title: 'Gloopy Ashtray by Seth in Brown & Yellow',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox3}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -15,7 +15,7 @@ export const dummyContent = [
   },
   {
     title: 'Gloopy Ashtray by Seth in Brown & Yellow',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox2}`,
     image2: `${ashtrayBox2}`,
     description: 'A limitd by Seth to be both gloopy and globby. ',
@@ -23,7 +23,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -32,7 +32,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox4}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -40,7 +40,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -48,7 +48,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -56,7 +56,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -64,7 +64,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',
@@ -72,7 +72,7 @@ export const dummyContent = [
   },
   {
     title: 'OFFSET STOOL',
-    price: '$285',
+    price: 168,
     image1: `${ashtrayBox}`,
     image2: `${ashtrayBox2}`,
     description: 'A limited edition ashtray designed by Seth to be both gloopy and globby. ',

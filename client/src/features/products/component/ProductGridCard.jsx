@@ -78,7 +78,7 @@ export const ProductGridCard = ({
         <ProductTitleWrapper>
           <ProductTitle>{title}</ProductTitle>
           <ProductPriceWrapper>
-            <ProductPrice>{price}</ProductPrice>
+            <ProductPrice>${price}</ProductPrice>
             <CartButton
               onClick={() => {
                 addProductCart({ id, title, price, image1, image2, description, badge });
@@ -98,7 +98,7 @@ export const ProductGridCard = ({
 ProductGridCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   image1: PropTypes.string,
   image2: PropTypes.string,
   description: PropTypes.string,
@@ -109,7 +109,7 @@ ProductGridCard.propTypes = {
 
 ProductFlexCard.propTypes = {
   title: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   image1: PropTypes.string,
   image2: PropTypes.string,
   description: PropTypes.string

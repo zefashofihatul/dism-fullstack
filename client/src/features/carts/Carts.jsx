@@ -14,10 +14,13 @@ import {
 } from './style/CartStyle';
 import { CartItem } from './component/CartItem';
 import { useCart } from './provider/CartProviders';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 // TODO : Re-code cart style / UI Design
 export const Carts = ({ hide, onClick }) => {
   const { getCart } = useCart();
+  const [total, setTotal] = useState(0);
   return (
     <>
       <CartsWrapper className="cartWrapper" hide={hide}>
@@ -27,23 +30,27 @@ export const Carts = ({ hide, onClick }) => {
             <HeaderCloseTab onClick={() => onClick()}>CLOSE</HeaderCloseTab>
           </CartsHeader>
           <CartsItemWrapper>
-            {getCart().map((value, index) => (
-              <CartItem
-                key={value.id}
-                id={value.id}
-                title={value.title}
-                price={value.price}
-                description={value.description}
-                badge={value.badge}
-                image1={value.image1}
-              />
-            ))}
+            {getCart().map((value, index) => {
+              return (
+                <CartItem
+                  key={value.id}
+                  id={value.id}
+                  title={value.title}
+                  price={value.price}
+                  description={value.description}
+                  badge={value.badge}
+                  image1={value.image1}
+                  setTotal={setTotal}
+                  total={total}
+                />
+              );
+            })}
           </CartsItemWrapper>
           <TotalPriceWrapper>
             <CheckoutBtn>CHECKOUT</CheckoutBtn>
             <TotalPrice>
               <TotalTitle>TOTAL</TotalTitle>
-              <TotalTitle>$209</TotalTitle>
+              <TotalTitle>${total}</TotalTitle>
             </TotalPrice>
           </TotalPriceWrapper>
         </CartsFlexWrap>

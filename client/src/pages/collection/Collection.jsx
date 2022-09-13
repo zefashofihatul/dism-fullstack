@@ -5,6 +5,7 @@ import {
   BannerDescription
 } from 'components/Banner';
 import imageBannerCollection from 'assets/images/bannerAll.png';
+import imageBannerCollection2 from 'assets/images/bannerAll2.webp';
 import { AllProductsGrid } from 'features/products/get-products';
 import { Header } from 'components/Header';
 import { dummyContent } from 'features/products/dummyData';
@@ -16,7 +17,7 @@ export const Collection = () => {
   return (
     <>
       <Header />
-      <Banner image={imageBannerCollection} style="margin-top: 4.5rem" className="sm">
+      <Banner image={imageBannerCollection2} style="margin-top: 4.5rem" className="md">
         <BannerDescriptionWrapper>
           <BannerTitle>ALL OF OUR HOUSEGOODS</BannerTitle>
           <BannerDescription>
