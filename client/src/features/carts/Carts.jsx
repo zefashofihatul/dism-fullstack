@@ -17,10 +17,7 @@ import { useCart } from './provider/CartProviders';
 
 // TODO : Re-code cart style / UI Design
 export const Carts = ({ hide, onClick }) => {
-  const { getCart, removeItemCart, removeAllCart } = useCart();
-  const onRemove = (id) => {
-    removeItemCart(id);
-  };
+  const { getCart } = useCart();
   return (
     <>
       <CartsWrapper className="cartWrapper" hide={hide}>
@@ -39,7 +36,6 @@ export const Carts = ({ hide, onClick }) => {
                 description={value.description}
                 badge={value.badge}
                 image1={value.image1}
-                onRemove={onRemove}
               />
             ))}
           </CartsItemWrapper>

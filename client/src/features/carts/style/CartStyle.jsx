@@ -50,6 +50,7 @@ export const ItemImage = styled.img`
 
 export const ItemContentWrapper = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
 `;
 
@@ -125,7 +126,7 @@ export const ItemContentQuantity = styled.div`
 export const ItemContentQuantityBtn = styled.img`
   padding: 0.2rem;
   width: 0.6rem;
-  margin-left: 0.8rem;
+  height: 0.6rem;
   border: 1px solid black;
   cursor: pointer;
 `;
@@ -134,7 +135,7 @@ export const ItemContentQuantityNum = styled.p`
   font-size: 1.2rem;
   line-height: 2;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0.8rem;
 `;
 
 export const TotalPriceWrapper = styled.div`

@@ -16,17 +16,21 @@ import {
   ItemContentPriceWrapper
 } from '../style/CartStyle';
 import PropTypes from 'prop-types';
-import thumb1 from 'assets/images/imageThumb1.png';
 import plusIcon from 'assets/images/plus_icon.svg';
+import minIcon from 'assets/images/min_icon.svg';
+import { useCart } from '../provider/CartProviders';
+import { useState } from 'react';
 
 export const CartItem = ({ id, title, description, badge, price, image1, onRemove }) => {
+  const { removeItemCart, removeAllCart } = useCart();
+  const [itemQuantity, setItemQuantity] = useState(1);
   return (
     <CartsItem>
       <ItemImage src={image1} alt="thumbCart" />
       <ItemContentWrapper>
         <ItemContentTitleWrapper>
           <ItemContentTitle>{title}</ItemContentTitle>
-          <ItemContentRemoveBtn onClick={() => onRemove(id)}>REMOVE</ItemContentRemoveBtn>
+          <ItemContentRemoveBtn onClick={() => removeItemCart(id)}>REMOVE</ItemContentRemoveBtn>
         </ItemContentTitleWrapper>
         <ItemContentDescriptionWrapper>
           <ItemContentDescription>
@@ -40,8 +44,17 @@ export const CartItem = ({ id, title, description, badge, price, image1, onRemov
           <ItemContentPriceWrapper>
             <ItemContentPrice>{price}</ItemContentPrice>
             <ItemContentQuantity>
-              <ItemContentQuantityNum>2</ItemContentQuantityNum>
-              <ItemContentQuantityBtn src={plusIcon}></ItemContentQuantityBtn>
+              {itemQuantity > 1 && (
+                <ItemContentQuantityBtn
+                  src={minIcon}
+                  onClick={() => setItemQuantity(itemQuantity - 1)}
+                />
+              )}
+              <ItemContentQuantityNum>{itemQuantity}</ItemContentQuantityNum>
+              <ItemContentQuantityBtn
+                src={plusIcon}
+                onClick={() => setItemQuantity(itemQuantity + 1)}
+              />
             </ItemContentQuantity>
           </ItemContentPriceWrapper>
         </ItemContentDescriptionWrapper>

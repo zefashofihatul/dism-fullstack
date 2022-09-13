@@ -26,6 +26,7 @@ export const useProvideCart = () => {
         ...getCart(),
         {
           id: data.id,
+          quantity: 1,
           title: data.title,
           price: data.price,
           image1: data.image1,
