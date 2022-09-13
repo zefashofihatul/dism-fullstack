@@ -5,16 +5,19 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ProvideAuth } from 'lib/auth';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyleProviders } from './GlobalStyleProviders';
+import { ProvideCart } from 'features/carts/provider/CartProviders';
 
 export const AppProvider = ({ children }) => {
   return (
     <ErrorBoundary>
       <HelmetProvider>
-        <ProvideAuth>
-          <BrowserRouter>
-            <GlobalStyleProviders darkTheme={false}>{children}</GlobalStyleProviders>
-          </BrowserRouter>
-        </ProvideAuth>
+        <ProvideCart>
+          <ProvideAuth>
+            <BrowserRouter>
+              <GlobalStyleProviders darkTheme={false}>{children}</GlobalStyleProviders>
+            </BrowserRouter>
+          </ProvideAuth>
+        </ProvideCart>
       </HelmetProvider>
     </ErrorBoundary>
   );

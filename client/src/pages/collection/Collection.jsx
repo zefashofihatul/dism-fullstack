@@ -8,18 +8,13 @@ import {
 import imageBannerCollection from 'assets/images/bannerAll.png';
 import { AllProductsGrid } from 'features/products/get-products';
 import { Header } from 'components/Header';
-import { useState } from 'react';
 import { OptionsProduct } from 'features/products/get-products/OptionsProduct';
 
 export const Collection = () => {
-  const [isListContent, setIsListContent] = useState(false);
-  const handleClick = (e) => {
-    setIsListContent(!isListContent);
-  };
   return (
     <>
       <Header />
-      <Banner image={imageBannerCollection} style="margin-top: 4.5rem" className="md">
+      <Banner image={imageBannerCollection} style="margin-top: 4.5rem" className="xl">
         <BannerDescriptionWrapper>
           <BannerTitle>ALL OF OUR HOUSEGOODS</BannerTitle>
           <BannerDescription>

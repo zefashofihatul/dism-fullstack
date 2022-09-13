@@ -5,7 +5,6 @@ import { useAuth } from 'lib/auth';
 import { Dashboard } from 'pages/dashboard';
 
 export const AppRoutes = () => {
-  const auth = useAuth();
   const element = useRoutes([...publicRoutes, ...protectedRoutes]);
   return <>{element}</>;
 };

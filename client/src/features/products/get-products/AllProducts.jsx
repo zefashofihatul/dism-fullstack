@@ -12,17 +12,16 @@ export const AllProductsGrid = ({ gridCol, fetchItem }) => {
       <GridContentWrapper>
         <FourGridContentSection gridCol={gridCol}>
           {dummyContent.map((product, index) => (
-            <>
-              <ProductGridCard
-                key={index}
-                title={product.title}
-                price={product.price}
-                image1={product.image1}
-                image2={product.image2}
-                description={product.description}
-                badge={product.badge}
-              />
-            </>
+            <ProductGridCard
+              key={index}
+              id={index}
+              title={product.title}
+              price={product.price}
+              image1={product.image1}
+              image2={product.image2}
+              description={product.description}
+              badge={product.badge}
+            />
           ))}
         </FourGridContentSection>
       </GridContentWrapper>
@@ -38,14 +37,14 @@ export const AllProductsFlex = ({ col, fetchItem }) => {
         {products.map((value, index) => {
           return (
             <FourContentSection key={index}>
-              {value.map((product, index) => (
+              {value.map((product, productIndex) => (
                 <ProductFlexCard
                   title={product.title}
                   price={product.price}
                   image1={product.image1}
                   image2={product.image2}
                   description={product.description}
-                  key={index}
+                  key={productIndex}
                 />
               ))}
             </FourContentSection>

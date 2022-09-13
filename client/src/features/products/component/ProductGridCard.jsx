@@ -17,6 +17,7 @@ import {
 import { Badge } from 'components/Badges';
 import { Button } from 'components/Button';
 import PropTypes from 'prop-types';
+import { useCart } from 'features/carts/provider/CartProviders';
 
 export const ProductFlexCard = ({ title, price, image1, image2, description }) => {
   return (
@@ -49,6 +50,7 @@ export const ProductFlexCard = ({ title, price, image1, image2, description }) =
 
 export const ProductGridCard = ({
   className,
+  id,
   title,
   price,
   image1,
@@ -56,6 +58,7 @@ export const ProductGridCard = ({
   description,
   badge
 }) => {
+  const { getCart, addProductCart } = useCart();
   return (
     <>
       <ProductItemGrid className={className}>
@@ -76,7 +79,12 @@ export const ProductGridCard = ({
           <ProductTitle>{title}</ProductTitle>
           <ProductPriceWrapper>
             <ProductPrice>{price}</ProductPrice>
-            <CartButton>ADD TO CART</CartButton>
+            <CartButton
+              onClick={() => {
+                addProductCart({ id, title, price, image1, image2, description, badge });
+              }}>
+              ADD TO CART
+            </CartButton>
           </ProductPriceWrapper>
         </ProductTitleWrapper>
         <ProductDescriptionWrapper>
@@ -90,6 +98,7 @@ export const ProductGridCard = ({
 };
 
 ProductGridCard.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.string,
   image1: PropTypes.string,
