@@ -1,8 +1,9 @@
 import { OptionProductWrapper, OptionsWrapper, Option } from '../style/OptionsProductStyle';
 import { useState } from 'react';
+import { Switch } from 'components/Switch';
 import PropTypes from 'prop-types';
 
-export const OptionsProduct = ({ option, setOption }) => {
+export const OptionsProduct = ({ option, setOption, handleClick }) => {
   return (
     <OptionProductWrapper>
       <OptionsWrapper>
@@ -27,11 +28,13 @@ export const OptionsProduct = ({ option, setOption }) => {
           OUTDOOR
         </Option>
       </OptionsWrapper>
+      <Switch option1="GRID" option2="LIST" handleClick={handleClick} />
     </OptionProductWrapper>
   );
 };
 
 OptionsProduct.propTypes = {
   option: PropTypes.object,
-  setOption: PropTypes.func
+  setOption: PropTypes.func,
+  handleClick: PropTypes.func
 };

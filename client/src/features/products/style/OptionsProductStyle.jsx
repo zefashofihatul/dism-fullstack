@@ -17,6 +17,9 @@ export const OptionsWrapper = styled.div`
 
 export const Option = styled.span`
   border: 0.1rem solid #321e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #321e1e;
   ${(props) =>
     props.className == 'filled'
@@ -26,7 +29,7 @@ export const Option = styled.span`
           color: #fff;
         `
       : 'font-weight: 600;'}
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 8rem;
   font-size: 0.9rem;
   cursor: pointer;

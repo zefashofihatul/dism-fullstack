@@ -89,7 +89,6 @@ export default class Cursor {
     if (video.id == src) {
       gsap.set(video, { zIndex: 4, opacity: 1 });
       siblings.forEach((i) => {
-        console.log(i);
         gsap.set(i, { zIndex: 1, opacity: 0 });
       });
     }

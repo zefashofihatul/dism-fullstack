@@ -10,9 +10,9 @@ import {
   CartButton
 } from '../style/ListContentStyle';
 
-export const ProductListCard = ({ idCount, title, price, description, image1 }) => {
+export const ProductListCard = ({ idCount, title, price, description, image1, styleAdd }) => {
   return (
-    <ListProduct data-image={`image-${idCount}`} className="product">
+    <ListProduct data-image={`image-${idCount}`} styleAdd={styleAdd} className="product">
       <TitleProduct>{title}</TitleProduct>
       <DescriptionImageWrapper>
         <DescriptionWrapper>
@@ -29,8 +29,9 @@ export const ProductListCard = ({ idCount, title, price, description, image1 }) 
 
 ProductListCard.propTypes = {
   title: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   description: PropTypes.string,
   image1: PropTypes.string,
-  idCount: PropTypes.number
+  idCount: PropTypes.number,
+  styleAdd: PropTypes.string
 };

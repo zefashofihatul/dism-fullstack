@@ -244,6 +244,7 @@ export const ProductPriceWrapper = styled.div`
 export const CartButton = styled.span`
   margin: 0;
   padding: 0;
+  width: 5.7rem;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: underline;

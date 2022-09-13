@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ListContentWrapper = styled.div`
   width: 100%;
-  margin-top: 40px;
+
   position: relative;
 `;
 export const ListProduct = styled.div`
@@ -10,10 +10,12 @@ export const ListProduct = styled.div`
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  padding: 1rem 0;
+  box-sizing: border-box;
+  padding: 1rem 3rem;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
   transition: 200ms;
+  ${(props) => (props.styleAdd ? props.styleAdd : '')}
 `;
 
 export const DescriptionWrapper = styled.div`

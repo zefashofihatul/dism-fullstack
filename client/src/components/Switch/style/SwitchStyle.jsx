@@ -10,7 +10,6 @@ export const SwitchBoxLabel = styled.label`
   top: 0;
   left: 0;
   width: 120px;
-  height: 42px;
   border-radius: 40px;
   border: 1px solid #707070;
   background: transparent;
@@ -37,9 +36,10 @@ export const SwitchBox = styled.input`
   z-index: 1;
   top: 0;
   left: 0;
+  height: 39px;
   border-radius: 40px;
   width: 120px;
-  height: 42px;
+
   border: 1px solid #707070;
 
   &:checked + ${SwitchBoxLabel} {

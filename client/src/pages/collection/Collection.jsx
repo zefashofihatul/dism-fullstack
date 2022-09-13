@@ -10,10 +10,15 @@ import { AllProductsGrid } from 'features/products/get-products';
 import { Header } from 'components/Header';
 import { dummyContent } from 'features/products/dummyData';
 import { OptionsProduct } from 'features/products/get-products/OptionsProduct';
+import { ListContent } from 'features/products/ListContent';
 import { useState } from 'react';
 
 export const Collection = () => {
+  const [isListContent, setIsListContent] = useState(false);
   const [option, setOption] = useState({ set: 'all' });
+  const switchHandleClick = () => {
+    setIsListContent(!isListContent);
+  };
   return (
     <>
       <Header />
@@ -26,13 +31,17 @@ export const Collection = () => {
           </BannerDescription>
         </BannerDescriptionWrapper>
       </Banner>
-      <OptionsProduct option={option} setOption={setOption} />
-      <AllProductsGrid
-        products={dummyContent}
-        filterOption={option.set}
-        gridCol={3}
-        fetchItem={10}
-      />
+      <OptionsProduct option={option} handleClick={switchHandleClick} setOption={setOption} />
+      {isListContent ? (
+        <ListContent products={dummyContent} filterOption={option.set} />
+      ) : (
+        <AllProductsGrid
+          products={dummyContent}
+          filterOption={option.set}
+          gridCol={3}
+          fetchItem={10}
+        />
+      )}
     </>
   );
 };
