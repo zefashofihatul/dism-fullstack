@@ -6,12 +6,14 @@ import { ProductFlexCard } from '../component/ProductGridCard';
 import PropTypes from 'prop-types';
 import { splitarray } from 'utils/splitArray';
 
-export const AllProductsGrid = ({ gridCol, fetchItem }) => {
+export const AllProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => {
+  const productsFilter =
+    filterOption !== 'all' ? products.filter((value) => value.category == filterOption) : products;
   return (
     <MainWrapper>
       <GridContentWrapper>
         <FourGridContentSection gridCol={gridCol}>
-          {dummyContent.map((product, index) => (
+          {productsFilter.map((product, index) => (
             <ProductGridCard
               key={index}
               id={index}
@@ -62,5 +64,7 @@ AllProductsFlex.propTypes = {
 
 AllProductsGrid.propTypes = {
   gridCol: PropTypes.number,
-  fetchItem: PropTypes.number
+  fetchItem: PropTypes.number,
+  products: PropTypes.array,
+  filterOption: PropTypes.string
 };

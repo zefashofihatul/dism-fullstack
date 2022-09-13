@@ -1,4 +1,3 @@
-import { Nav } from 'components/Nav';
 import {
   Banner,
   BannerDescriptionWrapper,
@@ -8,13 +7,16 @@ import {
 import imageBannerCollection from 'assets/images/bannerAll.png';
 import { AllProductsGrid } from 'features/products/get-products';
 import { Header } from 'components/Header';
+import { dummyContent } from 'features/products/dummyData';
 import { OptionsProduct } from 'features/products/get-products/OptionsProduct';
+import { useState } from 'react';
 
 export const Collection = () => {
+  const [option, setOption] = useState({ set: 'all' });
   return (
     <>
       <Header />
-      <Banner image={imageBannerCollection} style="margin-top: 4.5rem" className="xl">
+      <Banner image={imageBannerCollection} style="margin-top: 4.5rem" className="sm">
         <BannerDescriptionWrapper>
           <BannerTitle>ALL OF OUR HOUSEGOODS</BannerTitle>
           <BannerDescription>
@@ -23,8 +25,13 @@ export const Collection = () => {
           </BannerDescription>
         </BannerDescriptionWrapper>
       </Banner>
-      <OptionsProduct></OptionsProduct>
-      <AllProductsGrid gridCol={3} fetchItem={10} />
+      <OptionsProduct option={option} setOption={setOption} />
+      <AllProductsGrid
+        products={dummyContent}
+        filterOption={option.set}
+        gridCol={3}
+        fetchItem={10}
+      />
     </>
   );
 };

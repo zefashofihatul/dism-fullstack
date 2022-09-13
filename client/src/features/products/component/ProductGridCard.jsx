@@ -88,9 +88,7 @@ export const ProductGridCard = ({
           </ProductPriceWrapper>
         </ProductTitleWrapper>
         <ProductDescriptionWrapper>
-          <ProductDescription>
-            A limited edition ashtray designed by Seth to be both gloopy and globby.
-          </ProductDescription>
+          <ProductDescription>{description}</ProductDescription>
         </ProductDescriptionWrapper>
       </ProductItemGrid>
     </>
