@@ -2,11 +2,13 @@ import styled, { css } from 'styled-components';
 
 export const OptionProductWrapper = styled.div`
   width: 100%;
-  padding: 1.6rem 1.6rem;
+  padding: 1.7rem 1.6rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
+  border-bottom: 0.1rem solid black;
+  margin-top: 3rem;
 `;
 
 export const OptionsWrapper = styled.div`

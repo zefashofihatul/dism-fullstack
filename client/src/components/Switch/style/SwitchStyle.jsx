@@ -3,12 +3,15 @@ import styled from 'styled-components';
 export const SwitchWrapper = styled.div`
   position: relative;
   width: fit-content;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
 `;
 
 export const SwitchBoxLabel = styled.label`
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  right: 0;
   width: 120px;
   border-radius: 40px;
   border: 1px solid #707070;
@@ -39,8 +42,8 @@ export const SwitchBox = styled.input`
   height: 39px;
   border-radius: 40px;
   width: 120px;
-
   border: 1px solid #707070;
+  cursor: pointer;
 
   &:checked + ${SwitchBoxLabel} {
     background: transparent;

@@ -11,7 +11,7 @@ export const ListProduct = styled.div`
   flex-direction: row;
   gap: 3rem;
   box-sizing: border-box;
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
   border-top: 0.1rem solid #c4bca4;
   border-bottom: 0.1rem solid #c4bca4;
   transition: 200ms;
@@ -31,8 +31,8 @@ export const DescriptionWrapper = styled.div`
 export const TitleProduct = styled.h3`
   width: 24rem;
   font-size: 0.9rem;
-  line-height: 1.5;
-  font-weight: 700;
+  line-height: 1.8;
+  font-weight: 600;
   margin: 0;
   text-transform: uppercase;
 `;
@@ -40,6 +40,7 @@ export const TitleProduct = styled.h3`
 export const DescriptionProduct = styled.p`
   font-size: 0.9rem;
   font-weight: 400;
+  line-height: 1.8;
   margin: 0;
   height: 100%;
 `;

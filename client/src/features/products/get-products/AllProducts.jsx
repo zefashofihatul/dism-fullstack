@@ -8,7 +8,9 @@ import { splitarray } from 'utils/splitArray';
 
 export const AllProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => {
   const productsFilter =
-    filterOption !== 'all' ? products.filter((value) => value.category == filterOption) : products;
+    filterOption !== 'ALL PRODUCT'
+      ? products.filter((value) => value.category == filterOption)
+      : products;
   return (
     <MainWrapper>
       <GridContentWrapper>

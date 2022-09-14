@@ -10,7 +10,9 @@ import PropTypes from 'prop-types';
 export const ListContent = ({ products, filterOption, styleAdd }) => {
   const body = document.querySelector('body');
   const productsFilter =
-    filterOption !== 'all' ? products.filter((value) => value.category == filterOption) : products;
+    filterOption !== 'ALL PRODUCT'
+      ? products.filter((value) => value.category == filterOption)
+      : products;
   useEffect(() => {
     const cursor = new Cursor(document.querySelector('.cursor'));
   });
@@ -21,12 +23,12 @@ export const ListContent = ({ products, filterOption, styleAdd }) => {
           return (
             <ProductListCard
               key={index}
-              idCount={index}
+              id={index}
               title={product.title}
               price={product.price}
               description={product.description}
               image1={product.image1}
-              styleAdd={styleAdd}
+              badge={product.badge}
             />
           );
         })}
