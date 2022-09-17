@@ -25,22 +25,34 @@ export const FilterInput = ({ option, setOption }) => {
         </FilterInputOptionWrapper>
         <FilterExpand expand={expand}>
           <FilterList
-            onClick={() => setOption({ set: 'ALL PRODUCT' })}
+            onClick={() => {
+              setOption({ set: 'ALL PRODUCT' });
+              setExpand(false);
+            }}
             className={option.set == 'ALL PRODUCT' ? 'expand' : ''}>
             ALL PRODUCT
           </FilterList>
           <FilterList
-            onClick={() => setOption({ set: 'ASHTRAY' })}
+            onClick={() => {
+              setOption({ set: 'ASHTRAY' });
+              setExpand(false);
+            }}
             className={option.set == 'ASHTRAY' ? 'expand' : ''}>
             ASHTRAY
           </FilterList>
           <FilterList
-            onClick={() => setOption({ set: 'LIFESTYLE' })}
+            onClick={() => {
+              setOption({ set: 'LIFESTYLE' });
+              setExpand(false);
+            }}
             className={option.set == 'LIFESTYLE' ? 'expand' : ''}>
             LIFESTYLE
           </FilterList>
           <FilterList
-            onClick={() => setOption({ set: 'OUTDOOR' })}
+            onClick={() => {
+              setOption({ set: 'OUTDOOR' });
+              setExpand(false);
+            }}
             className={option.set == 'OUTDOOR' ? 'expand' : ''}>
             OUTDOOR
           </FilterList>

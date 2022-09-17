@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { ErrorBoundary } from 'utils/ErrorBoundaries';
 import { HelmetProvider } from 'react-helmet-async';
-import { ProvideAuth } from 'lib/auth';
+import { ProvideAuth } from 'features/auth/providers';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyleProviders } from './GlobalStyleProviders';
 import { ProvideCart } from 'features/carts/provider/CartProviders';

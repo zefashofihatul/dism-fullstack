@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Register } from './Register';
 import { Login } from './Login';
-import { useAuth } from 'lib/auth';
+import { useAuth } from '../providers';
 
 export const AuthRoutes = () => {
   const { checkToken } = useAuth();

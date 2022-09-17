@@ -4,7 +4,7 @@ export const NavMainWrapper = styled.div`
   width: 100%;
   padding: 8px 40px;
   z-index: 1000;
-  background-color: #f4f1e0;
+  background-color: ${(props) => props.theme.colors.collectionsMainColor};
   box-sizing: border-box;
   position: fixed;
   top: 0;

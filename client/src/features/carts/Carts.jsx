@@ -15,7 +15,6 @@ import {
 import { CartItem } from './component/CartItem';
 import { useCart } from './provider/CartProviders';
 import { useState } from 'react';
-import { useEffect } from 'react';
 
 // TODO : Re-code cart style / UI Design
 export const Carts = ({ hide, onClick }) => {

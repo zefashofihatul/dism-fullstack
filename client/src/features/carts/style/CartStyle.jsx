@@ -27,6 +27,7 @@ export const HeaderTitle = styled.h2`
 
 export const HeaderCloseTab = styled.span`
   font-size: 1rem;
+  cursor: pointer;
   text-decoration: underline;
 `;
 

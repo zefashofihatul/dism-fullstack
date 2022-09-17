@@ -5,7 +5,7 @@ import { TextField, Form, CheckBoxField, LabelLink, SelectField } from 'componen
 import { DoubleFlex } from '../styles/login';
 import { Button } from 'components/Button';
 import PropTypes from 'prop-types';
-import { useAuth } from 'lib/auth';
+import { useAuth } from '../providers';
 
 const schema = z.object({
   role: z.string().min(1, 'Required'),

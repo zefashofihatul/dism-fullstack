@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const DashboardWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.dashboardBackgroundColor};
+`;
+
 export const DashboardSection = styled.div`
   padding: 0 24px;
 `;
@@ -36,3 +40,7 @@ export const Line = styled.hr`
 `;
 
 export const FilterInputWrapper = styled.div``;
+
+export const MainDashboard = styled.div`
+  padding: 32px;
+`;

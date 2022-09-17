@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { initReactQueryAuth } from 'react-query-auth';
 import { getUser, loginWithEmailAndPassword, registerWithEmailAndPassword } from 'features/auth';
 import storage from 'utils/storage';
 import PropTypes from 'prop-types';

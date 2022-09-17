@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   overflow: hidden;
   border-bottom: 1px solid #321e1e;
-  background-color: #f4f1e0;
+  background-color: ${(props) => props.theme.colors.collectionsMainColor};
   z-index: 1000;
   transform: translateZ(0);
   @media only screen and (min-width: 1025px) {

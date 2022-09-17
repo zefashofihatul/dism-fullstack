@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as z from 'zod';
 import { TextField, Form, CheckBoxField, LabelLink } from 'components/Form';
 import { Button } from 'components/Button';
-import { useAuth } from 'lib/auth';
+import { useAuth } from '../providers';
 import PropTypes from 'prop-types';
 
 const schema = z.object({

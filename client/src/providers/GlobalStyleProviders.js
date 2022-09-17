@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import ralewayRegular from 'assets/font/Raleway/static/Raleway-Regular.ttf';
 import ralewaySemiBold from 'assets/font/Raleway/static/Raleway-SemiBold.ttf';
@@ -9,10 +9,12 @@ const themeContext = createContext();
 
 // Setting Global Style
 const theme = {
-  default: {
+  colors: {
     backgroundColor: '#F1EFED',
     fontColor: '#000000',
-    invertFontColor: '#ffffff'
+    invertFontColor: '#ffffff',
+    collectionsMainColor: '#f4f1e0',
+    dashboardBackgroundColor: '#ffffff'
   }
 };
 
@@ -66,23 +68,25 @@ const GlobalStyle = createGlobalStyle`
   /* Font */
   h1, h2, h3, h4, h5 {
     font-family: 'raleway';
-    color: ${(props) => (props.darkTheme ? theme.dark.fontColor : theme.default.fontColor)}
+    color: ${(props) => (props.darkTheme ? theme.dark.fontColor : theme.colors.fontColor)}
   }
 
   /* Backgroud Color */
   .main-wrapper {
     background-color: ${(props) =>
-      props.darkTheme ? theme.dark.fontColor : theme.default.fontColor}
+      props.darkTheme ? theme.dark.fontColor : theme.colors.fontColor}
   }
 `;
 
 export const GlobalStyleProviders = ({ children }) => {
   const themeValue = useProvideTheme();
   return (
-    <themeContext.Provider value={themeValue}>
-      <GlobalStyle />
-      {children}
-    </themeContext.Provider>
+    <ThemeProvider theme={theme}>
+      <themeContext.Provider value={themeValue}>
+        <GlobalStyle />
+        {children}
+      </themeContext.Provider>
+    </ThemeProvider>
   );
 };
 

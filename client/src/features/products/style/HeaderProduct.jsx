@@ -32,10 +32,13 @@ export const HeaderDescription = styled.h4`
   margin: 0;
 `;
 
-export const ProductsWrapper = styled.div`
-  min-height: 100vh;
-`;
-
-export const CollectionsWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.collectionsMainColor};
+export const HeaderProductWrapper = styled.div`
+  width: 100%;
+  padding: 1.7rem 1.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid black;
+  margin-top: 2rem;
 `;

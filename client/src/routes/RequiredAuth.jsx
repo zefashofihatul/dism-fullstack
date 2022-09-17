@@ -1,4 +1,4 @@
-import { useAuth } from 'lib/auth';
+import { useAuth } from 'features/auth/providers';
 import { Navigate, useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';

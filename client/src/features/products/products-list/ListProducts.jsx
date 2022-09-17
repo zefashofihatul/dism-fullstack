@@ -1,21 +1,24 @@
-import { MainWrapper } from './style/GridContentStyle';
-import { ListContentWrapper } from './style/ListContentStyle';
-import { ProductListCard } from './component/ProductListCard';
-import { dummyContent } from './dummyData';
+import { MainWrapper } from '../style/GridContentStyle';
+import { ListContentWrapper } from '../style/ListContentStyle';
+import { ProductListCard } from '../component/ProductListCard';
 import { useEffect } from 'react';
 import Cursor from 'features/cursor/cursor';
-import { CursorEl, CursorMedia, ProductImage } from './style/ListContentStyle';
+import { getProducts } from '../api';
+import { CursorEl, CursorMedia, ProductImage } from '../style/ListContentStyle';
 import PropTypes from 'prop-types';
 
-export const ListContent = ({ products, filterOption, styleAdd }) => {
-  const body = document.querySelector('body');
+export const ListProducts = ({ products, filterOption, styleAdd }) => {
+  useEffect(() => {
+    const cursor = new Cursor(document.querySelector('.cursor'));
+    async function fetchData() {
+      const response = await getProducts();
+      console.log(response);
+    }
+  });
   const productsFilter =
     filterOption !== 'ALL PRODUCT'
       ? products.filter((value) => value.category == filterOption)
       : products;
-  useEffect(() => {
-    const cursor = new Cursor(document.querySelector('.cursor'));
-  });
   return (
     <MainWrapper>
       <ListContentWrapper>
@@ -46,7 +49,7 @@ export const ListContent = ({ products, filterOption, styleAdd }) => {
   );
 };
 
-ListContent.propTypes = {
+ListProducts.propTypes = {
   products: PropTypes.array,
   filterOption: PropTypes.string,
   styleAdd: PropTypes.string

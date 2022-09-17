@@ -1,5 +1,3 @@
-import { OptionProductWrapper, OptionsWrapper, Option } from '../style/OptionsProductStyle';
-import { useState } from 'react';
 import { FilterInput } from 'components/Input/filterInput';
 import { Switch } from 'components/Switch';
 import PropTypes from 'prop-types';
@@ -8,12 +6,13 @@ import {
   HeaderCollectionTitle,
   HeaderTitle,
   HeaderWrapper,
-  HeaderDescription
-} from 'pages/collection/style/CollectionStyle';
+  HeaderDescription,
+  HeaderProductWrapper
+} from '../style/HeaderProduct';
 
-export const HeaderCollection = ({ option, setOption, handleClick }) => {
+export const HeaderProduct = ({ option, setOption, handleClick }) => {
   return (
-    <OptionProductWrapper>
+    <HeaderProductWrapper>
       <HeaderWrapper>
         <HeaderDescription>HOUSEGOODS</HeaderDescription>
         <HeaderTitle>PRODUCT</HeaderTitle>
@@ -22,11 +21,11 @@ export const HeaderCollection = ({ option, setOption, handleClick }) => {
         <FilterInput option={option} setOption={setOption} />
       </HeaderCollectionWrapper>
       <Switch option1="GRID" option2="LIST" handleClick={handleClick} />
-    </OptionProductWrapper>
+    </HeaderProductWrapper>
   );
 };
 
-HeaderCollection.propTypes = {
+HeaderProduct.propTypes = {
   option: PropTypes.object,
   setOption: PropTypes.func,
   handleClick: PropTypes.func

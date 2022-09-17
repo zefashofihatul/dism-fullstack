@@ -4,14 +4,14 @@ import {
   BannerTitle,
   BannerDescription
 } from 'components/Banner';
-import { CollectionWrapper } from './style/CollectionStyle';
+import { ProductsWrapper, CollectionsWrapper } from './style/CollectionStyle';
 import imageBannerCollection from 'assets/images/bannerAll.png';
 import imageBannerCollection2 from 'assets/images/bannerAll2.webp';
-import { AllProductsGrid } from 'features/products/get-products';
+import { ProductsGrid } from 'features/products/products-grid';
 import { Header } from 'components/Header';
 import { dummyContent } from 'features/products/dummyData';
-import { HeaderCollection } from 'features/products/get-products/HeaderCollection';
-import { ListContent } from 'features/products/ListContent';
+import { HeaderProduct } from 'features/products/component/HeaderProduct';
+import { ListProducts } from 'features/products/products-list/ListProducts';
 import { useState } from 'react';
 
 export const Collection = () => {
@@ -21,9 +21,9 @@ export const Collection = () => {
     setIsListContent(!isListContent);
   };
   return (
-    <>
+    <CollectionsWrapper>
       <Header />
-      <Banner image={imageBannerCollection2} style="margin-top: 4.5rem" className="md">
+      <Banner image={imageBannerCollection2} style="margin-top: 4.5rem" className="sm">
         <BannerDescriptionWrapper>
           <BannerTitle>ALL OF OUR HOUSEGOODS</BannerTitle>
           <BannerDescription>
@@ -32,19 +32,19 @@ export const Collection = () => {
           </BannerDescription>
         </BannerDescriptionWrapper>
       </Banner>
-      <HeaderCollection option={option} handleClick={switchHandleClick} setOption={setOption} />
-      <CollectionWrapper>
+      <HeaderProduct option={option} handleClick={switchHandleClick} setOption={setOption} />
+      <ProductsWrapper>
         {isListContent ? (
-          <ListContent products={dummyContent} filterOption={option.set} />
+          <ListProducts products={dummyContent} filterOption={option.set} />
         ) : (
-          <AllProductsGrid
+          <ProductsGrid
             products={dummyContent}
             filterOption={option.set}
             gridCol={3}
             fetchItem={10}
           />
         )}
-      </CollectionWrapper>
-    </>
+      </ProductsWrapper>
+    </CollectionsWrapper>
   );
 };

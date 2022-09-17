@@ -3,10 +3,11 @@ import { dummyContent } from '../dummyData';
 import { ProductGridCard } from '../component/ProductGridCard';
 import { FourContentSection } from '../style/GridContentStyle';
 import { ProductFlexCard } from '../component/ProductGridCard';
+import { getProducts } from '../api';
 import PropTypes from 'prop-types';
 import { splitarray } from 'utils/splitArray';
 
-export const AllProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => {
+export const ProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => {
   const productsFilter =
     filterOption !== 'ALL PRODUCT'
       ? products.filter((value) => value.category == filterOption)
@@ -64,7 +65,7 @@ AllProductsFlex.propTypes = {
   fetchItem: PropTypes.number
 };
 
-AllProductsGrid.propTypes = {
+ProductsGrid.propTypes = {
   gridCol: PropTypes.number,
   fetchItem: PropTypes.number,
   products: PropTypes.array,

@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10">
+  <path id="menu-hamburger" d="M6,0h4M3,4H13M0,8H16" transform="translate(17 9) rotate(180)" fill="none" stroke="#3b3b3e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>

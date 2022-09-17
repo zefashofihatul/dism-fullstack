@@ -17,14 +17,12 @@ export const Input = styled.input`
   }
   &:hover {
     outline: none;
-    background-color: transparent;
     border: 1px solid rgba(210, 91, 91, 0.1);
     box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
     transition: 200ms;
   }
   &:focus {
     outline: none;
-    background-color: transparent;
     border: 1px solid rgba(98, 87, 201, 0.5);
     box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
     transition: 200ms;
@@ -69,14 +67,12 @@ export const Select = styled.select`
     box-shadow 400ms ease, -webkit-box-shadow 200ms ease;
   &:hover {
     outline: none;
-    background-color: transparent;
     border: 1px solid rgba(210, 91, 91, 0.1);
     box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
     transition: 200ms;
   }
   &:focus {
     outline: none;
-    background-color: transparent;
     border: 1px solid rgba(98, 87, 201, 0.5);
     box-shadow: 0px 0px 5px rgba(98, 87, 201, 0.8);
     transition: 200ms;

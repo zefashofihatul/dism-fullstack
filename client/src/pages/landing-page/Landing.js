@@ -1,5 +1,5 @@
 // import { useNavigate } from 'react-router';
-import { useAuth } from 'lib/auth';
+import { useAuth } from 'features/auth/providers';
 import { useEffect } from 'react';
 
 export const Landing = () => {
