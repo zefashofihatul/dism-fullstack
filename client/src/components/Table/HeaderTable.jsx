@@ -13,8 +13,9 @@ import filterIcon from 'assets/images/filter_icon.svg';
 import sortIcon from 'assets/images/sort_icon.svg';
 import { InputCount } from 'components/Input/InputCount';
 import { InputIcon } from 'components/Input/InputIcon';
+import PropTypes from 'prop-types';
 
-export const HeaderTable = () => {
+export const HeaderTable = ({ setShowForm }) => {
   return (
     <HeaderTitleWrapper>
       <SpaceBetween>
@@ -29,7 +30,7 @@ export const HeaderTable = () => {
       </SpaceBetween>
       <TableSettingWrapper>
         <SpaceBetween>
-          <ButtonRect />
+          <ButtonRect onClick={() => setShowForm(true)} />
           <IconWrapper>
             <InputIcon></InputIcon>
             <InputCount label="Column">15</InputCount>
@@ -39,4 +40,8 @@ export const HeaderTable = () => {
       </TableSettingWrapper>
     </HeaderTitleWrapper>
   );
+};
+
+HeaderTable.propTypes = {
+  setShowForm: PropTypes.func
 };

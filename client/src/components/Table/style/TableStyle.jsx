@@ -73,3 +73,9 @@ export const BodyWrapper = styled.tbody`
 export const ActionOption = styled.button`
   background-color: #e6e3e3;
 `;
+
+export const BadgeCard = styled.span`
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: ${(props) => (props.color ? props.color : '#e6e3e3')};
+`;

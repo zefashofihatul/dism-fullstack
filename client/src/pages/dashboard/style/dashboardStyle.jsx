@@ -1,11 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const DashboardWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.dashboardBackgroundColor};
+  display: grid;
+  grid-template-columns: 20% 8fr;
+  /* grid-template-columns: 1fr; */
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  margin: 0;
+  @media only screen and (max-width: 1080px) {
+    display: block;
+  }
 `;
 
 export const DashboardSection = styled.div`
-  padding: 0 24px;
+  background-color: white;
+  box-sizing: border-box;
 `;
 
 export const HeaderDashboardSection = styled.div`
@@ -43,4 +52,56 @@ export const FilterInputWrapper = styled.div``;
 
 export const MainDashboard = styled.div`
   padding: 32px;
+`;
+
+export const SideBarSection = styled.div`
+  @media only screen and (max-width: 1080px) {
+    display: none;
+  }
+`;
+
+export const SideBarContent = styled.div`
+  height: 100vh;
+  padding: 32px 32px;
+  position: fixed;
+`;
+
+export const BrandLogo = styled.span`
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+`;
+
+export const NavigationWrapper = styled.div`
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Navigation = styled.div`
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  ${(props) =>
+    props.active
+      ? css`
+          background-color: white;
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+        `
+      : ''}
+`;
+
+export const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 16px;
+`;
+
+export const Label = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  width: 120px;
 `;

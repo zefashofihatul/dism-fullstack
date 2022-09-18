@@ -17,9 +17,9 @@ export const protectedRoutes = [
   {
     path: '/dashboard/*',
     element: (
-      <RequiredAuth>
-        <Dashboard />
-      </RequiredAuth>
+      // <RequiredAuth>
+      <Dashboard />
+      // </RequiredAuth>
     )
   }
 ];

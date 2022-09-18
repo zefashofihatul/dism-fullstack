@@ -9,7 +9,8 @@ import {
   NameProductHead,
   ActionProductColumn,
   MainWrapper,
-  HeadContent
+  HeadContent,
+  BadgeCard
 } from './style/TableStyle';
 import { ActionButton } from './ActionButton';
 import PropTypes from 'prop-types';
@@ -36,7 +37,9 @@ export const Table = ({ data }) => {
                 <BodyColumn>{index}</BodyColumn>
                 <BodyColumn minWidth="180px">{value.title}</BodyColumn>
                 <BodyColumn>${value.price}</BodyColumn>
-                <BodyColumn>New Product</BodyColumn>
+                <BodyColumn>
+                  <BadgeCard>New Product</BadgeCard>
+                </BodyColumn>
                 <BodyColumn>12</BodyColumn>
                 <BodyColumn>8</BodyColumn>
                 <ActionProductColumn>
