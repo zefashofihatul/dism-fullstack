@@ -2,11 +2,12 @@ import styled, { css } from 'styled-components';
 
 export const BackgroundProductForm = styled.div`
   justify-content: center;
-  align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
-  width: 100vw;
-  height: 100vh;
   position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
   z-index: 5;
   ${(props) =>
     props.showForm
@@ -19,18 +20,21 @@ export const BackgroundProductForm = styled.div`
 `;
 
 export const ProductFormWrapper = styled.div`
-  width: 80%;
+  width: 70%;
+  height: fit-content;
   position: relative;
   background-color: white;
   border-radius: 8px;
   padding: 48px 64px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   box-sizing: border-box;
 `;
 
 export const ProductTitle = styled.h2`
   font-size: 24px;
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 40px 0;
 `;
 
 export const ProductFormInfoImageWrapper = styled.div`
@@ -39,29 +43,55 @@ export const ProductFormInfoImageWrapper = styled.div`
   margin-top: 24px;
 `;
 
-export const ProductInfoFormWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  padding-right: 40px;
-  box-sizing: border-box;
-  flex-direction: column;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-`;
-
 export const DoubleInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
 `;
 
-export const InputDouble = styled.div``;
+export const InputDouble = styled.div`
+  width: 100%;
+`;
 
 export const ImageFormWrapper = styled.div`
   display: grid;
-  padding-left: 40px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-gap: 12px;
+  margin-bottom: 32px;
+`;
+
+export const CustomFileUpload = styled.label`
+  border: 1px solid #dcdcde;
+  grid-column: 1/3;
+  cursor: pointer;
+  grid-row: 1/4;
+  height: 160px;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dcdcde;
+  transition: 0.2s;
+
+  &:hover {
+    border: 1px solid #0074ff;
+    box-shadow: 0px 0px 4px #4377b8;
+    transition: 0.2s;
+  }
+
+  ${(props) =>
+    props.dragIn
+      ? css`
+          border: 1px solid #0074ff;
+          box-shadow: 0px 0px 4px #4377b8;
+          transition: 0.2s;
+        `
+      : css`
+          border: 1px solid #dcdcde;
+        `}
 `;
 
 export const DragSpot = styled.div`
@@ -77,8 +107,8 @@ export const DragSpot = styled.div`
 `;
 
 export const DragSpotInput = styled.input`
-  grid-column: 1/3;
-  grid-row: 1/3;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   padding: 40px;
   display: flex;
@@ -86,6 +116,7 @@ export const DragSpotInput = styled.input`
   justify-content: center;
   align-items: center;
   border: 1px solid #dcdcde;
+  display: none;
 `;
 
 export const Image = styled.div`
@@ -101,6 +132,26 @@ export const Image = styled.div`
   border: 1px solid #dcdcde;
 `;
 
+export const ImageExpand = styled.div`
+  width: 100%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #dcdcde;
+`;
+
+export const ImageExpandData = styled.span`
+  font-size: 20px;
+  font-weight: 700;
+  color: #868686;
+  margin: 0;
+  padding: 0;
+`;
+
 export const ImageIcon = styled.img`
   width: ${(props) => (props.size ? props.size : '12px')};
   height: ${(props) => (props.size ? props.size : '12px')};
@@ -109,7 +160,8 @@ export const ImageIcon = styled.img`
 export const DragDescription = styled.span`
   width: 100%;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 16px;
   font-weight: 700;
   text-align: center;
   color: #9b9ba1;

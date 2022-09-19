@@ -10,10 +10,12 @@ import {
 } from './style/InputFieldDashboardStyle';
 import { FieldWrapper } from '../../../components/Form/FieldWrapper';
 import { useNavigate } from 'react-router';
-import { DragSpotInput } from './style/ProductFormStyle';
+import { DragSpotInput, CustomFileUpload } from './style/ProductFormStyle';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ErrorWrapper } from 'components/Form/style/FieldWrapper';
+import imageIcon from 'assets/images/image_icon.svg';
+import { ImageFormWrapper, ImageExpand, ImageExpandData } from './style/ProductFormStyle';
 
 export const ImageUploadField = (props) => {
   const {
@@ -27,36 +29,49 @@ export const ImageUploadField = (props) => {
     error
   } = props;
   const [imageURLs, setImageURLs] = useState([]);
+  const [dragIn, setDragIn] = useState(false);
   useEffect(() => {
     const newImageUrls = [];
     images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
     setImageURLs([...newImageUrls]);
   }, [images]);
   const onImageInput = (e) => {
-    if (images.length + e.target.files.length < 6) setImages([...images, ...e.target.files]);
+    if (images.length + e.target.files.length < 8) setImages([...images, ...e.target.files]);
   };
   return (
-    <>
-      {error?.message && (
-        <ErrorWrapper role="alert" aria-label={error.message} className="errorMessage">
-          {error.message}
-        </ErrorWrapper>
-      )}
-      <DragSpotInput
-        type="file"
-        multiple={true}
-        accept="image/*"
-        error={error}
-        onDrop={onImageInput}
-        onInput={onImageInput}
-        className={className}
-        placeholder={placeholder}
-        {...registration}
-      />
-      {imageURLs.map((imageSrc, index) => (
-        <Image key={index} image={imageSrc} />
-      ))}
-    </>
+    <ImageFormWrapper>
+      <CustomFileUpload
+        onDragEnter={() => setDragIn(!dragIn)}
+        onDragLeave={() => setDragIn(!dragIn)}
+        dragIn={dragIn}>
+        <>
+          <img src={imageIcon} alt="" />
+          <DragDescription>Click & Drop your Image file Here</DragDescription>
+        </>
+        <DragSpotInput
+          type="file"
+          multiple={true}
+          accept="image/*"
+          error={error}
+          onDrop={onImageInput}
+          onInput={onImageInput}
+          className={className}
+          placeholder={placeholder}
+          {...registration}
+        />
+      </CustomFileUpload>
+      {imageURLs.map((imageSrc, index) => {
+        if (index < 5) {
+          return <Image key={index} image={imageSrc} />;
+        } else if (index == 5) {
+          return (
+            <ImageExpand key={index}>
+              <ImageExpandData>{images.length - 5}+</ImageExpandData>
+            </ImageExpand>
+          );
+        }
+      })}
+    </ImageFormWrapper>
   );
 };
 
