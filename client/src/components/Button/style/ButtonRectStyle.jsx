@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import plusIcon from 'assets/images/plus_icon.svg';
 
-export const ButtonRectWrapper = styled.div`
+export const ButtonRectWrapper = styled.button`
   height: fit-content;
-  width: 120px;
+  width: fit-content;
   padding: 12px 12px;
   display: flex;
   border-radius: 4px;
   align-items: center;
   margin: auto 0;
   background-color: #0074ff;
+  border-style: none;
   cursor: pointer;
 `;
 

@@ -7,7 +7,7 @@ import {
   TableSettingWrapper
 } from './style/HeaderTableStyle';
 import { SpaceBetween } from 'components/Flex/SpaceBetween';
-import { ButtonRect } from 'components/Button/ButtonRect';
+import { ButtonRectIcon } from 'components/Button/ButtonRect';
 import { InputIconLabel } from 'components/Input/IconLabel';
 import filterIcon from 'assets/images/filter_icon.svg';
 import sortIcon from 'assets/images/sort_icon.svg';
@@ -30,7 +30,7 @@ export const HeaderTable = ({ setShowForm }) => {
       </SpaceBetween>
       <TableSettingWrapper>
         <SpaceBetween>
-          <ButtonRect onClick={() => setShowForm(true)} />
+          <ButtonRectIcon onClick={() => setShowForm(true)} label="Add Product" />
           <IconWrapper>
             <InputIcon></InputIcon>
             <InputCount label="Column">15</InputCount>

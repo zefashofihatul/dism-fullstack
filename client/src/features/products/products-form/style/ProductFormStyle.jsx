@@ -76,10 +76,28 @@ export const DragSpot = styled.div`
   border: 1px solid #dcdcde;
 `;
 
+export const DragSpotInput = styled.input`
+  grid-column: 1/3;
+  grid-row: 1/3;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dcdcde;
+`;
+
 export const Image = styled.div`
   width: 100%;
+  position: relative;
   height: 100%;
+  background-image: url(${(props) => props.image});
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 8px;
+  background-color: white;
   border: 1px solid #dcdcde;
 `;
 

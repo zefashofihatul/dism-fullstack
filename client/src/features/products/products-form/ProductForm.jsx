@@ -11,74 +11,104 @@ import {
   DragSpot,
   ImageIcon,
   DragDescription,
-  CloseWrapper
+  CloseWrapper,
+  ShowImage,
+  DragSpotInput
 } from './style/ProductFormStyle';
-import { Form } from 'components/Form';
-import { TextField, ParagraphField } from './InputFieldDashboard';
+import { ButtonRect } from 'components/Button/ButtonRect';
+import * as z from 'zod';
+import { Button } from 'components/Button';
+import { Form, FormDouble } from 'components/Form';
+import { TextField, ParagraphField, ImageUploadField } from './InputFieldDashboard';
 import PropTypes from 'prop-types';
 import imageIcon from 'assets/images/image_icon.svg';
 import crossIcon from 'assets/images/cross_icon.svg';
+import { useEffect } from 'react';
+import { dummyContent } from '../dummyData';
+import { useState } from 'react';
+
+const schema = z.object({
+  name: z.string().min(5, 'Char Lenght must > 6'),
+  price: z.string().min(1, 'Required'),
+  stock: z.string().min(1, 'Required'),
+  description: z.string().min(5, 'Char Lenght must > 6'),
+  images: z.any()
+});
 
 export const ProductForm = ({ showForm, setShowForm }) => {
-  console.log(showForm);
+  const [images, setImages] = useState([]);
   return (
     <BackgroundProductForm showForm={showForm}>
       <ProductFormWrapper>
-        <CloseWrapper onClick={() => setShowForm(false)}>
+        <CloseWrapper
+          onClick={() => {
+            setShowForm(false);
+            setImages([]);
+          }}>
           <ImageIcon src={crossIcon} size="12px" />
         </CloseWrapper>
         <ProductTitle>Adding New Product</ProductTitle>
-        <ProductFormInfoImageWrapper>
-          <ProductInfoFormWrapper>
-            <Form options={{ shouldUnregister: false }}>
-              {({ register, formState }) => (
-                <>
-                  <TextField
-                    type="text"
-                    label="Product Name"
-                    placeholder="Product Name"
-                    error={formState.errors['name']}
-                  />
-                  <DoubleInputWrapper>
-                    <InputDouble>
-                      <TextField
-                        type="text"
-                        label="Product per Price"
-                        placeholder="Product per Price"
-                        error={formState.errors['name']}
-                      />
-                    </InputDouble>
-                    <InputDouble>
-                      <TextField
-                        type="text"
-                        label="Product Stock"
-                        placeholder="Product Stock"
-                        error={formState.errors['name']}
-                      />
-                    </InputDouble>
-                  </DoubleInputWrapper>
-                  <ParagraphField
-                    type="text"
-                    label="Product Description"
-                    placeholder="Description"
-                    error={formState.errors['name']}
-                  />
-                </>
-              )}
-            </Form>
-          </ProductInfoFormWrapper>
-          <ImageFormWrapper>
-            <DragSpot>
-              <ImageIcon src={imageIcon} size="60px" />
-              <DragDescription>Drag or Click Product image Here</DragDescription>
-            </DragSpot>
-            <Image></Image>
-            <Image></Image>
-            <Image></Image>
-            <Image></Image>
-            <Image></Image>
-          </ImageFormWrapper>
-        </ProductFormInfoImageWrapper>
+        <FormDouble
+          schema={schema}
+          options={{ shouldUnregister: false }}
+          onSubmit={(values) => {
+            values.images = images;
+            console.log(values);
+          }}>
+          {({ register, formState }) => (
+            <ProductFormInfoImageWrapper>
+              <ProductInfoFormWrapper>
+                <TextField
+                  type="text"
+                  label="Product Name"
+                  registration={register('name')}
+                  placeholder="Product Name"
+                  error={formState.errors['name']}
+                />
+                <DoubleInputWrapper>
+                  <InputDouble>
+                    <TextField
+                      type="text"
+                      label="Product per Price"
+                      registration={register('price')}
+                      placeholder="Product per Price"
+                      error={formState.errors['price']}
+                    />
+                  </InputDouble>
+                  <InputDouble>
+                    <TextField
+                      type="text"
+                      label="Product Stock"
+                      registration={register('stock')}
+                      placeholder="Product Stock"
+                      error={formState.errors['stock']}
+                    />
+                  </InputDouble>
+                </DoubleInputWrapper>
+                <ParagraphField
+                  type="text"
+                  label="Product Description"
+                  placeholder="Description"
+                  registration={register('description')}
+                  error={formState.errors['description']}
+                />
+              </ProductInfoFormWrapper>
+              <ImageFormWrapper>
+                <ImageUploadField
+                  type="file"
+                  images={images}
+                  setImages={setImages}
+                  placeholder="Images"
+                  registration={register('images')}
+                  error={formState.errors['images']}
+                />
+              </ImageFormWrapper>
+              <ButtonRect label="Submit Product" type="submit" className="register">
+                Submit Product
+              </ButtonRect>
+            </ProductFormInfoImageWrapper>
+          )}
+        </FormDouble>
       </ProductFormWrapper>
     </BackgroundProductForm>
   );
