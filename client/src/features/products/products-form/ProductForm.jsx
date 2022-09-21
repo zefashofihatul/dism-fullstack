@@ -28,9 +28,12 @@ import { ImageDropZone } from 'lib/dropzone';
 import { SelectField } from './InputFieldDashboard';
 import { useState } from 'react';
 import { postProducts } from '../api';
+import { useProducts } from '../providers/ProductsProviders';
+import { useEffect } from 'react';
 
-export const ProductForm = ({ showForm, setShowForm }) => {
+export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
   const [images, setImages] = useState({ files: [], error: [] });
+  const { postProductsFn } = useProducts();
 
   const schema = z.object({
     name: z.string().min(5, 'Char Lenght must > 6'),
@@ -56,14 +59,13 @@ export const ProductForm = ({ showForm, setShowForm }) => {
           options={{ shouldUnregister: false }}
           onSubmit={async (values) => {
             values.images = images.files;
-            console.log(values);
-
-            try {
-              const result = await postProducts(values);
-              console.log(result);
-            } catch (err) {
-              console.log(err);
-              return err;
+            const result = await postProductsFn(values);
+            console.log(result);
+            if (result.status == 'Success') {
+              setShowForm(false);
+              onSuccess();
+            } else {
+              onFail();
             }
           }}>
           {({ register, formState }) => (
@@ -155,10 +157,10 @@ export const ProductForm = ({ showForm, setShowForm }) => {
                 <ButtonRect label="Submit Product" type="submit" className="register" />
                 <ButtonRect
                   label="Cancel"
-                  type="clear"
                   color="#262626"
                   className="register"
                   onClick={() => {
+                    setShowForm(false);
                     setImages({ files: [], error: [] });
                     document.getElementById('productForm').reset();
                   }}
@@ -174,5 +176,7 @@ export const ProductForm = ({ showForm, setShowForm }) => {
 
 ProductForm.propTypes = {
   showForm: PropTypes.bool,
-  setShowForm: PropTypes.func
+  setShowForm: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onFail: PropTypes.func
 };

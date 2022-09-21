@@ -34,9 +34,23 @@ export const Dashboard = () => {
     logoutFn();
     navigate('/auth/login');
   };
+  const successHandle = (data) => {
+    console.log(data);
+    navigate('/dashboard');
+  };
+  const failHandle = (err) => {
+    console.log(err);
+  };
   return (
     <DashboardWrapper>
-      <ProductForm showForm={showForm} setShowForm={setShowForm} />
+      {showForm && (
+        <ProductForm
+          onSuccess={successHandle}
+          onFail={failHandle}
+          showForm={showForm}
+          setShowForm={setShowForm}
+        />
+      )}
       <SideBarSection>
         <SideBarContent>
           <BrandLogo>DISMSHOP</BrandLogo>
