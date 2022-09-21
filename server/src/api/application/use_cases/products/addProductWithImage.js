@@ -30,20 +30,7 @@ const addProductWithImage = ({
       if (result.length) {
         throw new InvariantError('Product Name / Description already exist');
       }
-      // console.log({
-      //   id,
-      //   name,
-      //   descriptions: description,
-      //   price,
-      //   color,
-      //   dimensions,
-      //   details,
-      //   materials,
-      //   category,
-      //   productImage,
-      //   createdAt,
-      //   updatedAt,
-      // });
+
       return dbRepository.addWithImage({
         id,
         name,

@@ -31,7 +31,6 @@ const productsDbRepositoryPostgres = () => {
   };
 
   const addWithImage = (productData) => {
-    console.log(productData);
     return Product.create(productData, {
       include: [
         {
