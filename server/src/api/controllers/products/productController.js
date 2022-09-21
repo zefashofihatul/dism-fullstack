@@ -111,20 +111,21 @@ const productController = (productsDbRepositoryPostgres) => {
   const addNewProductWithImages = (req, res, next) => {
     const {
       name,
-      shortDescription,
+      description,
       price,
       materials,
       dimensions,
       details,
       category,
       color,
+      images,
     } = req.body;
 
     const idProduct = `product-${uuidv4()}`;
     addProductWithImage({
       id: idProduct,
       name: name,
-      shortDescription: shortDescription,
+      description: description,
       price: price,
       materials: materials,
       dimensions: dimensions,

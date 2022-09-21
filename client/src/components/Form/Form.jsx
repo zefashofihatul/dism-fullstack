@@ -3,11 +3,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, UseFormReturn, SubmitHandler, UseFormProps } from 'react-hook-form';
 import { FormField, FormWrapper, FormDoubleWrapper, FormFieldDouble } from './style/FormStyle';
 
-export const Form = ({ onSubmit, children, className, id, options, schema }) => {
+export const Form = ({ onSubmit, children, className, id, options, schema, enctype }) => {
   const methods = useForm({ ...options, resolver: zodResolver(schema) });
   return (
     <FormWrapper>
-      <FormField className={className} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
+      <FormField
+        className={className}
+        encType={enctype}
+        onSubmit={methods.handleSubmit(onSubmit)}
+        id={id}>
         {children(methods)}
       </FormField>
     </FormWrapper>
@@ -26,6 +30,7 @@ export const FormDouble = ({ onSubmit, children, className, id, options, schema 
 };
 
 Form.propTypes = {
+  enctype: PropTypes.string,
   onSubmit: PropTypes.func,
   children: PropTypes.func,
   className: PropTypes.string,

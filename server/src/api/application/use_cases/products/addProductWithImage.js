@@ -3,7 +3,7 @@ const InvariantError = require('../../../middlewares/exceptions/InvariantError')
 const addProductWithImage = ({
   id,
   name,
-  shortDescription,
+  description,
   price,
   color,
   dimensions,
@@ -15,27 +15,39 @@ const addProductWithImage = ({
   updatedAt,
   dbRepository,
 }) => {
-  if (!name || !shortDescription || !price || !details) {
+  if (!name || !description || !price || !details) {
     throw new InvariantError(
-      'Name, shortDescription, price & details cant be empty'
+      'Name, description, price & details cant be empty'
     );
   }
 
   return dbRepository
     .findProductByProperty({
       name,
-      shortDescription,
+      descriptions: description,
     })
     .then((result) => {
       if (result.length) {
-        throw new InvariantError(
-          'Product Name / Short description already exist'
-        );
+        throw new InvariantError('Product Name / Description already exist');
       }
+      // console.log({
+      //   id,
+      //   name,
+      //   descriptions: description,
+      //   price,
+      //   color,
+      //   dimensions,
+      //   details,
+      //   materials,
+      //   category,
+      //   productImage,
+      //   createdAt,
+      //   updatedAt,
+      // });
       return dbRepository.addWithImage({
         id,
         name,
-        shortDescription,
+        descriptions: description,
         price,
         color,
         dimensions,

@@ -92,6 +92,26 @@ ImageUploadField.propTypes = {
   error: PropTypes.object
 };
 
+export const SelectField = (props) => {
+  const { label, className, name, children, registration } = props;
+  return (
+    <FieldWrapper>
+      <>
+        <Label>{label}</Label>
+        <Select {...registration}>{children}</Select>
+      </>
+    </FieldWrapper>
+  );
+};
+
+SelectField.propTypes = {
+  label: PropTypes.string,
+  registration: PropTypes.object,
+  className: PropTypes.string,
+  name: PropTypes.string,
+  children: PropTypes.array
+};
+
 export const TextField = (props) => {
   const { type = 'text', placeholder, label, className, registration, error } = props;
   return (

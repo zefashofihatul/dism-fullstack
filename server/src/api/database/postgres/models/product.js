@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      shortDescription: {
+      descriptions: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

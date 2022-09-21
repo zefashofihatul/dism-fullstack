@@ -94,21 +94,26 @@ export const Anchor = styled.a`
 
 export const Select = styled.select`
   color: #000000;
+  font-family: 'raleway';
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   width: 100%;
   box-sizing: border-box;
   padding: 12px 16px;
+  margin-top: 8px;
   border-radius: 4px;
-  transition: background-color 400ms ease, outline 400ms ease, color 400ms ease,
-    box-shadow 400ms ease, -webkit-box-shadow 200ms ease;
+  outline: 1px solid #dcdcde;
+  background-color: transparent;
+  ::placeholder,
+  ::-webkit-placeholder {
+    font-weight: 700;
+    color: rgb(13, 12, 34) !important;
+  }
   &:hover {
-    outline: none;
-    border: 1px solid rgba(210, 91, 91, 0.1);
+    border: 1px solid #dcdcde;
     transition: 200ms;
   }
   &:focus {
-    outline: none;
     border: 1px solid rgba(98, 87, 201, 0.5);
     transition: 200ms;
   }

@@ -32,7 +32,7 @@ export const ImageDropZone = (props) => {
     error
   } = props;
 
-  const maxLength = 1000000;
+  const maxLength = 5000000;
   const customValidation = (file) => {
     if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
       return {

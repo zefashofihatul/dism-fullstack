@@ -190,3 +190,12 @@ export const CloseWrapper = styled.span`
   border-radius: 50%;
   background-color: #83858d;
 `;
+
+export const FormControl = styled.div`
+  margin-bottom: 32px;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;

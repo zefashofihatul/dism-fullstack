@@ -9,7 +9,7 @@ export const ButtonRectWrapper = styled.button`
   border-radius: 4px;
   align-items: center;
   margin: auto 0;
-  background-color: #0074ff;
+  background-color: ${(props) => (props.color ? props.color : '#0074ff')};
   border-style: none;
   cursor: pointer;
 `;
@@ -22,6 +22,7 @@ export const PlusIcon = styled.img`
 `;
 
 export const Label = styled.p`
+  font-family: 'raleway';
   font-size: 14px;
   font-weight: 700;
   margin: 0;
