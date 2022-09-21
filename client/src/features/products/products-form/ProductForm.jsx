@@ -1,5 +1,6 @@
 import {
-  BackgroundProductForm,
+  ProductFormMainWrapper,
+  BackgroundForm,
   ProductFormInfoImageWrapper,
   ProductFormWrapper,
   ProductTitle,
@@ -21,45 +22,54 @@ import { Form, FormDouble } from 'components/Form';
 import { TextField, ParagraphField, ImageUploadField } from './InputFieldDashboard';
 import PropTypes from 'prop-types';
 import crossIcon from 'assets/images/cross_icon.svg';
-import { useEffect } from 'react';
-import { dummyContent } from '../dummyData';
+import { ImageDropZone } from 'lib/dropzone';
 import { useState } from 'react';
 
-const schema = z.object({
-  name: z.string().min(5, 'Char Lenght must > 6'),
-  price: z.string().min(1, 'Required'),
-  stock: z.string().min(1, 'Required'),
-  description: z.string().min(5, 'Char Lenght must > 6'),
-  category: z.string().min(5, 'Char Lenght must > 6'),
-  details: z.string().min(5, 'Char Lenght must > 6'),
-  materials: z.string().min(5, 'Char Lenght must > 6'),
-  dimensions: z.string().min(5, 'Char Lenght must > 6'),
-  images: z.any()
-});
-
 export const ProductForm = ({ showForm, setShowForm }) => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState({ files: [], error: [] });
+
+  const schema = z.object({
+    name: z.string().min(5, 'Char Lenght must > 6'),
+    price: z.string().min(1, 'Required'),
+    stock: z.string().min(1, 'Required'),
+    description: z.string().min(5, 'Char Lenght must > 6'),
+    category: z.string().min(5, 'Char Lenght must > 6'),
+    details: z.string().min(5, 'Char Lenght must > 6'),
+    materials: z.string().min(5, 'Char Lenght must > 6'),
+    dimensions: z.string().min(5, 'Char Lenght must > 6'),
+    images: z.any().refine((val) => images.files.length > 0, 'Upload your product image')
+  });
+
   return (
-    <BackgroundProductForm showForm={showForm}>
+    <ProductFormMainWrapper showForm={showForm}>
+      <BackgroundForm
+        onClick={() => {
+          setShowForm(false);
+          setImages({ files: [], error: [] });
+          document.getElementById('productForm').reset();
+        }}
+      />
       <ProductFormWrapper>
-        <CloseWrapper
-          onClick={() => {
-            setShowForm(false);
-            setImages([]);
-          }}>
-          <ImageIcon src={crossIcon} size="12px" />
-        </CloseWrapper>
         <ProductTitle>Adding New Product</ProductTitle>
         <Form
+          id="productForm"
           schema={schema}
           options={{ shouldUnregister: false }}
           onSubmit={(values) => {
-            values.images = images;
+            values.images = images.files;
             console.log(values);
           }}>
           {({ register, formState }) => (
             <>
-              <ImageUploadField
+              {/* <ImageUploadField
+                type="file"
+                images={images}
+                setImages={setImages}
+                placeholder="Images"
+                registration={register('images')}
+                error={formState.errors['images']}
+              /> */}
+              <ImageDropZone
                 type="file"
                 images={images}
                 setImages={setImages}
@@ -67,7 +77,14 @@ export const ProductForm = ({ showForm, setShowForm }) => {
                 registration={register('images')}
                 error={formState.errors['images']}
               />
-
+              <CloseWrapper
+                onClick={() => {
+                  setShowForm(false);
+                  setImages({ files: [], error: [] });
+                  document.getElementById('productForm').reset();
+                }}>
+                <ImageIcon src={crossIcon} size="12px" />
+              </CloseWrapper>
               <TextField
                 type="text"
                 label="Product Name"
@@ -137,7 +154,7 @@ export const ProductForm = ({ showForm, setShowForm }) => {
           )}
         </Form>
       </ProductFormWrapper>
-    </BackgroundProductForm>
+    </ProductFormMainWrapper>
   );
 };
 

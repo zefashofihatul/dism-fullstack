@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import { ErrorWrapper } from 'components/Form/style/FieldWrapper';
 import imageIcon from 'assets/images/image_icon.svg';
 import { ImageFormWrapper, ImageExpand, ImageExpandData } from './style/ProductFormStyle';
+import { useDropzone } from 'react-dropzone';
 
 export const ImageUploadField = (props) => {
   const {
@@ -36,14 +37,18 @@ export const ImageUploadField = (props) => {
     setImageURLs([...newImageUrls]);
   }, [images]);
   const onImageInput = (e) => {
+    setDragIn(!dragIn);
     if (images.length + e.target.files.length < 8) setImages([...images, ...e.target.files]);
   };
+  const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/png': []
+    }
+  });
   return (
-    <ImageFormWrapper>
-      <CustomFileUpload
-        onDragEnter={() => setDragIn(!dragIn)}
-        onDragLeave={() => setDragIn(!dragIn)}
-        dragIn={dragIn}>
+    <ImageFormWrapper className="container">
+      <CustomFileUpload {...getInputProps()}>
         <>
           <img src={imageIcon} alt="" />
           <DragDescription>Click & Drop your Image file Here</DragDescription>
@@ -57,6 +62,7 @@ export const ImageUploadField = (props) => {
           onInput={onImageInput}
           className={className}
           placeholder={placeholder}
+          {...getInputProps()}
           {...registration}
         />
       </CustomFileUpload>

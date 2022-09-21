@@ -1,14 +1,17 @@
 import styled, { css } from 'styled-components';
 
-export const BackgroundProductForm = styled.div`
+export const ProductFormMainWrapper = styled.div`
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
   z-index: 5;
+  ::-webkit-scrollbar {
+    scrollbar-width: none;
+  }
   ${(props) =>
     props.showForm
       ? css`
@@ -17,6 +20,14 @@ export const BackgroundProductForm = styled.div`
       : css`
           display: none;
         `}
+`;
+
+export const BackgroundForm = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 export const ProductFormWrapper = styled.div`
@@ -61,7 +72,7 @@ export const ImageFormWrapper = styled.div`
   margin-bottom: 32px;
 `;
 
-export const CustomFileUpload = styled.label`
+export const CustomFileUpload = styled.div`
   border: 1px solid #dcdcde;
   grid-column: 1/3;
   cursor: pointer;
@@ -116,7 +127,6 @@ export const DragSpotInput = styled.input`
   justify-content: center;
   align-items: center;
   border: 1px solid #dcdcde;
-  display: none;
 `;
 
 export const Image = styled.div`
