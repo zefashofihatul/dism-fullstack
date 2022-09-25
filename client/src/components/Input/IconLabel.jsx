@@ -14,11 +14,8 @@ import { useEffect, useRef, useState } from 'react';
 
 export const ListIconLabel = ({ children }) => {
   return (
-    <DropdownList
-      onClick={() => {
-        console.log(children);
-      }}>
-      <ListContent>{children}</ListContent>
+    <DropdownList content={children} onClick={() => {}}>
+      <ListContent content={children}>{children}</ListContent>
     </DropdownList>
   );
 };
@@ -29,6 +26,7 @@ ListIconLabel.propTypes = {
 
 export const InputIconLabel = ({ icon, label, children }) => {
   const [expand, setExpand] = useState(false);
+  const [filter, setFilter] = useState('');
   const myRef = useRef();
 
   const handleClickOutside = (e) => {
@@ -38,7 +36,7 @@ export const InputIconLabel = ({ icon, label, children }) => {
   };
 
   const handleClickInside = () => {
-    setExpand(true);
+    setExpand(!expand);
   };
 
   useEffect(() => {
@@ -51,12 +49,14 @@ export const InputIconLabel = ({ icon, label, children }) => {
         <Icon src={icon} />
         <LabelWrapper>
           <Label>{label}</Label>
-          <Placeholder>Default</Placeholder>
+          <Placeholder>{filter != '' ? filter : 'Default'}</Placeholder>
         </LabelWrapper>
       </IconLabelWrapper>
       {expand && (
         <DropdownWrapper
-          onClick={() => {
+          onClick={(e) => {
+            const content = e.target.attributes.content.value;
+            setFilter(content);
             setExpand(false);
           }}>
           {children}

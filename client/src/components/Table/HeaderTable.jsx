@@ -37,9 +37,10 @@ export const HeaderTable = ({
         </HeaderDescriptionWrapper>
         <IconWrapper>
           <InputIconLabel label="Filter" icon={filterIcon}>
-            <ListIconLabel>Filter</ListIconLabel>
-            <ListIconLabel>Option</ListIconLabel>
-            <ListIconLabel>Default</ListIconLabel>
+            <ListIconLabel onClick={() => {}}>Ashtray</ListIconLabel>
+            <ListIconLabel onClick={() => {}}>Lifestyle</ListIconLabel>
+            <ListIconLabel onClick={() => {}}>Outdoor</ListIconLabel>
+            <ListIconLabel onClick={() => {}}>Lighter</ListIconLabel>
           </InputIconLabel>
           <InputIconLabel label="Sort" icon={sortIcon}>
             <ListIconLabel>Filter</ListIconLabel>
