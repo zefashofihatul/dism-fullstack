@@ -14,8 +14,9 @@ import {
 } from './style/TableStyle';
 import { ActionButton } from './ActionButton';
 import PropTypes from 'prop-types';
+import { LoadingSpinner } from 'components/Loading/Loading';
 
-export const Table = ({ data }) => {
+export const Table = ({ data, loading, column, page }) => {
   return (
     <MainWrapper>
       <TableWrapper>
@@ -34,7 +35,7 @@ export const Table = ({ data }) => {
           {data.map((value, index) => {
             return (
               <BodyField key={index}>
-                <BodyColumn>{index + 1}</BodyColumn>
+                <BodyColumn>{index + page * column + 1}</BodyColumn>
                 <BodyColumn minWidth="180px">{value.name}</BodyColumn>
                 <BodyColumn>${value.price}</BodyColumn>
                 <BodyColumn>
@@ -50,10 +51,14 @@ export const Table = ({ data }) => {
           })}
         </BodyWrapper>
       </TableWrapper>
+      {loading && <LoadingSpinner width="24px" height="24px" />}
     </MainWrapper>
   );
 };
 
 Table.propTypes = {
-  data: PropTypes.any
+  data: PropTypes.any,
+  page: PropTypes.any,
+  column: PropTypes.any,
+  loading: PropTypes.bool
 };

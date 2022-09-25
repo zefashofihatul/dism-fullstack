@@ -26,7 +26,6 @@ export const HeadWrapper = styled.thead`
 export const HeadField = styled.tr`
   border-radius: 8px 8px 0 0;
   background-color: #eaf1f6;
-  position: sticky;
 `;
 
 export const HeadColumn = styled.th`

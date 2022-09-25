@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InputIconWrapper = styled.div`
+export const InputIconWrapper = styled.form`
   display: flex;
   padding: 0 0 0 12px;
   border: 1px solid #dcdcde;

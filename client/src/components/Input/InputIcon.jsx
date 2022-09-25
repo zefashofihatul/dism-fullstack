@@ -9,7 +9,11 @@ export const InputIcon = ({ label, handleClick, onChange }) => {
   const [inputString, setInputString] = useState('');
   return (
     <>
-      <InputIconWrapper placeholder={label}>
+      <InputIconWrapper
+        placeholder={label}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}>
         <Input
           placeholder={label}
           tabIndex={0}

@@ -8,7 +8,7 @@ import {
 } from './style/HeaderTableStyle';
 import { SpaceBetween } from 'components/Flex/SpaceBetween';
 import { ButtonRectIcon } from 'components/Button/ButtonRect';
-import { InputIconLabel } from 'components/Input/IconLabel';
+import { InputIconLabel, ListIconLabel } from 'components/Input/IconLabel';
 import filterIcon from 'assets/images/filter_icon.svg';
 import sortIcon from 'assets/images/sort_icon.svg';
 import { InputCount } from 'components/Input/InputCount';
@@ -36,8 +36,16 @@ export const HeaderTable = ({
           <HeaderDescription>Last updated at 14/11/20</HeaderDescription>
         </HeaderDescriptionWrapper>
         <IconWrapper>
-          <InputIconLabel label="Filter" icon={filterIcon} />
-          <InputIconLabel label="Sort" icon={sortIcon} />
+          <InputIconLabel label="Filter" icon={filterIcon}>
+            <ListIconLabel>Filter</ListIconLabel>
+            <ListIconLabel>Option</ListIconLabel>
+            <ListIconLabel>Default</ListIconLabel>
+          </InputIconLabel>
+          <InputIconLabel label="Sort" icon={sortIcon}>
+            <ListIconLabel>Filter</ListIconLabel>
+            <ListIconLabel>Option</ListIconLabel>
+            <ListIconLabel>Default</ListIconLabel>
+          </InputIconLabel>
         </IconWrapper>
       </SpaceBetween>
       <TableSettingWrapper>
