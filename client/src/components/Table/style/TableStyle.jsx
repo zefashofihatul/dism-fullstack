@@ -34,7 +34,7 @@ export const HeadColumn = styled.th`
   font-size: 14px;
   text-align: left;
   padding: 12px;
-  ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : ``)};
+  ${(props) => (props.minWidth ? `width: ${props.minWidth}` : `200px`)};
 `;
 
 export const NameProductHead = styled.div`

@@ -14,10 +14,22 @@ import sortIcon from 'assets/images/sort_icon.svg';
 import { InputCount } from 'components/Input/InputCount';
 import { InputIcon } from 'components/Input/InputIcon';
 import PropTypes from 'prop-types';
+import { useProducts } from 'features/products/providers/ProductsProviders';
+import { ModalTopInfo } from 'components/Modal-Info';
+import { useState } from 'react';
 
-export const HeaderTable = ({ setShowForm }) => {
+export const HeaderTable = ({
+  setShowForm,
+  setProducts,
+  products,
+  productSetting,
+  setProductSetting
+}) => {
+  const { searchProductFn, fetchProductsFn } = useProducts();
+  const [searchParam, setSearchParam] = useState('');
   return (
     <HeaderTitleWrapper>
+      {searchParam != '' && <ModalTopInfo>Search `{searchParam}`</ModalTopInfo>}
       <SpaceBetween>
         <HeaderDescriptionWrapper>
           <HeaderTitle>Products</HeaderTitle>
@@ -32,9 +44,32 @@ export const HeaderTable = ({ setShowForm }) => {
         <SpaceBetween>
           <ButtonRectIcon onClick={() => setShowForm(true)} label="Add Product" />
           <IconWrapper>
-            <InputIcon></InputIcon>
-            <InputCount label="Column">15</InputCount>
-            <InputCount label="Page">2</InputCount>
+            <InputIcon
+              label="Product Name"
+              onChange={(searchParam) => setSearchParam(searchParam)}
+              handleClick={(searchParam) => {
+                if (searchParam != '') {
+                  setProductSetting({
+                    page: 0,
+                    size: productSetting.size
+                  });
+                  searchProductFn(searchParam).then((value) => {
+                    setProducts(value.data);
+                  });
+                } else {
+                  setProductSetting({
+                    page: 0,
+                    size: productSetting.size
+                  });
+                  fetchProductsFn(productSetting).then((value) => {
+                    setProducts(value.data);
+                  });
+                }
+              }}
+            />
+            {/* <InputCount label="size" setProductSetting={setProductSetting}>
+              {productSetting.size}
+            </InputCount> */}
           </IconWrapper>
         </SpaceBetween>
       </TableSettingWrapper>
@@ -43,5 +78,9 @@ export const HeaderTable = ({ setShowForm }) => {
 };
 
 HeaderTable.propTypes = {
-  setShowForm: PropTypes.func
+  setShowForm: PropTypes.func,
+  setProducts: PropTypes.func,
+  products: PropTypes.object,
+  productSetting: PropTypes.object,
+  setProductSetting: PropTypes.any
 };

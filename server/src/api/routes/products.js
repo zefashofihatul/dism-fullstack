@@ -39,6 +39,10 @@ const productsRouter = (express) => {
       controller.updateProductById
     );
 
+  router
+    .route('/search/:searchParam')
+    .get(authMiddleware, controller.fetchProductByProperty);
+
   return router;
 };
 

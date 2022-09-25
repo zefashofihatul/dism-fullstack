@@ -21,8 +21,8 @@ export const Table = ({ data }) => {
       <TableWrapper>
         <HeadWrapper>
           <HeadField>
-            <HeadColumn>Id</HeadColumn>
-            <HeadColumn minWidth="180px">Name</HeadColumn>
+            <HeadColumn>No</HeadColumn>
+            <HeadColumn minWidth="240px">Name</HeadColumn>
             <HeadColumn>Price</HeadColumn>
             <HeadColumn>Badge</HeadColumn>
             <HeadColumn>Stock</HeadColumn>
@@ -34,13 +34,13 @@ export const Table = ({ data }) => {
           {data.map((value, index) => {
             return (
               <BodyField key={index}>
-                <BodyColumn>{index}</BodyColumn>
-                <BodyColumn minWidth="180px">{value.title}</BodyColumn>
+                <BodyColumn>{index + 1}</BodyColumn>
+                <BodyColumn minWidth="180px">{value.name}</BodyColumn>
                 <BodyColumn>${value.price}</BodyColumn>
                 <BodyColumn>
                   <BadgeCard>New Product</BadgeCard>
                 </BodyColumn>
-                <BodyColumn>12</BodyColumn>
+                <BodyColumn>{value.stock}</BodyColumn>
                 <BodyColumn>8</BodyColumn>
                 <ActionProductColumn>
                   <ActionButton />

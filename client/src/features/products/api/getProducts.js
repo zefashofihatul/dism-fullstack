@@ -1,5 +1,5 @@
 import { axios } from 'lib/axios';
 
-export const getProducts = async () => {
-  return await axios.get('/api/products');
+export const getProducts = ({ page, size }) => {
+  return axios.get(`/api/products?page=${page}&size=${size}`);
 };

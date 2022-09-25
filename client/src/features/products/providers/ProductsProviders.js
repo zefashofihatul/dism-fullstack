@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
-import { postProducts } from '../api';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getProducts, postProducts, searchProducts } from '../api';
 const productsContext = createContext();
 
 export function ProvideProducts({ children }) {
@@ -13,15 +13,28 @@ ProvideProducts.propTypes = {
 };
 
 export const useProducts = () => {
-  const postProductsFn = async (data) => {
-    try {
-      const response = await postProducts(data);
-      return response;
-    } catch (err) {
-      return err;
-    }
+  const [productSetting, setProductSetting] = useState({
+    page: 0,
+    size: 10
+  });
+
+  const fetchProductsFn = (productSetting) => {
+    return getProducts(productSetting);
   };
+
+  const postProductsFn = (data) => {
+    return postProducts(data);
+  };
+
+  const searchProductFn = (searchParam) => {
+    return searchProducts(searchParam);
+  };
+
   return {
+    productSetting,
+    searchProductFn,
+    setProductSetting,
+    fetchProductsFn,
     postProductsFn
   };
 };

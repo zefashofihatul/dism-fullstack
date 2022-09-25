@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputIconWrapper = styled.div`
   display: flex;
-  padding: 0 12px;
+  padding: 0 0 0 12px;
   border: 1px solid #dcdcde;
   align-items: center;
   cursor: pointer;

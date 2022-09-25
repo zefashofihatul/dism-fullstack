@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputCountWrapper = styled.div`
   display: flex;
-  padding: 8px 16px;
+  padding: 0px;
   justify-content: space-between;
   border: 1px solid #dcdcde;
   align-items: center;
@@ -13,11 +13,11 @@ export const InputCountWrapper = styled.div`
 `;
 
 export const IconLeft = styled.img`
-  margin-right: 16px;
+  padding: 16px;
 `;
 
 export const IconRight = styled.img`
-  margin-left: 16px;
+  padding: 16px;
 `;
 
 export const LabelWrapper = styled.div`

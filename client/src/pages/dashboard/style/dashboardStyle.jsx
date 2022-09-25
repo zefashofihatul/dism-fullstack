@@ -55,6 +55,7 @@ export const MainDashboard = styled.div`
 `;
 
 export const SideBarSection = styled.div`
+  height: 100vh;
   @media only screen and (max-width: 1080px) {
     display: none;
   }

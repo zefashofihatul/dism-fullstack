@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderTitleWrapper = styled.div`
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 `;
 
 export const HeaderDescriptionWrapper = styled.div`
@@ -28,6 +28,14 @@ export const IconWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
+`;
+
+export const HeaderTotal = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  color: #707070;
+  margin: 4px 0 0 0;
+  margin: 0;
 `;
 
 export const TableSettingWrapper = styled.div`

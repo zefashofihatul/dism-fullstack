@@ -1,4 +1,5 @@
 // Import Products Model
+const { Op } = require('sequelize');
 const { Product, Product_Image } = require('../models');
 
 const productsDbRepositoryPostgres = () => {
@@ -18,10 +19,22 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
+  const searchProductByName = (property, limit, page) => {
+    return Product.findAndCountAll({
+      offset: limit * page,
+      limit: limit,
+      order: [['createdAt', 'DESC']],
+      where: {
+        name: { [Op.like]: '%' + property + '%' },
+      },
+    });
+  };
+
   const findAllPerPage = (limit, page) => {
     return Product.findAndCountAll({
       offset: limit * page,
       limit: limit,
+      order: [['createdAt', 'DESC']],
     });
   };
 
@@ -31,6 +44,7 @@ const productsDbRepositoryPostgres = () => {
   };
 
   const addWithImage = (productData) => {
+    console.log(productData);
     return Product.create(productData, {
       include: [
         {
@@ -62,6 +76,7 @@ const productsDbRepositoryPostgres = () => {
     findProductById,
     findAllProducts,
     findAllPerPage,
+    searchProductByName,
     deleteProduct,
     updateProduct,
   };

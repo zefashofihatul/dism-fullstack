@@ -6,6 +6,7 @@ const deleteById = require('../../application/use_cases/products/deleteById');
 const findById = require('../../application/use_cases/products/findById');
 const updateById = require('../../application/use_cases/products/updateById');
 const findAllProductPerPage = require('../../application/use_cases/products/findAllProductPerPage');
+const findAllProductByProperty = require('../../application/use_cases/products/findProductByProperty');
 
 // Importing Error Class
 const NotFoundError = require('../../middlewares/exceptions/NotFoundError');
@@ -38,6 +39,29 @@ const productController = (productsDbRepositoryPostgres) => {
               updatedAt: product.updatedAt,
             };
           }),
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  };
+
+  const fetchProductByProperty = (req, res, next) => {
+    const searchParam = req.params.searchParam;
+    const page = tryParseInt(req.query.page, 0);
+    const limit = tryParseInt(req.query.size, 10);
+    console.log(searchParam);
+    findAllProductByProperty({ dbRepository, searchParam, page, limit })
+      .then((products) => {
+        const { count, rows } = products;
+        return res.status(200).send({
+          status: 'Success',
+          data: {
+            size: limit,
+            page: page,
+            total: count,
+            products: rows,
+          },
         });
       })
       .catch((error) => {
@@ -117,6 +141,7 @@ const productController = (productsDbRepositoryPostgres) => {
       dimensions,
       details,
       category,
+      stock,
       color,
       images,
     } = req.body;
@@ -127,6 +152,7 @@ const productController = (productsDbRepositoryPostgres) => {
       name: name,
       description: description,
       price: price,
+      stock: stock,
       materials: materials,
       dimensions: dimensions,
       details: details,
@@ -240,6 +266,7 @@ const productController = (productsDbRepositoryPostgres) => {
     fetchProductById,
     fetchAllProductsPerPage,
     updateProductById,
+    fetchProductByProperty,
   };
 };
 

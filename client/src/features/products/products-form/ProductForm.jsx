@@ -19,6 +19,7 @@ import {
 } from './style/ProductFormStyle';
 import { ButtonRect } from 'components/Button/ButtonRect';
 import * as z from 'zod';
+import { ModalFixed } from 'components/Modal';
 import { Button } from 'components/Button';
 import { Form, FormDouble } from 'components/Form';
 import { TextField, ParagraphField, ImageUploadField } from './InputFieldDashboard';
@@ -28,13 +29,12 @@ import { ImageDropZone } from 'lib/dropzone';
 import { SelectField } from './InputFieldDashboard';
 import { useState } from 'react';
 import { postProducts } from '../api';
-import { useProducts } from '../providers/ProductsProviders';
 import { useEffect } from 'react';
+import { useProducts } from '../providers/ProductsProviders';
 
 export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
-  const [images, setImages] = useState({ files: [], error: [] });
   const { postProductsFn } = useProducts();
-
+  const [images, setImages] = useState({ files: [], error: [] });
   const schema = z.object({
     name: z.string().min(5, 'Char Lenght must > 6'),
     price: z.string().min(1, 'Required'),
@@ -59,14 +59,16 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
           options={{ shouldUnregister: false }}
           onSubmit={async (values) => {
             values.images = images.files;
-            const result = await postProductsFn(values);
-            console.log(result);
-            if (result.status == 'Success') {
-              setShowForm(false);
-              onSuccess();
-            } else {
-              onFail();
-            }
+            postProductsFn(values)
+              .then((value) => {
+                console.log(value);
+                setShowForm(false);
+                onSuccess();
+              })
+              .catch((err) => {
+                console.log(err);
+                onFail(err);
+              });
           }}>
           {({ register, formState }) => (
             <>

@@ -81,6 +81,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       materials: DataTypes.STRING,
       dimensions: DataTypes.STRING,
+      stock: DataTypes.NUMBER,
       details: DataTypes.STRING,
       category: DataTypes.STRING,
       color: DataTypes.STRING,
