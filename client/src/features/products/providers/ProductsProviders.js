@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getProducts, postProducts, searchProducts } from '../api';
+import { getProducts, postProducts, searchProducts, filterProducts } from '../api';
 const productsContext = createContext();
 
 export function ProvideProducts({ children }) {
@@ -28,12 +28,15 @@ export const useProvideProducts = () => {
     return getProducts(productSetting);
   };
 
+  const filterProductsFn = (filterParam) => {
+    return filterProducts(filterParam);
+  };
+
   const postProductsFn = (data) => {
     return postProducts(data);
   };
 
   const searchProductFn = (searchParam) => {
-    console.log(category);
     return searchProducts(searchParam, category);
   };
 
@@ -42,6 +45,7 @@ export const useProvideProducts = () => {
     searchProductFn,
     fetchProductsFn,
     postProductsFn,
+    filterProductsFn,
     setCategory,
     products,
     setProducts,

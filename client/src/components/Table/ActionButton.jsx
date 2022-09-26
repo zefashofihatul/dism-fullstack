@@ -11,7 +11,21 @@ import { useRef, useState } from 'react';
 import { getSiblings } from 'utils/cursorUtils';
 import { useEffect } from 'react';
 
-export const ActionButton = ({ children }) => {
+export const OptionAction = ({ children, onClick }) => {
+  const [active, setActive] = useState(false);
+  return (
+    <Option active={active} onClick={() => onClick({ setActive, active })}>
+      <TitleAction>{children}</TitleAction>
+    </Option>
+  );
+};
+
+OptionAction.propTypes = {
+  children: PropTypes.any,
+  onClick: PropTypes.func
+};
+
+export const ActionButton = ({ children, actions }) => {
   const [expand, setExpand] = useState(false);
   const myRef = useRef();
 
@@ -32,30 +46,16 @@ export const ActionButton = ({ children }) => {
   // TODO : Collapse other button expand
   return (
     <>
-      <ButtonWrapper
-        ref={myRef}
-        className="action-button"
-        onClick={() => {
-          setExpand(!expand);
-        }}>
+      <ButtonWrapper ref={myRef} className="action-button" onClick={handleClickInside}>
         <TitleAction>Action</TitleAction>
         <ArrowIcon src={arrow} />
-        <ActionExpandWrapper className={expand ? 'expand' : ''}>
-          <Option active={true}>
-            <TitleAction>Action</TitleAction>
-          </Option>
-          <Option>
-            <TitleAction>Edit</TitleAction>
-          </Option>
-          <Option>
-            <TitleAction>Activity</TitleAction>
-          </Option>
-        </ActionExpandWrapper>
+        <ActionExpandWrapper className={expand ? 'expand' : ''}>{children}</ActionExpandWrapper>
       </ButtonWrapper>
     </>
   );
 };
 
 ActionButton.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  actions: PropTypes.func
 };

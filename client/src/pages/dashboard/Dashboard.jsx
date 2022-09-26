@@ -19,7 +19,6 @@ import {
 } from './style/dashboardStyle';
 import { ModalFixed } from 'components/Modal';
 
-import { HeaderTable } from 'components/Table/HeaderTable';
 import { dummyContent } from 'features/products/dummyData';
 import cartIcon from 'assets/images/cart_icon.svg';
 import orderIcon from 'assets/images/order_icon.svg';

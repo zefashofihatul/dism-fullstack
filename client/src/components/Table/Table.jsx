@@ -10,14 +10,15 @@ import {
   ActionProductColumn,
   MainWrapper,
   HeadContent,
+  BadgeWrapper,
   BadgeCard
 } from './style/TableStyle';
-import { ActionButton } from './ActionButton';
+import { ActionButton, OptionAction } from './ActionButton';
 import PropTypes from 'prop-types';
 import { LoadingSpinner } from 'components/Loading/Loading';
 
-export const Column = ({ children }) => {
-  return <BodyColumn>{children}</BodyColumn>;
+export const Column = ({ children, ...props }) => {
+  return <BodyColumn {...props}>{children}</BodyColumn>;
 };
 
 Column.propTypes = {
@@ -40,16 +41,24 @@ TableBadge.propTypes = {
   children: PropTypes.any
 };
 
-export const TableAction = ({ children }) => {
+export const TableAction = ({ actions }) => {
   return (
     <ActionProductColumn>
-      <ActionButton />
+      <ActionButton>
+        {actions.map((value, index) => {
+          return (
+            <OptionAction key={index} onClick={value.onClick}>
+              {value.label}
+            </OptionAction>
+          );
+        })}
+      </ActionButton>
     </ActionProductColumn>
   );
 };
 
 TableAction.propTypes = {
-  children: PropTypes.any
+  actions: PropTypes.array
 };
 
 export const HeadTable = ({ children, ...props }) => {

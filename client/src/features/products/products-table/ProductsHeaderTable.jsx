@@ -1,11 +1,12 @@
 import {
-  HeaderTitle,
-  HeaderDescriptionWrapper,
   HeaderTitleWrapper,
+  HeaderTitle,
   HeaderDescription,
+  HeaderDescriptionWrapper,
   IconWrapper,
   TableSettingWrapper
-} from './style/HeaderTableStyle';
+} from './style/ProductsHeaderTableStyle';
+
 import { SpaceBetween } from 'components/Flex/SpaceBetween';
 import { ButtonRectIcon } from 'components/Button/ButtonRect';
 import { InputIcon } from 'components/Input/InputIcon';
@@ -14,7 +15,7 @@ import { useProducts } from 'features/products/providers/ProductsProviders';
 import { ModalTopInfo } from 'components/Modal-Info';
 import { useState } from 'react';
 
-export const HeaderTable = ({
+export const ProductsHeaderTable = ({
   setShowForm,
   setProducts,
   name,
@@ -67,7 +68,7 @@ export const HeaderTable = ({
   );
 };
 
-HeaderTable.propTypes = {
+ProductsHeaderTable.propTypes = {
   name: PropTypes.string,
   setShowForm: PropTypes.func,
   setProducts: PropTypes.func,

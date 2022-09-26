@@ -16,6 +16,9 @@ export const MainWrapper = styled.div`
 
 export const BodyField = styled.tr`
   padding-top: 20px;
+  &:hover {
+    background-color: #f7f5f5;
+  }
 `;
 
 export const HeadWrapper = styled.thead`
@@ -31,7 +34,7 @@ export const HeadColumn = styled.th`
   font-size: 14px;
   text-align: left;
   padding: 12px;
-  ${(props) => (props.minWidth ? `width: ${props.minWidth}` : `200px`)};
+  ${(props) => (props.width ? `max-width: ${props.width}` : ``)};
 `;
 
 export const NameProductHead = styled.div`
@@ -46,10 +49,13 @@ export const BodyColumn = styled.td`
   padding-left: 16px;
   padding: 8px 8px 8px 16px;
   font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   line-height: 1.6;
   font-weight: 600;
 
-  ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : '')}
+  ${(props) => (props.width ? `max-width: ${props.width}` : '')}
 `;
 
 export const NameProductColumn = styled.div`
@@ -72,8 +78,12 @@ export const ActionOption = styled.button`
   background-color: #e6e3e3;
 `;
 
-export const BadgeCard = styled.span`
+export const BadgeCard = styled.div`
   padding: 4px 8px;
+  max-width: 88px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   border-radius: 4px;
   background-color: ${(props) => (props.color ? props.color : '#e6e3e3')};
 `;
