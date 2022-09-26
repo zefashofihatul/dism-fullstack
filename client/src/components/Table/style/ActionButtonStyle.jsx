@@ -30,7 +30,7 @@ export const ActionExpandWrapper = styled.div`
   display: ${(props) => (props.className == 'expand' ? 'block' : 'none')};
   top: 40px;
   left: 0;
-  z-index: 90;
+  z-index: 5;
   border-radius: 2px;
   position: absolute;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);

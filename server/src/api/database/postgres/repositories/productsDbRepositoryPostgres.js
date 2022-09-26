@@ -19,13 +19,14 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
-  const searchProductByName = (property, limit, page) => {
+  const searchProductByName = ({ searchParam, limit, page, category }) => {
     return Product.findAndCountAll({
       offset: limit * page,
       limit: limit,
       order: [['createdAt', 'DESC']],
       where: {
-        name: { [Op.like]: '%' + property + '%' },
+        name: { [Op.like]: '%' + searchParam + '%' },
+        category: { [Op.like]: '%' + category + '%' },
       },
     });
   };

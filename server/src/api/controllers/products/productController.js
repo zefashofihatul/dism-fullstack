@@ -48,11 +48,19 @@ const productController = (productsDbRepositoryPostgres) => {
   };
 
   const fetchProductByProperty = (req, res, next) => {
-    const searchParam = req.params.searchParam;
+    console.log(req.query);
+    const searchParam = req.query.name;
+    const category = req.query.category;
     const page = tryParseInt(req.query.page, 0);
     const limit = tryParseInt(req.query.size, 10);
     console.log(searchParam);
-    findAllProductByProperty({ dbRepository, searchParam, page, limit })
+    findAllProductByProperty({
+      dbRepository,
+      searchParam,
+      page,
+      limit,
+      category,
+    })
       .then((products) => {
         const { count, rows } = products;
         return res.status(200).send({

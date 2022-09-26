@@ -21,6 +21,10 @@ const productsRouter = (express) => {
       controller.addNewProductWithImages
     );
 
+  router
+    .route('/search')
+    .get(authMiddleware, controller.fetchProductByProperty);
+
   // Routes Endpoint "/image"
   router
     .route('/image')
@@ -38,10 +42,6 @@ const productsRouter = (express) => {
       [authMiddleware, adminAuthMiddleware, uploadFiles],
       controller.updateProductById
     );
-
-  router
-    .route('/search/:searchParam')
-    .get(authMiddleware, controller.fetchProductByProperty);
 
   router
     .route('/filter/:filterParam')

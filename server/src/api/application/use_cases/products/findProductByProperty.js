@@ -1,5 +1,16 @@
-const findProductByProperty = ({ dbRepository, searchParam, page, limit }) => {
-  return dbRepository.searchProductByName(searchParam, limit, page);
+const findProductByProperty = ({
+  dbRepository,
+  searchParam,
+  page,
+  limit,
+  category = '',
+}) => {
+  return dbRepository.searchProductByName({
+    searchParam,
+    limit,
+    page,
+    category,
+  });
 };
 
 module.exports = findProductByProperty;

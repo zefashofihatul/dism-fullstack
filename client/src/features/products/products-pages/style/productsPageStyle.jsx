@@ -118,5 +118,12 @@ export const TotalContent = styled.span`
 export const HeaderSettingTable = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   margin: 12px 0;
+`;
+
+export const SettingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 `;

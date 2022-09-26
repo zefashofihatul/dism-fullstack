@@ -26,7 +26,8 @@ import {
   Label,
   SideBarSection,
   TotalContent,
-  HeaderSettingTable
+  HeaderSettingTable,
+  SettingWrapper
 } from './style/productsPageStyle';
 import { ModalFixed } from 'components/Modal';
 import { HeaderTable } from 'components/Table/HeaderTable';
@@ -40,21 +41,18 @@ import { useProducts } from '../providers/ProductsProviders';
 import { InputCount } from 'components/Input/InputCount';
 import { filterProducts } from '../api';
 import filterIcon from 'assets/images/filter_icon.svg';
+import { InputIconLabel, ListIconLabel } from 'components/Input/IconLabel';
 
 export const ProductsPages = () => {
-  const { fetchProductsFn } = useProducts();
   const navigate = useNavigate();
+  const { fetchProductsFn, setCategory, products, setProducts, productSetting, setProductSetting } =
+    useProducts();
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState({ total: 0, page: 0, size: 0, products: [] });
   const [showModal, setShowModal] = useState({
     show: false,
     message: '',
     status: ''
-  });
-  const [productSetting, setProductSetting] = useState({
-    page: 0,
-    size: 10
   });
 
   useEffect(() => {
@@ -93,6 +91,7 @@ export const ProductsPages = () => {
       value: 'ashtray',
       action: () => {
         filterProducts('ashtray').then((value) => {
+          setCategory('ashtray');
           setProducts(value.data);
         });
       }
@@ -102,6 +101,7 @@ export const ProductsPages = () => {
       value: 'lifestyle',
       action: () => {
         filterProducts('lifestyle').then((value) => {
+          setCategory('lifestyle');
           setProducts(value.data);
         });
       }
@@ -111,6 +111,7 @@ export const ProductsPages = () => {
       value: 'outdoor',
       action: () => {
         filterProducts('outdoor').then((value) => {
+          setCategory('outdoor');
           setProducts(value.data);
         });
       }
@@ -120,6 +121,7 @@ export const ProductsPages = () => {
       value: 'lighter',
       action: () => {
         filterProducts('lighter').then((value) => {
+          setCategory('lighter');
           setProducts(value.data);
         });
       }
@@ -177,16 +179,28 @@ export const ProductsPages = () => {
             setProducts={setProducts}
             setProductSetting={setProductSetting}
             productSetting={productSetting}
-            filter={{
-              icon: filterIcon,
-              filterValue: filters
-            }}
           />
           <HeaderSettingTable>
+            <SettingWrapper>
+              <InputIconLabel label="Filter" icon={filterIcon}>
+                {filters.map(({ value, label, action }, index) => {
+                  return (
+                    <ListIconLabel
+                      key={index}
+                      onClick={() => {
+                        action(value);
+                      }}>
+                      {label}
+                    </ListIconLabel>
+                  );
+                })}
+              </InputIconLabel>
+            </SettingWrapper>
             <TotalContent>
               Total {products.total} - Products [{products.page * products.size} -{' '}
               {products.page * products.size + products.products.length}]
             </TotalContent>
+
             <InputCount
               label="Page"
               disable={products.total < products.size ? true : false}

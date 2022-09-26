@@ -43,6 +43,7 @@ export const DropdownWrapper = styled.div`
   position: absolute;
   top: 36px;
   right: 0;
+  z-index: 10;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid #dcdcde;
