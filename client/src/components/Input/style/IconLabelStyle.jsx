@@ -14,22 +14,27 @@ export const IconLabelWrapper = styled.div`
 `;
 
 export const Icon = styled.img`
-  margin-right: 16px;
   width: 16px;
   height: 16px;
 `;
 
-export const LabelWrapper = styled.div``;
+export const LabelWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 0 8px;
+`;
 
 export const Label = styled.span`
   color: #9b9ba1;
   font-size: 14px;
   font-weight: 700;
-  margin-right: 6px;
 `;
 
 export const Placeholder = styled.span`
   color: #2c2c2e;
+  width: 48px;
+  display: block;
   font-size: 14px;
   font-weight: 700;
 `;

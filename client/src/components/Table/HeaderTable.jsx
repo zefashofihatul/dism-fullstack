@@ -17,12 +17,15 @@ import PropTypes from 'prop-types';
 import { useProducts } from 'features/products/providers/ProductsProviders';
 import { ModalTopInfo } from 'components/Modal-Info';
 import { useState } from 'react';
+import { filterProducts } from 'features/products/api';
 
 export const HeaderTable = ({
   setShowForm,
   setProducts,
+  name,
   products,
   productSetting,
+  filter,
   setProductSetting
 }) => {
   const { searchProductFn, fetchProductsFn } = useProducts();
@@ -32,20 +35,22 @@ export const HeaderTable = ({
       {searchParam != '' && <ModalTopInfo>Search `{searchParam}`</ModalTopInfo>}
       <SpaceBetween>
         <HeaderDescriptionWrapper>
-          <HeaderTitle>Products</HeaderTitle>
+          <HeaderTitle>{name}</HeaderTitle>
           <HeaderDescription>Last updated at 14/11/20</HeaderDescription>
         </HeaderDescriptionWrapper>
         <IconWrapper>
-          <InputIconLabel label="Filter" icon={filterIcon}>
-            <ListIconLabel onClick={() => {}}>Ashtray</ListIconLabel>
-            <ListIconLabel onClick={() => {}}>Lifestyle</ListIconLabel>
-            <ListIconLabel onClick={() => {}}>Outdoor</ListIconLabel>
-            <ListIconLabel onClick={() => {}}>Lighter</ListIconLabel>
-          </InputIconLabel>
-          <InputIconLabel label="Sort" icon={sortIcon}>
-            <ListIconLabel>Filter</ListIconLabel>
-            <ListIconLabel>Option</ListIconLabel>
-            <ListIconLabel>Default</ListIconLabel>
+          <InputIconLabel label="Filter" icon={filter.icon ? filter.icon : filterIcon}>
+            {filter.filterValue.map(({ value, label, action }, index) => {
+              return (
+                <ListIconLabel
+                  key={index}
+                  onClick={() => {
+                    action(value);
+                  }}>
+                  {label}
+                </ListIconLabel>
+              );
+            })}
           </InputIconLabel>
         </IconWrapper>
       </SpaceBetween>
@@ -87,9 +92,11 @@ export const HeaderTable = ({
 };
 
 HeaderTable.propTypes = {
+  name: PropTypes.string,
   setShowForm: PropTypes.func,
   setProducts: PropTypes.func,
   products: PropTypes.object,
   productSetting: PropTypes.object,
-  setProductSetting: PropTypes.any
+  setProductSetting: PropTypes.any,
+  filter: PropTypes.object
 };

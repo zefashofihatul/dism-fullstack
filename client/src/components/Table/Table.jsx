@@ -16,41 +16,78 @@ import { ActionButton } from './ActionButton';
 import PropTypes from 'prop-types';
 import { LoadingSpinner } from 'components/Loading/Loading';
 
-export const Table = ({ data, loading, column, page }) => {
+export const Column = ({ children }) => {
+  return <BodyColumn>{children}</BodyColumn>;
+};
+
+Column.propTypes = {
+  children: PropTypes.any
+};
+
+export const Row = ({ children }) => {
+  return <BodyField>{children}</BodyField>;
+};
+
+Row.propTypes = {
+  children: PropTypes.any
+};
+
+export const TableBadge = ({ children }) => {
+  return <BadgeCard>{children}</BadgeCard>;
+};
+
+TableBadge.propTypes = {
+  children: PropTypes.any
+};
+
+export const TableAction = ({ children }) => {
+  return (
+    <ActionProductColumn>
+      <ActionButton />
+    </ActionProductColumn>
+  );
+};
+
+TableAction.propTypes = {
+  children: PropTypes.any
+};
+
+export const HeadTable = ({ children, ...props }) => {
+  return <HeadColumn {...props}>{children}</HeadColumn>;
+};
+
+HeadTable.propTypes = {
+  children: PropTypes.any
+};
+
+export const HeadRow = ({ children }) => {
+  return <HeadField>{children}</HeadField>;
+};
+
+HeadRow.propTypes = {
+  children: PropTypes.any
+};
+
+export const BodyRow = ({ children }) => {
+  return <BodyWrapper>{children}</BodyWrapper>;
+};
+
+BodyRow.propTypes = {
+  children: PropTypes.any
+};
+
+export const HeadTableWrapper = ({ children }) => {
+  return <HeadWrapper>{children}</HeadWrapper>;
+};
+
+HeadTableWrapper.propTypes = {
+  children: PropTypes.any
+};
+
+export const Table = ({ loading, children }) => {
   return (
     <MainWrapper>
-      <TableWrapper>
-        <HeadWrapper>
-          <HeadField>
-            <HeadColumn>No</HeadColumn>
-            <HeadColumn minWidth="240px">Name</HeadColumn>
-            <HeadColumn>Price</HeadColumn>
-            <HeadColumn>Badge</HeadColumn>
-            <HeadColumn>Stock</HeadColumn>
-            <HeadColumn>Sold</HeadColumn>
-            <HeadColumn></HeadColumn>
-          </HeadField>
-        </HeadWrapper>
-        <BodyWrapper>
-          {data.map((value, index) => {
-            return (
-              <BodyField key={index}>
-                <BodyColumn>{index + page * column + 1}</BodyColumn>
-                <BodyColumn minWidth="180px">{value.name}</BodyColumn>
-                <BodyColumn>${value.price}</BodyColumn>
-                <BodyColumn>
-                  <BadgeCard>New Product</BadgeCard>
-                </BodyColumn>
-                <BodyColumn>{value.stock}</BodyColumn>
-                <BodyColumn>8</BodyColumn>
-                <ActionProductColumn>
-                  <ActionButton />
-                </ActionProductColumn>
-              </BodyField>
-            );
-          })}
-        </BodyWrapper>
-      </TableWrapper>
+      <TableWrapper>{children}</TableWrapper>
       {loading && <LoadingSpinner width="24px" height="24px" />}
     </MainWrapper>
   );
@@ -60,5 +97,6 @@ Table.propTypes = {
   data: PropTypes.any,
   page: PropTypes.any,
   column: PropTypes.any,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  children: PropTypes.any
 };

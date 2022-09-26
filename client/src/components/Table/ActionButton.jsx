@@ -7,15 +7,33 @@ import {
   Option
 } from './style/ActionButtonStyle';
 import arrow from 'assets/images/arrow.svg';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { getSiblings } from 'utils/cursorUtils';
+import { useEffect } from 'react';
 
 export const ActionButton = ({ children }) => {
   const [expand, setExpand] = useState(false);
+  const myRef = useRef();
+
+  const handleClickOutside = (e) => {
+    if (!myRef.current.contains(e.target)) {
+      setExpand(false);
+    }
+  };
+
+  const handleClickInside = () => {
+    setExpand(!expand);
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  });
   // TODO : Collapse other button expand
   return (
     <>
       <ButtonWrapper
+        ref={myRef}
         className="action-button"
         onClick={() => {
           setExpand(!expand);

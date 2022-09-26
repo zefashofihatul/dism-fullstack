@@ -30,6 +30,17 @@ const productsDbRepositoryPostgres = () => {
     });
   };
 
+  const filterProductsByCategory = (filterParam, limit, page) => {
+    return Product.findAndCountAll({
+      offset: limit * page,
+      limit: limit,
+      order: [['createdAt', 'DESC']],
+      where: {
+        category: filterParam,
+      },
+    });
+  };
+
   const findAllPerPage = (limit, page) => {
     return Product.findAndCountAll({
       offset: limit * page,
@@ -79,6 +90,7 @@ const productsDbRepositoryPostgres = () => {
     searchProductByName,
     deleteProduct,
     updateProduct,
+    filterProductsByCategory,
   };
 };
 

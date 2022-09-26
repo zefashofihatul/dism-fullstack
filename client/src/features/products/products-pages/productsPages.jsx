@@ -3,7 +3,17 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { Button } from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 import { Nav } from 'components/Nav';
-import { Table } from 'components/Table';
+import {
+  Table,
+  Column,
+  Row,
+  TableBadge,
+  BodyRow,
+  TableAction,
+  HeadTable,
+  HeadRow,
+  HeadTableWrapper
+} from 'components/Table';
 import {
   DashboardSection,
   DashboardWrapper,
@@ -28,22 +38,24 @@ import { ProductForm } from '../products-form';
 import { useEffect, useState } from 'react';
 import { useProducts } from '../providers/ProductsProviders';
 import { InputCount } from 'components/Input/InputCount';
+import { filterProducts } from '../api';
+import filterIcon from 'assets/images/filter_icon.svg';
 
 export const ProductsPages = () => {
   const { fetchProductsFn } = useProducts();
   const navigate = useNavigate();
-  const [products, setProducts] = useState({ total: 0, page: 0, size: 0, products: [] });
-  const [productSetting, setProductSetting] = useState({
-    page: 0,
-    size: 10
-  });
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState({ total: 0, page: 0, size: 0, products: [] });
   const [showModal, setShowModal] = useState({
     show: false,
     message: '',
     status: ''
   });
-  const [loading, setLoading] = useState(false);
+  const [productSetting, setProductSetting] = useState({
+    page: 0,
+    size: 10
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -74,6 +86,45 @@ export const ProductsPages = () => {
       status: 'fail'
     });
   };
+
+  const filters = [
+    {
+      label: 'Ashtray',
+      value: 'ashtray',
+      action: () => {
+        filterProducts('ashtray').then((value) => {
+          setProducts(value.data);
+        });
+      }
+    },
+    {
+      label: 'Lifestyle',
+      value: 'lifestyle',
+      action: () => {
+        filterProducts('lifestyle').then((value) => {
+          setProducts(value.data);
+        });
+      }
+    },
+    {
+      label: 'Outdoor',
+      value: 'outdoor',
+      action: () => {
+        filterProducts('outdoor').then((value) => {
+          setProducts(value.data);
+        });
+      }
+    },
+    {
+      label: 'Lighter',
+      value: 'lighter',
+      action: () => {
+        filterProducts('lighter').then((value) => {
+          setProducts(value.data);
+        });
+      }
+    }
+  ];
 
   return (
     <DashboardWrapper>
@@ -120,11 +171,16 @@ export const ProductsPages = () => {
       <DashboardSection className="wrapper">
         <MainDashboard>
           <HeaderTable
+            name="Products"
             setShowForm={setShowForm}
             products={products}
             setProducts={setProducts}
             setProductSetting={setProductSetting}
             productSetting={productSetting}
+            filter={{
+              icon: filterIcon,
+              filterValue: filters
+            }}
           />
           <HeaderSettingTable>
             <TotalContent>
@@ -178,12 +234,36 @@ export const ProductsPages = () => {
               {productSetting.page + 1}
             </InputCount>
           </HeaderSettingTable>
-          <Table
-            data={products.products}
-            page={products.page}
-            column={products.size}
-            loading={loading}
-          />
+          <Table loading={loading}>
+            <HeadTableWrapper>
+              <HeadRow>
+                <HeadTable>No</HeadTable>
+                <HeadTable minWidth="240px">Name</HeadTable>
+                <HeadTable>Price</HeadTable>
+                <HeadTable>Badge</HeadTable>
+                <HeadTable>Stock</HeadTable>
+                <HeadTable>Sold</HeadTable>
+                <HeadTable></HeadTable>
+              </HeadRow>
+            </HeadTableWrapper>
+            <BodyRow>
+              {products.products.map((value, index) => {
+                return (
+                  <Row key={index}>
+                    <Column>{index + products.page * products.size + 1}</Column>
+                    <Column>{value.name}</Column>
+                    <Column>{value.price}</Column>
+                    <Column>
+                      <TableBadge>New Products</TableBadge>
+                    </Column>
+                    <Column>{value.stock}</Column>
+                    <Column>8</Column>
+                    <TableAction />
+                  </Row>
+                );
+              })}
+            </BodyRow>
+          </Table>
         </MainDashboard>
       </DashboardSection>
     </DashboardWrapper>

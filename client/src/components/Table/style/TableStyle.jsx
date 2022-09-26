@@ -3,16 +3,15 @@ import styled from 'styled-components';
 export const TableWrapper = styled.table`
   width: 100%;
   color: black;
-  overflow-x: auto;
-  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
   border-collapse: collapse;
 `;
 
 export const MainWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
-  border-radius: 8px;
-  border: 1px solid #d9d9d9;
+  padding-bottom: 120px;
 `;
 
 export const BodyField = styled.tr`
@@ -24,7 +23,6 @@ export const HeadWrapper = styled.thead`
 `;
 
 export const HeadField = styled.tr`
-  border-radius: 8px 8px 0 0;
   background-color: #eaf1f6;
 `;
 
@@ -50,6 +48,7 @@ export const BodyColumn = styled.td`
   font-size: 14px;
   line-height: 1.6;
   font-weight: 600;
+
   ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : '')}
 `;
 

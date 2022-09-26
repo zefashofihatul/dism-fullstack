@@ -43,6 +43,10 @@ const productsRouter = (express) => {
     .route('/search/:searchParam')
     .get(authMiddleware, controller.fetchProductByProperty);
 
+  router
+    .route('/filter/:filterParam')
+    .get(authMiddleware, controller.fetchProductByCategory);
+
   return router;
 };
 

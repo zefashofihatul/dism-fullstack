@@ -12,16 +12,17 @@ import {
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 
-export const ListIconLabel = ({ children }) => {
+export const ListIconLabel = ({ children, onClick }) => {
   return (
-    <DropdownList content={children} onClick={() => {}}>
+    <DropdownList content={children} onClick={onClick}>
       <ListContent content={children}>{children}</ListContent>
     </DropdownList>
   );
 };
 
 ListIconLabel.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  onClick: PropTypes.func
 };
 
 export const InputIconLabel = ({ icon, label, children }) => {
@@ -69,5 +70,6 @@ export const InputIconLabel = ({ icon, label, children }) => {
 InputIconLabel.propTypes = {
   icon: PropTypes.any,
   label: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  onClick: PropTypes.func
 };
