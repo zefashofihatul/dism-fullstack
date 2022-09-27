@@ -16,14 +16,13 @@ import { ModalTopInfo } from 'components/Modal-Info';
 import { useState } from 'react';
 
 export const ProductsHeaderTable = ({
-  setShowForm,
   setProducts,
   name,
   products,
   productSetting,
   setProductSetting
 }) => {
-  const { searchProductFn, fetchProductsFn, category } = useProducts();
+  const { searchProductFn, fetchProductsFn, category, setShowProductForm } = useProducts();
   const [searchParam, setSearchParam] = useState('');
   return (
     <HeaderTitleWrapper>
@@ -36,7 +35,15 @@ export const ProductsHeaderTable = ({
       </SpaceBetween>
       <TableSettingWrapper>
         <SpaceBetween>
-          <ButtonRectIcon onClick={() => setShowForm(true)} label="Add Product" />
+          <ButtonRectIcon
+            onClick={() =>
+              setShowProductForm({
+                show: true,
+                productsValue: null
+              })
+            }
+            label="Add Product"
+          />
           <IconWrapper>
             <InputIcon
               label="Product Name"
@@ -70,7 +77,6 @@ export const ProductsHeaderTable = ({
 
 ProductsHeaderTable.propTypes = {
   name: PropTypes.string,
-  setShowForm: PropTypes.func,
   setProducts: PropTypes.func,
   products: PropTypes.object,
   productSetting: PropTypes.object,

@@ -10,8 +10,10 @@ import {
   TableBadge,
   TableAction
 } from 'components/Table';
+import { useProducts } from '../providers/ProductsProviders';
 
 export const ProductsTable = ({ loading, products }) => {
+  const { getDetailProductFn, setShowProductForm } = useProducts();
   return (
     <Table loading={loading}>
       <HeadTableWrapper>
@@ -45,6 +47,14 @@ export const ProductsTable = ({ loading, products }) => {
                     label: 'Edit',
                     onClick: () => {
                       console.log('Edit');
+                      setShowProductForm(true);
+                      getDetailProductFn(value.id).then((result) => {
+                        console.log(result.data);
+                        setShowProductForm({
+                          show: true,
+                          productValue: {}
+                        });
+                      });
                     }
                   },
                   {

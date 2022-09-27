@@ -113,7 +113,16 @@ SelectField.propTypes = {
 };
 
 export const TextField = (props) => {
-  const { type = 'text', placeholder, label, className, registration, error } = props;
+  const {
+    type = 'text',
+    placeholder,
+    label,
+    className,
+    registration,
+    error,
+    value,
+    onInput
+  } = props;
   return (
     <FieldWrapper className={className} label={label} error={error} type={type}>
       <>
@@ -125,7 +134,9 @@ export const TextField = (props) => {
         )}
         <Input
           type={type}
+          value={value}
           error={error}
+          onInput={(e) => onInput(e.target.value)}
           className={className}
           placeholder={placeholder}
           {...registration}
@@ -138,6 +149,8 @@ export const TextField = (props) => {
 TextField.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
+  value: PropTypes.any,
+  onInput: PropTypes.any,
   label: PropTypes.string,
   registration: PropTypes.object,
   placeholder: PropTypes.string,

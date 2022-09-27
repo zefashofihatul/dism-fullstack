@@ -10,7 +10,13 @@ const productsDbRepositoryPostgres = () => {
 
   const findProductById = (id) => {
     // Add Proper validation or Add sequelize Validator
-    return Product.findByPk(id);
+    return Product.findByPk(id, {
+      include: [
+        {
+          association: 'productImage',
+        },
+      ],
+    });
   };
 
   const findProductByProperty = (property) => {

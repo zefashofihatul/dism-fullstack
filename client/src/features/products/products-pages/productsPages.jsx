@@ -23,8 +23,16 @@ import { useProducts } from '../providers/ProductsProviders';
 import { ProductsHeaderTable, ProductsSettingTable } from '../products-table';
 export const ProductsPages = () => {
   const navigate = useNavigate();
-  const { fetchProductsFn, setCategory, products, setProducts, productSetting, setProductSetting } =
-    useProducts();
+  const {
+    fetchProductsFn,
+    showProductForm,
+    setShowProductForm,
+    setCategory,
+    products,
+    setProducts,
+    productSetting,
+    setProductSetting
+  } = useProducts();
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState({
@@ -72,7 +80,7 @@ export const ProductsPages = () => {
       ) : (
         <></>
       )}
-      {showForm && (
+      {showProductForm.show && (
         <ProductForm
           onSuccess={successHandle}
           onFail={failHandle}

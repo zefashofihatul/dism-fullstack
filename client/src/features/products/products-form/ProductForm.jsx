@@ -24,9 +24,32 @@ import { SelectField } from './InputFieldDashboard';
 import { useState } from 'react';
 import { useProducts } from '../providers/ProductsProviders';
 
-export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
-  const { postProductsFn } = useProducts();
-  const [images, setImages] = useState({ files: [], error: [] });
+export const ProductForm = ({
+  onSuccess,
+  onFail,
+  productValue = {
+    name: '',
+    price: '',
+    images: [],
+    stock: '',
+    category: '',
+    description: '',
+    details: '',
+    materials: '',
+    dimensions: ''
+  }
+}) => {
+  const { postProductsFn, showProductForm, setShowProductForm } = useProducts();
+  const [images, setImages] = useState({ files: productValue.images, error: [] });
+  const [name, setName] = useState(productValue.name);
+  const [price, setPrice] = useState(productValue.price);
+  const [stock, setStock] = useState(productValue.stock);
+  const [category, setCategory] = useState(productValue.category);
+  const [description, setDescription] = useState(productValue.description);
+  const [details, setDetails] = useState(productValue.details);
+  const [materials, setMaterials] = useState(productValue.materials);
+  const [dimensions, setDimensions] = useState(productValue.dimensions);
+
   const schema = z.object({
     name: z.string().min(5, 'Char Lenght must > 6'),
     price: z.string().min(1, 'Required'),
@@ -40,7 +63,7 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
   });
 
   return (
-    <ProductFormMainWrapper showForm={showForm}>
+    <ProductFormMainWrapper showForm={showProductForm}>
       <BackgroundForm />
       <ProductFormWrapper>
         <ProductTitle>Adding New Product</ProductTitle>
@@ -54,7 +77,7 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
             postProductsFn(values)
               .then((value) => {
                 console.log(value);
-                setShowForm(false);
+                setShowProductForm(false);
                 onSuccess();
               })
               .catch((err) => {
@@ -75,7 +98,7 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
                 />
                 <CloseWrapper
                   onClick={() => {
-                    setShowForm(false);
+                    setShowProductForm(false);
                     setImages({ files: [], error: [] });
                     document.getElementById('productForm').reset();
                   }}>
@@ -84,6 +107,8 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
                 <TextField
                   type="text"
                   label="Product Name"
+                  value={name}
+                  onInput={(e) => setName(e)}
                   registration={register('name')}
                   placeholder="Product Name"
                   error={formState.errors['name']}
@@ -154,7 +179,7 @@ export const ProductForm = ({ showForm, setShowForm, onSuccess, onFail }) => {
                   color="#262626"
                   className="register"
                   onClick={() => {
-                    setShowForm(false);
+                    setShowProductForm(false);
                     setImages({ files: [], error: [] });
                     document.getElementById('productForm').reset();
                   }}
@@ -172,5 +197,6 @@ ProductForm.propTypes = {
   showForm: PropTypes.bool,
   setShowForm: PropTypes.func,
   onSuccess: PropTypes.func,
-  onFail: PropTypes.func
+  onFail: PropTypes.func,
+  productValue: PropTypes.object
 };
