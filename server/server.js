@@ -12,6 +12,8 @@ const errorHandlerMiddleware = require('./src/api/middlewares/errorHandlerMiddle
 
 const app = express();
 
+app.use('/image', express.static('resources/static/assets/uploads'));
+
 const corsOptions = {
   origin: '*',
 };

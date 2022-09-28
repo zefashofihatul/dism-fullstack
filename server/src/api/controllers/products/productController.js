@@ -195,8 +195,8 @@ const productController = (productsDbRepositoryPostgres) => {
         return {
           id: `image-${uuidv4()}`,
           idProduct,
-          name: value.fieldname,
-          src: `${value.destination}${value.filename}`,
+          name: value.filename,
+          src: `http://localhost:8080/image/${value.filename}`,
         };
       }),
       dbRepository,

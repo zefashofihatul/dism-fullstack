@@ -158,7 +158,7 @@ TextField.propTypes = {
 };
 
 export const ParagraphField = (props) => {
-  const { type, placeholder, label, className, registration, error } = props;
+  const { type, placeholder, label, className, value, onInput, registration, error } = props;
   return (
     <FieldWrapper className={className} label={label} error={error} type={type}>
       <>
@@ -171,6 +171,8 @@ export const ParagraphField = (props) => {
         <InputParagraph
           type="text"
           error={error}
+          value={value}
+          onInput={(e) => onInput(e.target.value)}
           className={className}
           placeholder={placeholder}
           {...registration}
@@ -185,6 +187,8 @@ ParagraphField.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
   registration: PropTypes.object,
+  value: PropTypes.any,
+  onInput: PropTypes.func,
   placeholder: PropTypes.string,
   error: PropTypes.object
 };

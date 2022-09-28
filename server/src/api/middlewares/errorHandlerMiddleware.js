@@ -20,6 +20,12 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       message: err.errors.map((e) => e.message),
     });
   }
+  if (err.code === 'ENOENT') {
+    return res.status(404).json({
+      status: 'Fail',
+      message: 'Error when access server data local',
+    });
+  }
   return err.customMessage || err.message
     ? res.status(err.statusCode).json({
         status: 'Fail',

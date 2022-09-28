@@ -14,10 +14,17 @@ const productImageDbRepositoryPostgres = () => {
     return Product_Image.bulkCreate(productData);
   };
 
+  const deleteImage = (imageId) => {
+    return Product_Image.destroy({
+      where: { id: imageId },
+    });
+  };
+
   return {
     add,
     findImage,
     findAllImage,
+    deleteImage,
   };
 };
 

@@ -74,25 +74,23 @@ export const ImageDropZone = (props) => {
     setImages({ files: [...images.files], error: [] });
   };
 
-  const files = images.files.map((file, index) => (
-    <ImagesWrapper key={file.path}>
-      <DeleteImageWrapper onClick={(e) => handleDeleteImage(index)} path={file.path}>
-        <ImageIcon size="14px" src={trashIcon} />
-      </DeleteImageWrapper>
-      <File
-        src={URL.createObjectURL(file)} // Revoke data uri after image is loaded
-        onLoad={() => {
-          URL.revokeObjectURL(file.preview);
-        }}
-      />
-    </ImagesWrapper>
-  ));
+  const files = images.files.map((file, index) => {
+    return (
+      <ImagesWrapper key={file.path}>
+        <DeleteImageWrapper onClick={(e) => handleDeleteImage(index)} path={file.path}>
+          <ImageIcon size="14px" src={trashIcon} />
+        </DeleteImageWrapper>
+        <File
+          src={URL.createObjectURL(file)} // Revoke data uri after image is loaded
+        />
+      </ImagesWrapper>
+    );
+  });
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () => images.files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, []);
-
   const errorHandle = images.error.map((error, index) => (
     <ErrorList key={index}>
       - {error.fileName} : <ErrorMessageSemibold>{error.message}</ErrorMessageSemibold>
@@ -144,5 +142,7 @@ ImageDropZone.propTypes = {
   images: PropTypes.object,
   setImages: PropTypes.func,
   error: PropTypes.object,
-  type: PropTypes.string
+  type: PropTypes.string,
+  setImageUrl: PropTypes.func,
+  imageUrl: PropTypes.array
 };

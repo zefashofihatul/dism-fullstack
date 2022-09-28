@@ -5,6 +5,7 @@ const productsDbRepositoryPostgres = require('../database/postgres/repositories/
 const uploadFiles = require('../middlewares/uploadFiles');
 const authMiddleware = require('../middlewares/authMiddleware');
 const adminAuthMiddleware = require('../middlewares/adminAuthMiddleware');
+const { response } = require('express');
 
 const productsRouter = (express) => {
   const router = express.Router();
@@ -20,6 +21,10 @@ const productsRouter = (express) => {
       [authMiddleware, adminAuthMiddleware, uploadFiles],
       controller.addNewProductWithImages
     );
+
+  router.route('/').get(authMiddleware, (res, req, next) => {
+    response.sendFile();
+  });
 
   router
     .route('/search')

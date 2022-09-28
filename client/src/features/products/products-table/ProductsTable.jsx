@@ -47,12 +47,23 @@ export const ProductsTable = ({ loading, products }) => {
                     label: 'Edit',
                     onClick: () => {
                       console.log('Edit');
-                      setShowProductForm(true);
+
                       getDetailProductFn(value.id).then((result) => {
-                        console.log(result.data);
+                        console.log(result);
                         setShowProductForm({
                           show: true,
-                          productValue: {}
+                          method: 'PUT',
+                          productValue: {
+                            name: result.data.name,
+                            price: result.data.price,
+                            productImage: result.data.productImage,
+                            stock: result.data.stock,
+                            category: result.data.category,
+                            description: result.data.descriptions,
+                            details: result.data.details,
+                            materials: result.data.materials,
+                            dimensions: result.data.dimensions
+                          }
                         });
                       });
                     }

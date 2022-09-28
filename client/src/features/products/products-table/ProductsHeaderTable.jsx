@@ -22,7 +22,8 @@ export const ProductsHeaderTable = ({
   productSetting,
   setProductSetting
 }) => {
-  const { searchProductFn, fetchProductsFn, category, setShowProductForm } = useProducts();
+  const { searchProductFn, fetchProductsFn, category, setShowProductForm, showProductForm } =
+    useProducts();
   const [searchParam, setSearchParam] = useState('');
   return (
     <HeaderTitleWrapper>
@@ -39,7 +40,18 @@ export const ProductsHeaderTable = ({
             onClick={() =>
               setShowProductForm({
                 show: true,
-                productsValue: null
+                method: 'POST',
+                productsValue: {
+                  name: '',
+                  price: '',
+                  images: [],
+                  stock: '',
+                  category: '',
+                  description: '',
+                  details: '',
+                  materials: '',
+                  dimensions: ''
+                }
               })
             }
             label="Add Product"

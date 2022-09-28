@@ -86,6 +86,7 @@ export const ProductsPages = () => {
           onFail={failHandle}
           showForm={showForm}
           setShowForm={setShowForm}
+          productValue={showProductForm.productValue}
           setProductSetting={setProductSetting}
           productSetting={productSetting}
         />
