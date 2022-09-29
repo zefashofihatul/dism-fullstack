@@ -125,7 +125,7 @@ export const ProductsPages = () => {
             productSetting={productSetting}
           />
           <ProductsSettingTable />
-          <ProductsTable products={products} loading={loading} />
+          <ProductsTable products={products} loading={loading} setShowModal={setShowModal} />
         </MainDashboard>
       </DashboardSection>
     </DashboardWrapper>

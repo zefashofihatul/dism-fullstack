@@ -5,3 +5,4 @@ export * from './filterProducts';
 export * from './getDetailProduct';
 export * from './deleteProductImage';
 export * from './updateProduct';
+export * from './deleteProduct';

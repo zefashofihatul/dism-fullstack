@@ -8,6 +8,7 @@ import {
   filterProducts,
   updateProduct
 } from '../api';
+import { deleteProduct } from '../api/deleteProduct';
 const productsContext = createContext();
 
 export function ProvideProducts({ children }) {
@@ -59,10 +60,15 @@ export const useProvideProducts = () => {
     return getDetailProduct(productId);
   };
 
+  const deleteProductFn = (productId) => {
+    return deleteProduct(productId);
+  };
+
   return {
     category,
     searchProductFn,
     fetchProductsFn,
+    deleteProductFn,
     showProductForm,
     setShowProductForm,
     getDetailProductFn,

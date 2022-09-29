@@ -12,8 +12,15 @@ import {
 } from 'components/Table';
 import { useProducts } from '../providers/ProductsProviders';
 
-export const ProductsTable = ({ loading, products }) => {
-  const { getDetailProductFn, setShowProductForm } = useProducts();
+export const ProductsTable = ({ loading, products, setShowModal }) => {
+  const {
+    getDetailProductFn,
+    setShowProductForm,
+    deleteProductFn,
+    fetchProductsFn,
+    productSetting,
+    setProducts
+  } = useProducts();
   return (
     <Table loading={loading}>
       <HeadTableWrapper>
@@ -74,6 +81,32 @@ export const ProductsTable = ({ loading, products }) => {
                     onClick: () => {
                       console.log('Detail');
                     }
+                  },
+                  {
+                    label: 'Delete',
+                    onClick: () => {
+                      console.log(value.id);
+                      deleteProductFn(value.id)
+                        .then((result) => {
+                          console.log(result);
+                          setShowModal({
+                            show: true,
+                            message: 'Delete Product Success',
+                            status: 'success'
+                          });
+
+                          fetchProductsFn(productSetting).then((result) => {
+                            setProducts(result.data);
+                          });
+                        })
+                        .catch((err) => {
+                          setShowModal({
+                            show: true,
+                            message: 'Delete Product Fail',
+                            status: 'danger'
+                          });
+                        });
+                    }
                   }
                 ]}
               />
@@ -87,5 +120,6 @@ export const ProductsTable = ({ loading, products }) => {
 
 ProductsTable.propTypes = {
   loading: PropTypes.bool,
-  products: PropTypes.any
+  products: PropTypes.any,
+  setShowModal: PropTypes.func
 };
