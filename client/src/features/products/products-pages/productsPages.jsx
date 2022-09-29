@@ -19,6 +19,7 @@ import userIcon from 'assets/images/user_icon.svg';
 import walletIcon from 'assets/images/wallet_icon.svg';
 import { ProductForm } from '../products-form';
 import { useEffect, useState } from 'react';
+import { useModal } from 'components/Modal';
 import { useProducts } from '../providers/ProductsProviders';
 import { ProductsHeaderTable, ProductsSettingTable } from '../products-table';
 export const ProductsPages = () => {
@@ -33,13 +34,9 @@ export const ProductsPages = () => {
     productSetting,
     setProductSetting
   } = useProducts();
+  const { showModal, setShowModal } = useModal();
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState({
-    show: false,
-    message: '',
-    status: ''
-  });
 
   useEffect(() => {
     setLoading(true);
@@ -73,13 +70,6 @@ export const ProductsPages = () => {
 
   return (
     <DashboardWrapper>
-      {showModal.show ? (
-        <ModalFixed setShowModal={setShowModal} timer={4000} color={showModal.status}>
-          {showModal.message}
-        </ModalFixed>
-      ) : (
-        <></>
-      )}
       {showProductForm.show && (
         <ProductForm
           onSuccess={successHandle}
@@ -87,7 +77,6 @@ export const ProductsPages = () => {
           showForm={showForm}
           setShowForm={setShowForm}
           productValue={showProductForm.productValue}
-          setShowModal={setShowModal}
           productSetting={productSetting}
         />
       )}

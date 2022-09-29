@@ -12,16 +12,10 @@ import { ButtonRectIcon } from 'components/Button/ButtonRect';
 import { InputIcon } from 'components/Input/InputIcon';
 import PropTypes from 'prop-types';
 import { useProducts } from 'features/products/providers/ProductsProviders';
-import { ModalTopInfo } from 'components/Modal-Info';
+import { ModalTopInfo } from 'components/Modal';
 import { useState } from 'react';
 
-export const ProductsHeaderTable = ({
-  setProducts,
-  name,
-  products,
-  productSetting,
-  setProductSetting
-}) => {
+export const ProductsHeaderTable = ({ setProducts, name, productSetting, setProductSetting }) => {
   const { searchProductFn, fetchProductsFn, category, setShowProductForm, showProductForm } =
     useProducts();
   const [searchParam, setSearchParam] = useState('');

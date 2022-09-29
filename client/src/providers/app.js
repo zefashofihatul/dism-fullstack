@@ -7,20 +7,23 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyleProviders } from './GlobalStyleProviders';
 import { ProvideCart } from 'features/carts/provider/CartProviders';
 import { ProvideProducts } from 'features/products/providers/ProductsProviders';
+import { UtilsProviders } from './UtilsProviders';
 
 export const AppProvider = ({ children }) => {
   return (
     <ErrorBoundary>
       <HelmetProvider>
-        <ProvideCart>
-          <ProvideProducts>
-            <ProvideAuth>
-              <BrowserRouter>
-                <GlobalStyleProviders darkTheme={false}>{children}</GlobalStyleProviders>
-              </BrowserRouter>
-            </ProvideAuth>
-          </ProvideProducts>
-        </ProvideCart>
+        <UtilsProviders>
+          <ProvideCart>
+            <ProvideProducts>
+              <ProvideAuth>
+                <BrowserRouter>
+                  <GlobalStyleProviders darkTheme={false}>{children}</GlobalStyleProviders>
+                </BrowserRouter>
+              </ProvideAuth>
+            </ProvideProducts>
+          </ProvideCart>
+        </UtilsProviders>
       </HelmetProvider>
     </ErrorBoundary>
   );

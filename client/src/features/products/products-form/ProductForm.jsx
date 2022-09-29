@@ -34,11 +34,11 @@ import { useState } from 'react';
 import { useProducts } from '../providers/ProductsProviders';
 import { deleteProductImage } from '../api';
 import { deleteProduct } from '../api/deleteProduct';
+import { useModal } from 'components/Modal';
 
 export const ProductForm = ({
   onSuccess,
   onFail,
-  setShowModal,
   productValue = {
     name: '',
     price: '',
@@ -62,6 +62,7 @@ export const ProductForm = ({
     setProducts
   } = useProducts();
 
+  const { setShowModal } = useModal();
   const [images, setImages] = useState({ files: productValue.images || [], error: [] });
   const [name, setName] = useState(productValue.name);
   const [price, setPrice] = useState(productValue.price);

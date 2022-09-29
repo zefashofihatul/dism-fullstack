@@ -11,8 +11,10 @@ import {
   TableAction
 } from 'components/Table';
 import { useProducts } from '../providers/ProductsProviders';
+import { useModal } from 'components/Modal';
 
 export const ProductsTable = ({ loading, products, setShowModal }) => {
+  const { setShowModalInput } = useModal();
   const {
     getDetailProductFn,
     setShowProductForm,
@@ -78,8 +80,25 @@ export const ProductsTable = ({ loading, products, setShowModal }) => {
                   },
                   {
                     label: 'Detail',
-                    onClick: () => {
+                    onClick: (e) => {
                       console.log('Detail');
+                      setShowModalInput({
+                        show: true,
+                        title: 'Detail Product',
+                        message:
+                          'Ini adalah contoh untuk menerapkan sebuah sebuah detail product pada halaman',
+                        action: [
+                          {
+                            label: 'Show Product',
+                            onClick: (e) => {
+                              console.log('Ini adalah show product');
+                              setShowModalInput({
+                                show: false
+                              });
+                            }
+                          }
+                        ]
+                      });
                     }
                   },
                   {
