@@ -1,17 +1,20 @@
 const productController = require('../controllers/products/productController');
 const productsDbRepositoryPostgres = require('../database/postgres/repositories/productsDbRepositoryPostgres');
+const productImagesDbRepositoryPostgres = require('../database/postgres/repositories/productImageDbRepositoryPostgres');
 
 // Load Middleware
 const uploadFiles = require('../middlewares/uploadFiles');
 const authMiddleware = require('../middlewares/authMiddleware');
 const adminAuthMiddleware = require('../middlewares/adminAuthMiddleware');
-const { response } = require('express');
 
 const productsRouter = (express) => {
   const router = express.Router();
 
   // load controller with dependencies
-  const controller = productController(productsDbRepositoryPostgres);
+  const controller = productController(
+    productsDbRepositoryPostgres,
+    productImagesDbRepositoryPostgres
+  );
 
   // Routes Endpoint "/"
   router
@@ -22,12 +25,9 @@ const productsRouter = (express) => {
       controller.addNewProductWithImages
     );
 
-  router.route('/').get(authMiddleware, (res, req, next) => {
-    response.sendFile();
-  });
-
+  // Routes Endpoint "/search"
   router
-    .route('/search')
+    .route('/search/')
     .get(authMiddleware, controller.fetchProductByProperty);
 
   // Routes Endpoint "/image"
@@ -41,11 +41,14 @@ const productsRouter = (express) => {
   // Routes Endpoint "/:productId"
   router
     .route('/:productId')
-    .get(authMiddleware, controller.fetchProductById)
-    .delete([authMiddleware, adminAuthMiddleware], controller.deleteProductById)
     .put(
       [authMiddleware, adminAuthMiddleware, uploadFiles],
       controller.updateProductById
+    )
+    .get(authMiddleware, controller.fetchProductById)
+    .delete(
+      [authMiddleware, adminAuthMiddleware],
+      controller.deleteProductById
     );
 
   router

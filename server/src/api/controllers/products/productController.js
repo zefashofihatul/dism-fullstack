@@ -19,9 +19,13 @@ const tryParseInt = require('../../helpers/utils/parser');
 // Dependency
 const { v4: uuidv4 } = require('uuid');
 
-const productController = (productsDbRepositoryPostgres) => {
+const productController = (
+  productsDbRepositoryPostgres,
+  productImagesDbRepositoryPostgres
+) => {
   // Repository Database Postgres Dependency
   const dbRepository = productsDbRepositoryPostgres();
+  const dbRepositoryImage = productImagesDbRepositoryPostgres();
 
   // Getting All Product on Database
   const fetchAllProducts = (req, res, next) => {
@@ -220,6 +224,7 @@ const productController = (productsDbRepositoryPostgres) => {
     const { productId } = req.params;
     deleteById(dbRepository, productId)
       .then((result) => {
+        console.log(result);
         if (!result) {
           throw new NotFoundError(`No product found with id: ${productId}`);
         }
@@ -251,37 +256,47 @@ const productController = (productsDbRepositoryPostgres) => {
 
   // Update Product by Id from Database
   const updateProductById = (req, res, next) => {
-    const { productId } = req.params;
-
     const {
       name,
       price,
+      stock,
       materials,
       details,
-      shortDescription,
+      description,
       dimensions,
       category,
-      color,
     } = req.body;
-    updateById(dbRepository, productId, {
+
+    updateById(dbRepository, dbRepositoryImage, req.params.productId, {
       name,
       price,
       materials,
       details,
-      shortDescription,
+      description,
       dimensions,
       category,
-      color,
+      stock,
       updatedAt: new Date(),
+      productImage: req.files.map((value) => {
+        return {
+          id: `image-${uuidv4()}`,
+          idProduct: `${req.params.productId}`,
+          name: value.filename,
+          src: `http://localhost:8080/image/${value.filename}`,
+        };
+      }),
     })
       .then((result) => {
-        if (!result[0]) {
-          throw new InvariantError(`No product found with id: ${productId}`);
+        console.log(result);
+        if (!result.productResult) {
+          throw new InvariantError(
+            `No product found with id: ${req.params.productId}`
+          );
         }
         return res.status(200).send({
           status: 'Success',
           message: `${req.body.name} has been updated`,
-          data: result[1][0].dataValues,
+          data: result.productResult,
         });
       })
       .catch((error) => {

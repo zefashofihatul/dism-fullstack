@@ -87,7 +87,7 @@ export const ProductsPages = () => {
           showForm={showForm}
           setShowForm={setShowForm}
           productValue={showProductForm.productValue}
-          setProductSetting={setProductSetting}
+          setShowModal={setShowModal}
           productSetting={productSetting}
         />
       )}

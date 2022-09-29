@@ -29,7 +29,7 @@ const productsDbRepositoryPostgres = () => {
     return Product.findAndCountAll({
       offset: limit * page,
       limit: limit,
-      order: [['createdAt', 'DESC']],
+      order: [['updatedAt', 'DESC']],
       where: {
         name: { [Op.like]: '%' + searchParam + '%' },
         category: { [Op.like]: '%' + category + '%' },
@@ -41,7 +41,7 @@ const productsDbRepositoryPostgres = () => {
     return Product.findAndCountAll({
       offset: limit * page,
       limit: limit,
-      order: [['createdAt', 'DESC']],
+      order: [['updatedAt', 'DESC']],
       where: {
         category: filterParam,
       },
@@ -52,7 +52,7 @@ const productsDbRepositoryPostgres = () => {
     return Product.findAndCountAll({
       offset: limit * page,
       limit: limit,
-      order: [['createdAt', 'DESC']],
+      order: [['updatedAt', 'DESC']],
     });
   };
 
@@ -62,7 +62,6 @@ const productsDbRepositoryPostgres = () => {
   };
 
   const addWithImage = (productData) => {
-    console.log(productData);
     return Product.create(productData, {
       include: [
         {
@@ -80,6 +79,7 @@ const productsDbRepositoryPostgres = () => {
   };
 
   const updateProduct = (id, dataUpdate) => {
+    console.log(id, dataUpdate);
     // Add Proper validation or Add sequelize Validator
     return Product.update(dataUpdate, {
       where: { id: id },

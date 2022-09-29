@@ -54,6 +54,7 @@ export const ProductsTable = ({ loading, products }) => {
                           show: true,
                           method: 'PUT',
                           productValue: {
+                            id: result.data.id,
                             name: result.data.name,
                             price: result.data.price,
                             productImage: result.data.productImage,

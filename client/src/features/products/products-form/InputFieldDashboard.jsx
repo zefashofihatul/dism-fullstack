@@ -93,12 +93,14 @@ ImageUploadField.propTypes = {
 };
 
 export const SelectField = (props) => {
-  const { label, className, name, children, registration } = props;
+  const { label, className, name, children, registration, onInput, value } = props;
   return (
     <FieldWrapper>
       <>
         <Label>{label}</Label>
-        <Select {...registration}>{children}</Select>
+        <Select {...registration} value={value} onInput={onInput}>
+          {children}
+        </Select>
       </>
     </FieldWrapper>
   );
@@ -109,7 +111,9 @@ SelectField.propTypes = {
   registration: PropTypes.object,
   className: PropTypes.string,
   name: PropTypes.string,
-  children: PropTypes.array
+  value: PropTypes.any,
+  children: PropTypes.array,
+  onInput: PropTypes.func
 };
 
 export const TextField = (props) => {

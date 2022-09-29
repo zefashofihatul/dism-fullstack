@@ -5,7 +5,8 @@ import {
   postProducts,
   getDetailProduct,
   searchProducts,
-  filterProducts
+  filterProducts,
+  updateProduct
 } from '../api';
 const productsContext = createContext();
 
@@ -38,6 +39,10 @@ export const useProvideProducts = () => {
     return getProducts(productSetting);
   };
 
+  const updateProductFn = (values, productId) => {
+    return updateProduct(values, productId);
+  };
+
   const filterProductsFn = (filterParam) => {
     return filterProducts(filterParam);
   };
@@ -63,6 +68,7 @@ export const useProvideProducts = () => {
     getDetailProductFn,
     postProductsFn,
     filterProductsFn,
+    updateProductFn,
     setCategory,
     products,
     setProducts,

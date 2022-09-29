@@ -33,10 +33,12 @@ import { SelectField } from './InputFieldDashboard';
 import { useState } from 'react';
 import { useProducts } from '../providers/ProductsProviders';
 import { deleteProductImage } from '../api';
+import { deleteProduct } from '../api/deleteProduct';
 
 export const ProductForm = ({
   onSuccess,
   onFail,
+  setShowModal,
   productValue = {
     name: '',
     price: '',
@@ -50,7 +52,15 @@ export const ProductForm = ({
     dimensions: ''
   }
 }) => {
-  const { postProductsFn, showProductForm, setShowProductForm } = useProducts();
+  const {
+    postProductsFn,
+    showProductForm,
+    setShowProductForm,
+    fetchProductsFn,
+    productSetting,
+    updateProductFn,
+    setProducts
+  } = useProducts();
 
   const [images, setImages] = useState({ files: productValue.images || [], error: [] });
   const [name, setName] = useState(productValue.name);
@@ -72,7 +82,12 @@ export const ProductForm = ({
     details: z.string().min(5, 'Char Lenght must > 6'),
     materials: z.string().min(5, 'Char Lenght must > 6'),
     dimensions: z.string().min(5, 'Char Lenght must > 6'),
-    images: z.any().refine((val) => images.files.length > 0, 'Upload your product image')
+    images: z
+      .any()
+      .refine(
+        (val) => images.files.length > 0 || existingImage.length > 0,
+        'Upload your product image'
+      )
   });
 
   const handleDeleteImage = (path) => {
@@ -112,16 +127,42 @@ export const ProductForm = ({
           options={{ shouldUnregister: false }}
           onSubmit={async (values) => {
             values.images = images.files;
-            postProductsFn(values)
-              .then((value) => {
-                console.log(value);
-                setShowProductForm(false);
-                onSuccess();
-              })
-              .catch((err) => {
-                console.log(err);
-                onFail(err);
-              });
+            console.log(values);
+            if (showProductForm.method == 'POST') {
+              postProductsFn(values)
+                .then((value) => {
+                  console.log(value);
+                  setShowProductForm(false);
+                  onSuccess();
+                })
+                .catch((err) => {
+                  console.log(err);
+                  onFail(err);
+                });
+            } else {
+              console.log(values);
+              updateProductFn(values, productValue.id)
+                .then((result) => {
+                  console.log(result);
+                  setShowModal({
+                    show: true,
+                    message: 'Update Product Success',
+                    status: 'success'
+                  });
+                  setShowProductForm(false);
+                  fetchProductsFn(productSetting).then((value) => {
+                    setProducts(value.data);
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setShowModal({
+                    show: true,
+                    message: 'Update Product Fail',
+                    status: 'Fail'
+                  });
+                });
+            }
           }}>
           {({ register, formState }) => (
             <>
@@ -185,6 +226,8 @@ export const ProductForm = ({
                   label="Category"
                   type="checkbox"
                   className="category"
+                  value={category}
+                  onInput={(e) => setCategory(e.target.value)}
                   registration={register('category')}>
                   <option value="ashtray">Ashtray</option>
                   <option value="lifestyle">Lifestyle</option>
@@ -228,25 +271,14 @@ export const ProductForm = ({
                   error={formState.errors['dimensions']}
                 />
               </FormControl>
-              {showProductForm.method == 'POST' && (
-                <ButtonWrapper>
-                  <ButtonRect label="Submit Product" type="submit" className="register" />
-                  <ButtonRect
-                    label="Cancel"
-                    color="#262626"
-                    className="register"
-                    onClick={() => {
-                      setShowProductForm(false);
-                      setImages({ files: [], error: [] });
-                      document.getElementById('productForm').reset();
-                    }}
-                  />
-                </ButtonWrapper>
-              )}
-              {showProductForm.method == 'PUT' && (
+              <ButtonWrapper>
                 <SpaceBetween>
                   <ButtonWrapper>
-                    <ButtonRect label="Update Product" type="submit" className="register" />
+                    <ButtonRect
+                      label={showProductForm.method == 'POST' ? 'Submit Product' : 'Update Product'}
+                      type="submit"
+                      className="register"
+                    />
                     <ButtonRect
                       label="Cancel"
                       color="#262626"
@@ -258,18 +290,39 @@ export const ProductForm = ({
                       }}
                     />
                   </ButtonWrapper>
-                  <ButtonRect
-                    label="Delete Product"
-                    color="#d83737"
-                    type="submit"
-                    className="register"
-                    onClick={() => {
-                      setImages({ files: [], error: [] });
-                      document.getElementById('productForm').reset();
-                    }}
-                  />
+                  {showProductForm.method == 'PUT' && (
+                    <ButtonWrapper>
+                      <ButtonRect
+                        label="Delete Product"
+                        color="#d83737"
+                        className="register"
+                        onClick={() => {
+                          deleteProduct(productValue.id)
+                            .then((result) => {
+                              console.log(result);
+                              setShowModal({
+                                show: true,
+                                message: 'Delete Product Success',
+                                status: 'success'
+                              });
+                              setShowProductForm(false);
+                              fetchProductsFn(productSetting).then((value) => {
+                                setProducts(value.data);
+                              });
+                            })
+                            .catch((err) => {
+                              setShowModal({
+                                show: true,
+                                message: 'Delete Product Fail',
+                                status: 'danger'
+                              });
+                            });
+                        }}
+                      />
+                    </ButtonWrapper>
+                  )}
                 </SpaceBetween>
-              )}
+              </ButtonWrapper>
             </>
           )}
         </Form>
@@ -284,5 +337,6 @@ ProductForm.propTypes = {
   onSuccess: PropTypes.func,
   onFail: PropTypes.func,
   productImage: PropTypes.array,
-  productValue: PropTypes.object
+  productValue: PropTypes.object,
+  setShowModal: PropTypes.func
 };
