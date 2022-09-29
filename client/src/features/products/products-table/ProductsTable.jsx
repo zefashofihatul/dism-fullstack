@@ -105,26 +105,41 @@ export const ProductsTable = ({ loading, products, setShowModal }) => {
                     label: 'Delete',
                     onClick: () => {
                       console.log(value.id);
-                      deleteProductFn(value.id)
-                        .then((result) => {
-                          console.log(result);
-                          setShowModal({
-                            show: true,
-                            message: 'Delete Product Success',
-                            status: 'success'
-                          });
-
-                          fetchProductsFn(productSetting).then((result) => {
-                            setProducts(result.data);
-                          });
-                        })
-                        .catch((err) => {
-                          setShowModal({
-                            show: true,
-                            message: 'Delete Product Fail',
-                            status: 'danger'
-                          });
-                        });
+                      setShowModalInput({
+                        show: true,
+                        title: 'Delete Product',
+                        message: 'Are you sure want to delete this Product ?',
+                        action: [
+                          {
+                            label: 'Delete Product',
+                            onClick: (e) => {
+                              console.log('Delete Product');
+                              deleteProductFn(value.id)
+                                .then((result) => {
+                                  console.log(result);
+                                  setShowModal({
+                                    show: true,
+                                    message: 'Delete Product Success',
+                                    status: 'success'
+                                  });
+                                  fetchProductsFn(productSetting).then((result) => {
+                                    setProducts(result.data);
+                                  });
+                                })
+                                .catch((err) => {
+                                  setShowModal({
+                                    show: true,
+                                    message: 'Delete Product Fail',
+                                    status: 'danger'
+                                  });
+                                });
+                              setShowModalInput({
+                                show: false
+                              });
+                            }
+                          }
+                        ]
+                      });
                     }
                   }
                 ]}

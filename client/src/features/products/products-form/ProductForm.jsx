@@ -62,7 +62,7 @@ export const ProductForm = ({
     setProducts
   } = useProducts();
 
-  const { setShowModal } = useModal();
+  const { setShowModal, setShowModalInput } = useModal();
   const [images, setImages] = useState({ files: productValue.images || [], error: [] });
   const [name, setName] = useState(productValue.name);
   const [price, setPrice] = useState(productValue.price);
@@ -100,14 +100,30 @@ export const ProductForm = ({
       <ImagesWrapper key={file.id}>
         <DeleteImageWrapper
           onClick={(e) => {
-            deleteProductImage(file.id)
-              .then((value) => {
-                console.log(value);
-                handleDeleteImage(index);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+            setShowModalInput({
+              show: true,
+              title: 'Delete Image',
+              message: 'Are you sure want to delete this Image ?',
+              action: [
+                {
+                  label: 'Delete Image',
+                  onClick: (e) => {
+                    console.log('Delete Product');
+                    deleteProductImage(file.id)
+                      .then((value) => {
+                        console.log(value);
+                        handleDeleteImage(index);
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                    setShowModalInput({
+                      show: false
+                    });
+                  }
+                }
+              ]
+            });
           }}>
           <ImageIcon size="14px" src={trashIcon} />
         </DeleteImageWrapper>
