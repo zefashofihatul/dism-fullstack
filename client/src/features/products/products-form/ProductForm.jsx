@@ -314,26 +314,39 @@ export const ProductForm = ({
                         color="#d83737"
                         className="register"
                         onClick={() => {
-                          deleteProduct(productValue.id)
-                            .then((result) => {
-                              console.log(result);
-                              setShowModal({
-                                show: true,
-                                message: 'Delete Product Success',
-                                status: 'success'
-                              });
-                              setShowProductForm(false);
-                              fetchProductsFn(productSetting).then((value) => {
-                                setProducts(value.data);
-                              });
-                            })
-                            .catch((err) => {
-                              setShowModal({
-                                show: true,
-                                message: 'Delete Product Fail',
-                                status: 'danger'
-                              });
-                            });
+                          setShowModalInput({
+                            show: true,
+                            title: 'Delete Image',
+                            message: 'Are you sure want to delete this Image ?',
+                            action: [
+                              {
+                                label: 'Delete Image',
+                                onClick: (e) => {
+                                  console.log('Delete Product');
+                                  deleteProduct(productValue.id)
+                                    .then((result) => {
+                                      console.log(result);
+                                      setShowModal({
+                                        show: true,
+                                        message: 'Delete Product Success',
+                                        status: 'success'
+                                      });
+                                      setShowProductForm(false);
+                                      fetchProductsFn(productSetting).then((value) => {
+                                        setProducts(value.data);
+                                      });
+                                    })
+                                    .catch((err) => {
+                                      setShowModal({
+                                        show: true,
+                                        message: 'Delete Product Fail',
+                                        status: 'danger'
+                                      });
+                                    });
+                                }
+                              }
+                            ]
+                          });
                         }}
                       />
                     </ButtonWrapper>

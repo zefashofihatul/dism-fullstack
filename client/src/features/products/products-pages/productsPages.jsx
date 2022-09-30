@@ -12,7 +12,6 @@ import {
   Label,
   SideBarSection
 } from './style/productsPageStyle';
-import { ModalFixed } from 'components/Modal';
 import cartIcon from 'assets/images/cart_icon.svg';
 import orderIcon from 'assets/images/order_icon.svg';
 import userIcon from 'assets/images/user_icon.svg';

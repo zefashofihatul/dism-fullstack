@@ -12,6 +12,9 @@ import {
 } from 'components/Table';
 import { useProducts } from '../providers/ProductsProviders';
 import { useModal } from 'components/Modal';
+import { TooltipCursor } from 'components/Tooltip';
+import { HiddenContent } from 'components/Table/style/TableStyle';
+import { useState } from 'react';
 
 export const ProductsTable = ({ loading, products, setShowModal }) => {
   const { setShowModalInput } = useModal();
@@ -42,7 +45,11 @@ export const ProductsTable = ({ loading, products, setShowModal }) => {
           return (
             <Row key={index}>
               <Column>{index + products.page * products.size + 1}</Column>
-              <Column width="200px">{value.name}</Column>
+              <Column width="200px">
+                <TooltipCursor value={value.name}>
+                  <HiddenContent>{value.name}</HiddenContent>
+                </TooltipCursor>
+              </Column>
               <Column>{value.category}</Column>
               <Column>{value.price}</Column>
               <Column>

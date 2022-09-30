@@ -50,6 +50,7 @@ export const BodyColumn = styled.td`
   padding: 8px 8px 8px 16px;
   font-size: 14px;
   overflow: hidden;
+
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 1.6;
@@ -86,4 +87,10 @@ export const BadgeCard = styled.div`
   text-overflow: ellipsis;
   border-radius: 4px;
   background-color: ${(props) => (props.color ? props.color : '#e6e3e3')};
+`;
+
+export const HiddenContent = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
