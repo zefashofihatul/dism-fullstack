@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getMousePos } from 'utils/cursorUtils';
-import { CursorTooltipWrapper, CursorTooltipMain } from './style/TooltipCursorStyle';
+import { CursorTooltipWrapper, CursorTooltipMain, Content } from './style/TooltipCursorStyle';
 
 let mouse = { x: 0, y: 0 };
 window.addEventListener('mousemove', (ev) => (mouse = getMousePos(ev)));

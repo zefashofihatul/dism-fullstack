@@ -308,48 +308,47 @@ export const ProductForm = ({
                     />
                   </ButtonWrapper>
                   {showProductForm.method == 'PUT' && (
-                    <ButtonWrapper>
-                      <ButtonRect
-                        label="Delete Product"
-                        color="#d83737"
-                        className="register"
-                        onClick={() => {
-                          setShowModalInput({
-                            show: true,
-                            title: 'Delete Image',
-                            message: 'Are you sure want to delete this Image ?',
-                            action: [
-                              {
-                                label: 'Delete Image',
-                                onClick: (e) => {
-                                  console.log('Delete Product');
-                                  deleteProduct(productValue.id)
-                                    .then((result) => {
-                                      console.log(result);
-                                      setShowModal({
-                                        show: true,
-                                        message: 'Delete Product Success',
-                                        status: 'success'
-                                      });
-                                      setShowProductForm(false);
-                                      fetchProductsFn(productSetting).then((value) => {
-                                        setProducts(value.data);
-                                      });
-                                    })
-                                    .catch((err) => {
-                                      setShowModal({
-                                        show: true,
-                                        message: 'Delete Product Fail',
-                                        status: 'danger'
-                                      });
+                    <ButtonRect
+                      label="Delete Product"
+                      color="#d83737"
+                      type="button"
+                      className="delete"
+                      onClick={() => {
+                        setShowModalInput({
+                          show: true,
+                          title: 'Delete Product',
+                          message: 'Are you sure want to delete this Image ?',
+                          action: [
+                            {
+                              label: 'Delete Product',
+                              onClick: (e) => {
+                                console.log('Delete Product');
+                                deleteProduct(productValue.id)
+                                  .then((result) => {
+                                    console.log(result);
+                                    setShowModal({
+                                      show: true,
+                                      message: 'Delete Product Success',
+                                      status: 'success'
                                     });
-                                }
+                                    setShowProductForm(false);
+                                    fetchProductsFn(productSetting).then((value) => {
+                                      setProducts(value.data);
+                                    });
+                                  })
+                                  .catch((err) => {
+                                    setShowModal({
+                                      show: true,
+                                      message: 'Delete Product Fail',
+                                      status: 'danger'
+                                    });
+                                  });
                               }
-                            ]
-                          });
-                        }}
-                      />
-                    </ButtonWrapper>
+                            }
+                          ]
+                        });
+                      }}
+                    />
                   )}
                 </SpaceBetween>
               </ButtonWrapper>

@@ -32,7 +32,7 @@ export const useProvideProducts = () => {
   const [products, setProducts] = useState({ total: 0, page: 0, size: 0, products: [] });
   const [productSetting, setProductSetting] = useState({
     page: 0,
-    size: 10
+    size: 20
   });
   const [category, setCategory] = useState('');
 

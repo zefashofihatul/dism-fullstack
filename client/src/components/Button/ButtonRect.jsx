@@ -18,7 +18,7 @@ ButtonRectIcon.propTypes = {
 
 export const ButtonRect = ({ label = 'label', ...props }) => {
   return (
-    <ButtonRectWrapper onClick={props.onClick} color={props.color}>
+    <ButtonRectWrapper type={props.type} onClick={props.onClick} color={props.color}>
       <Label>{label}</Label>
     </ButtonRectWrapper>
   );
@@ -27,5 +27,6 @@ export const ButtonRect = ({ label = 'label', ...props }) => {
 ButtonRect.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  type: PropTypes.any
 };

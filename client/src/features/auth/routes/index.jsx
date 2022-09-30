@@ -5,9 +5,9 @@ import { useAuth } from '../providers';
 
 export const AuthRoutes = () => {
   const { checkToken } = useAuth();
-  if (checkToken()) {
-    return <Navigate to="/dashboard" />;
-  }
+  // if (checkToken()) {
+  //   return <Navigate to="/dashboard" />;
+  // }
   return (
     <Routes>
       <Route path="register" element={<Register />} />
