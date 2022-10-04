@@ -6,12 +6,14 @@ import { ProductFlexCard } from '../component/ProductGridCard';
 import { getProducts } from '../api';
 import PropTypes from 'prop-types';
 import { splitarray } from 'utils/splitArray';
+import { useProducts } from '../providers/ProductsProviders';
 
-export const ProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => {
+export const ProductsGrid = ({ filterOption, gridCol, fetchItem }) => {
+  const { products } = useProducts();
   const productsFilter =
     filterOption !== 'ALL PRODUCT'
-      ? products.filter((value) => value.category == filterOption)
-      : products;
+      ? products.products.filter((value) => value.category == filterOption)
+      : products.products;
   return (
     <MainWrapper>
       <GridContentWrapper>
@@ -20,11 +22,11 @@ export const ProductsGrid = ({ products, filterOption, gridCol, fetchItem }) => 
             <ProductGridCard
               key={index}
               id={index}
-              title={product.title}
+              title={product.name}
               price={product.price}
-              image1={product.image1}
-              image2={product.image2}
-              description={product.description}
+              image1={product.productImage[0].src}
+              image2={product.productImage[1].src}
+              description={product.descriptions}
               badge={product.badge}
             />
           ))}

@@ -53,6 +53,11 @@ const productsDbRepositoryPostgres = () => {
       offset: limit * page,
       limit: limit,
       order: [['updatedAt', 'DESC']],
+      include: [
+        {
+          association: 'productImage',
+        },
+      ],
     });
   };
 

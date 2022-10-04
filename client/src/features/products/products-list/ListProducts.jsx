@@ -3,22 +3,24 @@ import { ListContentWrapper } from '../style/ListContentStyle';
 import { ProductListCard } from '../component/ProductListCard';
 import { useEffect } from 'react';
 import Cursor from 'features/cursor/cursor';
-import { getProducts } from '../api';
+import { useProducts } from '../providers/ProductsProviders';
 import { CursorEl, CursorMedia, ProductImage } from '../style/ListContentStyle';
 import PropTypes from 'prop-types';
 
-export const ListProducts = ({ products, filterOption, styleAdd }) => {
+export const ListProducts = ({ filterOption, styleAdd }) => {
+  const { fetchProductsFn, productSetting, setProducts, products } = useProducts();
+
   useEffect(() => {
     const cursor = new Cursor(document.querySelector('.cursor'));
-    async function fetchData() {
-      const response = await getProducts();
-      console.log(response);
-    }
-  });
+    fetchProductsFn(productSetting).then((result) => {
+      setProducts(result.data);
+      console.log(result.data);
+    });
+  }, []);
   const productsFilter =
     filterOption !== 'ALL PRODUCT'
-      ? products.filter((value) => value.category == filterOption)
-      : products;
+      ? products.products.filter((value) => value.category == filterOption)
+      : products.products;
   return (
     <MainWrapper>
       <ListContentWrapper>
@@ -27,20 +29,23 @@ export const ListProducts = ({ products, filterOption, styleAdd }) => {
             <ProductListCard
               key={index}
               id={index}
-              title={product.title}
+              title={product.name}
               price={product.price}
-              description={product.description}
-              image1={product.image1}
-              badge={product.badge}
+              description={product.descriptions}
+              image1={product.productImage[0].src}
+              badge={product.productImage[1].src}
             />
           );
         })}
       </ListContentWrapper>
       <CursorEl className="cursor">
         <CursorMedia className="cursor-media">
-          {products.map((product, index) => {
+          {products.products.map((product, index) => {
             return (
-              <ProductImage id={`image-${index}`} key={index} src={product.image1}></ProductImage>
+              <ProductImage
+                id={`image-${index}`}
+                key={index}
+                src={product.productImage[0].src}></ProductImage>
             );
           })}
         </CursorMedia>

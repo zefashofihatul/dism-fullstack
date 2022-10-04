@@ -12,14 +12,22 @@ import { Header } from 'components/Header';
 import { dummyContent } from 'features/products/dummyData';
 import { HeaderProduct } from 'features/products/component/HeaderProduct';
 import { ListProducts } from 'features/products/products-list/ListProducts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useProducts } from 'features/products/providers/ProductsProviders';
 
 export const Collection = () => {
+  const { fetchProductsFn, productSetting, setProducts, products } = useProducts();
   const [isListContent, setIsListContent] = useState(false);
   const [option, setOption] = useState({ set: 'ALL PRODUCT' });
   const switchHandleClick = () => {
     setIsListContent(!isListContent);
   };
+  useEffect(() => {
+    fetchProductsFn(productSetting).then((result) => {
+      setProducts(result.data);
+      console.log(result.data);
+    });
+  }, []);
   return (
     <CollectionsWrapper>
       <Header />

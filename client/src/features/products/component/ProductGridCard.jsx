@@ -87,9 +87,9 @@ export const ProductGridCard = ({
             </CartButton>
           </ProductPriceWrapper>
         </ProductTitleWrapper>
-        <ProductDescriptionWrapper>
+        {/* <ProductDescriptionWrapper>
           <ProductDescription>{description}</ProductDescription>
-        </ProductDescriptionWrapper>
+        </ProductDescriptionWrapper> */}
       </ProductItemGrid>
     </>
   );
